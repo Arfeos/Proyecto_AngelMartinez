@@ -1,0 +1,31 @@
+﻿<Page x:Class="proyecto_Final.Presentacion.Ayuda"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:proyecto_Final.Presentacion"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Ayuda">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/./Recursos/estilo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Style="{StaticResource papiro}">
+        <Label  Style="{StaticResource chula}" Content="ayuda de usuario" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="260" Height="59" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Margin="135,155,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="240" Width="500">
+         
+    Esta aplicación te permite buscar información sobre las clases, subclases, razas y subrazas de Dungeons and Dragons 5ta edición a través de la API de DandD 5e. Sigue los siguientes pasos para comenzar a utilizar la aplicación:
+    <LineBreak/>
+    1. En la pantalla principal de la aplicación, encontrarás en el menu las opcion de navegacion al pulsar a 4 botones: "Clases", "Subclases", "Razas" y "Subrazas". Selecciona el botón que corresponda a la información que deseas buscar.
+    <LineBreak/>
+     2.En se te cargara una pagina con una lista de los datos por los que se puede buscar_ salecciona lo que deses.
+       <LineBreak/>  
+     3. El programa mostrara los datos de ese dato seleccionado. para volver al menu principal si quieres buscar otra cosa tendras que darle a la pagina de retroceder (flecha hacia la izquierda en la esquina superior izquierda)
+        </TextBlock>
+
+    </Grid>
+</Page>

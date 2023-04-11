@@ -1,0 +1,41 @@
+﻿<Window x:Class="proyecto_Final.Presentacion.Registrar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:proyecto_Final.Presentacion"
+        mc:Ignorable="d"
+        Title="Registrar" Height="450" Width="800" Closed="Window_Closed" Icon="/Resources/icono.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/./Recursos/estilo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="DarkGray">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="volver" Header="volver" Click="volver_Click"/>
+                <MenuItem x:Name="registrar" Header="registrar" Click="registrar_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Image Source="/Resources/d20.png" Margin="26,10,26,39"/>
+
+        <TextBox x:Name="usuarioForm" Width="300" Height="30" Margin="0,-75,0,0" FontSize="18px" TextChanged="usuarioForm_TextChanged">
+            <TextBox.ToolTip>
+                <TextBlock Text="Escribe el nombre de usuario" Background="Beige"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <PasswordBox x:Name="contraseñaForm" Width="300" Height="30" Margin="0,100,0,0" FontSize="18px"></PasswordBox>
+        <Button x:Name="btnAcceder" Width="150" Height="30" Margin="0,350,0,0" Click="btnAcceder_Click" >Registrar
+            <Button.ToolTip>
+                <TextBlock Text="Accede aquí" Background="Beige"/>
+            </Button.ToolTip>
+        </Button>
+     
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="165,153,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF0028ED" FontSize="20"/>
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="135,240,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF0028ED" FontSize="20"/>
+
+    </Grid>
+</Window>

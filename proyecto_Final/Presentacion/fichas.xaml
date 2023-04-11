@@ -1,0 +1,24 @@
+﻿<Window x:Class="proyecto_Final.Presentacion.fichas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:proyecto_Final.Presentacion"
+        mc:Ignorable="d"
+        Title="fichas" Height="450" Width="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/./Recursos/estilo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{StaticResource papiro}">
+        <Label  Style="{StaticResource chula}" Content="fichas" FontSize="20" HorizontalAlignment="Left" Margin="20,14,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="325" Margin="20,53,0,0" VerticalAlignment="Top" Width="156" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button Content="Cargar"  HorizontalAlignment="Left" Margin="270,53,0,0" VerticalAlignment="Top" Height="31" Width="95"/>
+        <Button Content="Crear" HorizontalAlignment="Left" Margin="270,119,0,0" VerticalAlignment="Top" Height="31" Width="95"/>
+        <Button Content="Borrar" HorizontalAlignment="Left" Margin="270,184,0,0" VerticalAlignment="Top" Height="32" Width="95"/>
+
+    </Grid>
+</Window>
