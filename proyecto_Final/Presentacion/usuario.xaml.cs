@@ -21,6 +21,7 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class usuario : NavigationWindow
     {
+        bool inicio = false;
         InicioSesion mibase;
         persona per;
 
@@ -32,6 +33,12 @@ namespace proyecto_Final.Presentacion
         public usuario(InicioSesion f1, persona per)
         {
             this.per = per;
+            this.mibase = f1;
+            inicio = true;
+            InitializeComponent();
+        }
+        public usuario(InicioSesion f1)
+        {
             this.mibase = f1;
             InitializeComponent();
         }
@@ -55,7 +62,10 @@ namespace proyecto_Final.Presentacion
         /// <param name="e">Los argumentos del evento.</param>
         private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Navigate(new inicio(per));
+            if (inicio)
+                this.Navigate(new inicio(per));
+            else
+                this.Navigate(new inicio(true));
         }
         private void ayuda(object sender, RoutedEventArgs e)
         {

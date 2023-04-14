@@ -22,7 +22,7 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class Administrador : Page
     {
-        List<string> lista = new List<string>();
+        List<persona> lista = new List<persona>();
         BBDD bd= new BBDD();
         public Administrador()
         {
@@ -48,7 +48,32 @@ namespace proyecto_Final.Presentacion
         {
             bd.borrar(usuario.Text);
             actualizar();
-            MessageBox.Show("se ha borrado exitosamente");
+
+        }
+
+        private void Actualizar_btn_Click(object sender, RoutedEventArgs e)
+        {
+            string nom = lista[lista_bd.SelectedIndex].Usuario;
+            int admin = lista[lista_bd.SelectedIndex].EsAdmin;
+            NavigationWindow nav=(NavigationWindow)Window.GetWindow(this);
+            modificar mod = new modificar(nom, 1,admin ,nav);
+            mod.Show();
+            nav.Visibility= Visibility.Collapsed;
+
+
+        }
+
+        private void añadir_btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationWindow nav = (NavigationWindow)Window.GetWindow(this);
+            modificar mod = new modificar(2, nav);
+            mod.Show();
+            nav.Visibility = Visibility.Collapsed;
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
         }
     }
 }

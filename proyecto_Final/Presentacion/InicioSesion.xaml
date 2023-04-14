@@ -19,7 +19,7 @@
             <MenuItem x:Name="Acceder" Header="Acceder" Click="Acceder_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <Image Source="/Resources/d20.png" Margin="26,10,26,39"/>
+        <Image Source="/Resources/d20.png" Margin="26,10,26,47"/>
 
         <TextBox x:Name="usuarioForm" Width="300" Height="30" Margin="0,-75,0,0" FontSize="18px" Text="Admin">
             <TextBox.ToolTip>
@@ -32,7 +32,7 @@
             </PasswordBox.ToolTip>
             
         </PasswordBox>
-        <Button x:Name="btnAcceder"  Margin="325,319,290,65" Click="btnAcceder_Click" >Entrar
+        <Button x:Name="btnAcceder" Margin="584,300,31,85"  Click="btnAcceder_Click" >Entrar
             <Button.ToolTip>
                 <TextBlock Text="Accede aquí" Background="Beige"/>
             </Button.ToolTip>
@@ -40,11 +40,12 @@
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="155,153,0,0" VerticalAlignment="Top" Width="125" Foreground="#FF0028ED" FontSize="20"/>
 
         <Label Content="Contraseña" HorizontalAlignment="Left" Margin="125,238,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF0028ED" FontSize="22" Height="38"/>
-        <Button x:Name="btnRegistrar" Margin="325,375,290,10" Content="Registrar" Click="btnRegistrar_Click" >
+        <Button x:Name="btnRegistrar" Margin="584,367,31,16"  Content="Registrar" Click="btnRegistrar_Click" >
             <Button.ToolTip>
                 <TextBlock Text="Registrar si no tienes cuenta" Background="Beige"/>
             </Button.ToolTip>
         </Button>
+        <Label Content="en caso de querer entrar sin registro previo haga doble click aqui" Margin="200,369,210,10" MouseDoubleClick="Label_MouseDoubleClick"/>
 
     </Grid>
 </Window>

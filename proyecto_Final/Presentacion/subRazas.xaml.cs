@@ -28,7 +28,6 @@ namespace proyecto_Final.Presentacion
 
         public subRazas()
         {
-            api.llamarsubRazas();
             InitializeComponent();
         }
 
@@ -36,20 +35,19 @@ namespace proyecto_Final.Presentacion
         /// <summary>
         /// Carga las subrazas disponibles en la lista de subrazas.
         /// </summary>
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            await api.llamarsubRazas();
             subrazas = api.devolverlista();
-            MessageBox.Show("En la siguiente pantalla al elegir una subraza aparecerán sus datos");
             listarazas.ItemsSource = subrazas;
         }
 
         /// <summary>
         /// Muestra los datos de la subraza seleccionada.
         /// </summary>
-        private void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            api.llamarsubRaza(listarazas.SelectedIndex);
-            MessageBox.Show("elegido");
+            await api.llamarsubRaza(listarazas.SelectedIndex);
             clase.Text = api.devolvernombre();
             descripcion.Text = api.devolverpgolpe();
         }

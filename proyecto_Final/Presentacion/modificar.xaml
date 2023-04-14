@@ -1,0 +1,27 @@
+﻿<Window x:Class="proyecto_Final.Presentacion.modificar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:proyecto_Final.Presentacion"
+        mc:Ignorable="d"
+        Title="modificar" Height="250" Width="500" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/./Recursos/estilo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{StaticResource papiro}" Margin="0,0,0,-1">
+        <Label Style="{StaticResource ResourceKey=chula}" Content="nombre" HorizontalAlignment="Left" Margin="27,39,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Es administrador" FontFamily="{StaticResource Elegante}" HorizontalAlignment="Left" Margin="27,114,0,0" VerticalAlignment="Top" x:Name="CkAdmin" Click="CkAdmin_Click"/>
+        <TextBox x:Name="nombre" HorizontalAlignment="Left" Margin="27,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+        <Button x:Name="btn_Finalizar" Content="Finalizar" HorizontalAlignment="Left" Margin="360,191,0,0" VerticalAlignment="Top" Height="28" Width="70" Click="btn_Finalizar_Click"/>
+        <Button x:Name="btn_cancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="270,191,0,0" VerticalAlignment="Top" Height="28" Width="70" Click="btn_cancelar_Click"/>
+        <Label x:Name="txt_cont" Style="{StaticResource ResourceKey=chula}" Content="Contraseña" HorizontalAlignment="Center" Margin="0,39,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <TextBox x:Name="cont" HorizontalAlignment="Left" Margin="215,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Visibility="Collapsed"/>
+
+    </Grid>
+</Window>

@@ -30,28 +30,24 @@ namespace proyecto_Final.Presentacion
        
         public subclases()
         {
-            api.llamarSubClases();
-
             InitializeComponent();
         }
 
         /// <summary>
         /// Método que se ejecuta cuando se carga la página. Carga la lista de clases y la muestra en pantalla.
         /// </summary>
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
-            clases= api.devolverlista();
-            MessageBox.Show("En la siguiente pantalla al elegir una subclase apreceran sus datos");
+            await api.llamarSubClases();
+            clases = api.devolverlista();
             listaclase.ItemsSource = clases;
         }
         /// <summary>
         /// Método que se ejecuta cuando se selecciona una clase de la lista. Carga los datos de la subclase seleccionada y los muestra en pantalla.
         /// </summary>
-        private void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            api.llamarsubClase(listaclase.SelectedIndex);
-            MessageBox.Show("elegido");
+            await api.llamarsubClase(listaclase.SelectedIndex);
             clase.Text = api.devolvernombre();
             desc.Text = api.devolverpgolpe();
 

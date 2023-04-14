@@ -15,7 +15,6 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Style="{StaticResource papiro}" >
-
         <ListBox x:Name="listaclase" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
         <Label Content="Subclase" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
         <Label Content="Clase" HorizontalAlignment="Left" Margin="408,57,0,0" VerticalAlignment="Top"/>

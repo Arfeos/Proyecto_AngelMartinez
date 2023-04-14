@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -84,5 +85,28 @@ namespace proyecto_Final.Presentacion
                 MessageBox.Show("No se puede acceder");
             }
         }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            usuario user = new usuario(this);
+            user.Show();
+            Visibility = Visibility.Collapsed;
+
+        }
+
+        //private async void btn_rellenar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Api api= new Api();
+        //    BBDD db= new BBDD();
+        //    db.conectar();
+        //    //await api.llenarClase(db);
+        //    //await api.llenarHechizos(db);
+        //    //await api.llenarRasgos(db);
+        //    //await api.llenarRaza(db);
+        //    //await api.llenarsubclases(db);
+        //    await api.llenarsubrazas(db);
+        //    db.desconectar();
+
+        //}
     }
 }

@@ -22,6 +22,7 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class inicio : Page
     {
+        bool invitado = false;
         persona per; // Objeto de persona que representa al usuario actual
         UserControl1 userControl;
 
@@ -32,6 +33,18 @@ namespace proyecto_Final.Presentacion
         public inicio(persona per)
         {
             this.per = per; // Guardar el objeto de persona
+
+            InitializeComponent();
+
+            // Asignar manejadores de eventos para los botones del UserControl de navegación
+            navegador.ButtonClickEventClases += HandleButtonClickClases;
+            navegador.ButtonClickEventSubclases += HandleButtonClickSubClases;
+            navegador.ButtonClickEventRazas += HandleButtonClickRazas;
+            navegador.ButtonClickEventSubrazas += HandleButtonClickSubRazas;
+        }
+        public inicio(bool invitado)
+        {
+            this.invitado = invitado; // Guardar el objeto de persona
 
             InitializeComponent();
 
@@ -56,10 +69,14 @@ namespace proyecto_Final.Presentacion
         /// </summary>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (per.EsAdmin == 1)
-            {
-                administrador.Visibility = Visibility.Visible;
+            if (invitado) {
+                Fichas.Visibility = Visibility.Collapsed;
+                cerrar_sesion.Visibility = Visibility.Collapsed;
             }
+            else {
+                if (per.EsAdmin == 1)
+                    administrador.Visibility = Visibility.Visible;
+                }
         }
 
         /// <summary>
