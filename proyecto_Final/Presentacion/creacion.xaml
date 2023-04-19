@@ -1,0 +1,59 @@
+﻿<Window x:Class="proyecto_Final.Presentacion.creacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:proyecto_Final.Presentacion"
+        mc:Ignorable="d"
+        Title="creacion" Height="545" Width="655" Loaded="Window_Loaded"
+         ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/./Recursos/estilo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{StaticResource papiro}">
+
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="nombre" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="CBClase" SelectedIndex="0" HorizontalAlignment="Left" Margin="470,43,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBClase_SelectionChanged"/>
+        <ComboBox x:Name="CBSubclase" SelectedIndex="0" HorizontalAlignment="Left" Margin="470,109,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="CBRaza" SelectedIndex="0" HorizontalAlignment="Left" Margin="470,205,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBRaza_SelectionChanged"/>
+        <ComboBox x:Name="CBSubraza" SelectedIndex="0" HorizontalAlignment="Left" Margin="470,284,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Clase" HorizontalAlignment="Left" Margin="470,12,0,0" VerticalAlignment="Top"/>
+        <Label Content="Subclase" HorizontalAlignment="Left" Margin="470,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Raza" HorizontalAlignment="Left" Margin="470,179,0,0" VerticalAlignment="Top"/>
+        <Label Content="subRaza" HorizontalAlignment="Left" Margin="470,253,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contadortxt" Content="" HorizontalAlignment="Left" Margin="45,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fuerza" HorizontalAlignment="Left" Margin="43,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Destreza" HorizontalAlignment="Left" Margin="43,317,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.618"/>
+        <Label Content="Constitucion" HorizontalAlignment="Left" Margin="43,348,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,-0.345"/>
+        <Label Content="Sabiduria" HorizontalAlignment="Left" Margin="43,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,-0.345"/>
+        <Label Content="Inteligencia" HorizontalAlignment="Left" Margin="43,410,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,-0.345"/>
+        <Label Content="Carisma" HorizontalAlignment="Left" Margin="43,441,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,-0.345"/>
+        <Label x:Name="contFu" Content="0" HorizontalAlignment="Left" Margin="155,286,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contDe" Content="0" HorizontalAlignment="Left" Margin="155,317,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contCo" Content="0" HorizontalAlignment="Left" Margin="155,348,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contSa" Content="0" HorizontalAlignment="Left" Margin="155,379,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contIn" Content="0" HorizontalAlignment="Left" Margin="155,410,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="contCa" Content="0" HorizontalAlignment="Left" Margin="155,441,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="txtcontador" HorizontalAlignment="Left" Margin="27,89,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnmenFu" Content="-" HorizontalAlignment="Left" Margin="140,289,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmenDe" Content="-" HorizontalAlignment="Left" Margin="140,320,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmenCo" Content="-" HorizontalAlignment="Left" Margin="140,351,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmenSa" Content="-" HorizontalAlignment="Left" Margin="140,382,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmenIn" Content="-" HorizontalAlignment="Left" Margin="140,413,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmenCa" Content="-" HorizontalAlignment="Left" Margin="140,444,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmasFu" Content="+" HorizontalAlignment="Left" Margin="179,289,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmasDe" Content="+" HorizontalAlignment="Left" Margin="179,320,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmasCo" Content="+" HorizontalAlignment="Left" Margin="179,351,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click" RenderTransformOrigin="1.067,2.212"/>
+        <Button x:Name="btnmasSa" Content="+" HorizontalAlignment="Left" Margin="179,382,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmasIn" Content="+" HorizontalAlignment="Left" Margin="179,413,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Button x:Name="btnmasCa" Content="+" HorizontalAlignment="Left" Margin="179,444,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
+        <Image Margin="10,129,365,249" Source="/Resources/costes.png" Stretch="Fill"/>
+        <Image Margin="300,327,77,18" Source="/Resources/modificadores.png" Stretch="Fill"/>
+        <Button Content="crear" HorizontalAlignment="Left" Margin="50,483,0,0" VerticalAlignment="Top" Height="26" Width="121"/>
+    </Grid>
+</Window>

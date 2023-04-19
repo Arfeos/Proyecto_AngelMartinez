@@ -13,7 +13,7 @@ namespace proyecto_Final.Recursos
     /// </summary>
     internal class Api
     {
-        BBDD db= new BBDD();
+        BBDD db = new BBDD();
         private string respuesta;
 
         private JsonDocument doc;
@@ -49,7 +49,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
             }
         }
         /// <summary>
@@ -87,18 +87,18 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("proficiency_choices")[0].GetProperty("from").GetProperty("options").GetArrayLength(); i++)
             {
 
-                listaventajas += doc.RootElement.GetProperty("proficiency_choices")[0].GetProperty("from").GetProperty("options")[i].GetProperty("item").GetProperty("index").ToString() + "\n";
+                listaventajas += doc.RootElement.GetProperty("proficiency_choices")[0].GetProperty("from").GetProperty("options")[i].GetProperty("item").GetProperty("url").ToString() + "\n";
             }
             listaventajas += "ademas se obtendran las siguientes ventajas \n";
             for (int i = 0; i < doc.RootElement.GetProperty("proficiencies").GetArrayLength(); i++)
             {
 
-                listaventajas += (doc.RootElement.GetProperty("proficiencies")[i].GetProperty("index").ToString() + "\n");
+                listaventajas += (doc.RootElement.GetProperty("proficiencies")[i].GetProperty("url").ToString() + "\n");
             }
             objetos = ("estos objetos se obtienen de manera fija \n");
             for (int i = 0; i < doc.RootElement.GetProperty("starting_equipment").GetArrayLength(); i++)
             {
-                objetos += (doc.RootElement.GetProperty("starting_equipment")[i].GetProperty("equipment").GetProperty("index").ToString() + "x" + doc.RootElement.GetProperty("starting_equipment")[i].GetProperty("quantity").ToString() + "\n");
+                objetos += (doc.RootElement.GetProperty("starting_equipment")[i].GetProperty("equipment").GetProperty("url").ToString() + "x" + doc.RootElement.GetProperty("starting_equipment")[i].GetProperty("quantity").ToString() + "\n");
             }
             objetos += ("de estos habra que elegir la a,b o c \n");
             for (int i = 0; i < doc.RootElement.GetProperty("starting_equipment_options").GetArrayLength(); i++)
@@ -163,7 +163,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
             }
 
         }
@@ -249,7 +249,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
             }
 
         }
@@ -277,7 +277,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
             }
 
 
@@ -307,128 +307,149 @@ namespace proyecto_Final.Recursos
 
         }
         //llenar tablas
-        internal async Task llenarClase(BBDD db) {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //internal async Task llenarClase(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            {
+        //        string consulta = "api/classes";
+        //        using (var response = await httpClient.GetAsync(consulta))
 
-                string consulta = "api/classes";
-                using (var response = await httpClient.GetAsync(consulta))
+        //        {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarClases(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
+        //internal async Task llenarRaza(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
 
-                {
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
-            for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
-            {
-                db.llenarClases(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
-        }
-        internal async Task llenarRaza(BBDD db)
-        {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            {
+        //        string consulta = "api/races";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
 
-                string consulta = "api/races";
-                using (var response = await httpClient.GetAsync(consulta))
-                {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarRazas(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
+        //internal async Task llenarHechizos(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
 
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
-            for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
-            {
-                db.llenarRazas(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
-        }
-        internal async Task llenarHechizos(BBDD db)
-        {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            {
+        //        string consulta = "api/spells/";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
 
-                string consulta = "api/spells/";
-                using (var response = await httpClient.GetAsync(consulta))
-                {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    int longi = doc.RootElement.GetProperty("results").GetArrayLength();
+        //    for (int i = 0; i < longi; i++)
+        //    {
+        //        db.llenarhechizos(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
 
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
-            int longi = doc.RootElement.GetProperty("results").GetArrayLength();
-            for (int i = 0; i <longi ; i++)
-            {
-                db.llenarhechizos(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
+        //}
 
-        }
+        //internal async Task llenarRasgos(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
 
-        internal async Task llenarRasgos(BBDD db)
-        {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            {
+        //        string consulta = "api/features";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
 
-                string consulta = "api/features";
-                using (var response = await httpClient.GetAsync(consulta))
-                {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
 
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarRasgos(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
+        //internal async Task llenarsubrazas(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
-            {
-                db.llenarRasgos(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
-        }
-        internal async Task llenarsubrazas(BBDD db)
-        {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //        string consulta = "api/subraces";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
 
-            {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarsubrazas(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
 
-                string consulta = "api/subraces";
-                using (var response = await httpClient.GetAsync(consulta))
-                {
+        //public async Task llenarRazarasgo(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
 
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
-            for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
-            {
-                db.llenarsubrazas(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
-        }
-        internal async Task llenarsubclases(BBDD db)
-        {
-            var direccion = new Uri("https://www.dnd5eapi.co/");
-            using (var httpClient = new HttpClient { BaseAddress = direccion })
+        //    {
 
-            {
+        //        string consulta = "api/traits";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
 
-                string consulta = "api/subclasses";
-                using (var response = await httpClient.GetAsync(consulta))
-                {
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarRazarasgo(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
 
-                    respuesta = await response.Content.ReadAsStringAsync();
-                }
-                doc = JsonDocument.Parse(respuesta);
-            }
-            for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
-            {
-                db.llenarsubclases(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("index").ToString());
-            }
-        }
-    }
+        //public async Task llenarsubclases(BBDD db)
+        //{
+        //    var direccion = new Uri("https://www.dnd5eapi.co/");
+        //    using (var httpClient = new HttpClient { BaseAddress = direccion })
+
+        //    {
+
+        //        string consulta = "api/subclasses";
+        //        using (var response = await httpClient.GetAsync(consulta))
+        //        {
+
+        //            respuesta = await response.Content.ReadAsStringAsync();
+        //        }
+        //        doc = JsonDocument.Parse(respuesta);
+        //    }
+        //    for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
+        //    {
+        //        db.llenarsubclases(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString(), doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+        //    }
+        //}
+    } 
 }

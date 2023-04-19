@@ -69,14 +69,16 @@ namespace proyecto_Final.Presentacion
         /// </summary>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (invitado) {
+            if (invitado)
+            {
                 Fichas.Visibility = Visibility.Collapsed;
                 cerrar_sesion.Visibility = Visibility.Collapsed;
             }
-            else {
+            else
+            {
                 if (per.EsAdmin == 1)
                     administrador.Visibility = Visibility.Visible;
-                }
+            }
         }
 
         /// <summary>
@@ -131,6 +133,14 @@ namespace proyecto_Final.Presentacion
         {
             Administrador ad = new Administrador();
             NavigationService.Navigate(ad);
+        }
+
+        private void Fichas_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationWindow window = (NavigationWindow)Window.GetWindow(this);
+            fichas fic = new fichas(per, window);
+            fic.Show();
+            window.Visibility = Visibility.Collapsed;
         }
     }
 }

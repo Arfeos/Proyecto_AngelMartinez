@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final"
         mc:Ignorable="d"
-        Title="inicio sesion" Height="450" Width="800" Icon="/Resources/logo.ico">
+        Title="inicio sesion" Height="450" Width="800" Icon="/Resources/logo.ico"  ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -46,6 +46,5 @@
             </Button.ToolTip>
         </Button>
         <Label Content="en caso de querer entrar sin registro previo haga doble click aqui" Margin="200,369,210,10" MouseDoubleClick="Label_MouseDoubleClick"/>
-
     </Grid>
 </Window>

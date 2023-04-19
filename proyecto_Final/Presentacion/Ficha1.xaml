@@ -13,5 +13,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="\Resources\1º parte.png"/>
         </Grid.Background>
+        <Label Content="18" HorizontalAlignment="Left" Margin="40,176,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
+        <Label Content="18" HorizontalAlignment="Left" Margin="40,250,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
+        <Label Content="18" HorizontalAlignment="Left" Margin="40,325,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
     </Grid>
 </Page>

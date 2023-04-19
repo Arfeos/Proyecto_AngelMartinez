@@ -11,10 +11,12 @@
   <ItemGroup>
     <None Remove="Resources\1º parte.png" />
     <None Remove="Resources\carolingia.ttf" />
+    <None Remove="Resources\costes.png" />
     <None Remove="Resources\d20.png" />
     <None Remove="Resources\db.db" />
     <None Remove="Resources\icono.ico" />
     <None Remove="Resources\logo.ico" />
+    <None Remove="Resources\modificadores.png" />
     <None Remove="Resources\papiro.jpg" />
     <None Remove="Resources\papiro_sucio.jpg" />
   </ItemGroup>
@@ -44,7 +46,13 @@
     <Content Include="Resources\db.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\costes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\modificadores.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

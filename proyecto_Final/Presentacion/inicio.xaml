@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem x:Name="ayuda" Header="ayuda" Click="ayuda_Click"/>
 
-            <MenuItem x:Name="Fichas" Header="Fichas"/>
+            <MenuItem x:Name="Fichas" Header="Fichas" Click="Fichas_Click"/>
             <MenuItem x:Name="cerrar_sesion" Header="Cerrar sesion" Click="cerrar_sesion_Click"/>
             
             <MenuItem x:Name="administrador" Header="administrador" Visibility="Hidden" Click="administrador_Click"/>
