@@ -94,17 +94,20 @@ namespace proyecto_Final.Presentacion
 
         }
 
+    
+
         //private async void btn_rellenar_Click(object sender, RoutedEventArgs e)
         //{
-        //    Api api= new Api();
-        //    BBDD db= new BBDD();
+        //   Api api= new Api();
+        //   BBDD db= new BBDD();
         //    db.conectar();
-        //    //await api.llenarClase(db);
-        //    //await api.llenarHechizos(db);
-        //    //await api.llenarRasgos(db);
-        //    //await api.llenarRaza(db);
-        //    //await api.llenarsubclases(db);
+        //    await api.llenarClase(db);
+        //    await api.llenarHechizos(db);
+        //    await api.llenarRasgos(db);
+        //    await api.llenarRaza(db);
+        //    await api.llenarsubclases(db);
         //    await api.llenarsubrazas(db);
+        //    await api.llenarRazarasgo(db);
         //    db.desconectar();
 
         //}

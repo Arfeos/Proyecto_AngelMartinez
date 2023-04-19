@@ -121,6 +121,9 @@
   <data name="carolingia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\carolingia.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="costes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\costes.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="d20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\d20.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -132,6 +135,9 @@
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="modificadores" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\modificadores.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="papiro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\papiro.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

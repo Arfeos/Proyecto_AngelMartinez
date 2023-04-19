@@ -1,5 +1,6 @@
 ﻿using proyecto_Final.Presentacion;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
@@ -24,7 +25,8 @@ namespace proyecto_Final.Recursos
         private SQLiteDataReader reader;
         int esAdministrador;
         private string us;
-        List<persona> lista;
+        List<persona> listaper;
+        List<string> listastr;
         string ruta = "C:\\Users\\angel\\curso22-23\\DI\\ejerciciosDI\\tema_3\\proyecto_Final\\proyecto_Final\\Resources\\db.db";
         //string strAppPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
         //string strFilePath = Path.Combine(strAppPath, "Resources");
@@ -148,48 +150,49 @@ namespace proyecto_Final.Recursos
             reader = comando.ExecuteReader();
             if (reader.Read())
             {
-                if (reader["EsAdmin"].ToString() =="1")
+                if (reader["EsAdmin"].ToString() == "1")
                     MessageBox.Show("no se puede eliminar a un administrador");
-                else {
+                else
+                {
                     comando = new SQLiteCommand(query, conexion);
                     comando.Parameters.AddWithValue("@usuario", usuario);
                     comando.ExecuteNonQuery();
-                }    
+                }
             }
-               
+
             conexion.Close();
-            
+
         }
         public List<persona> recoger()
         {
 
-                lista = new List<persona>();
-                comando = new SQLiteCommand("SELECT * FROM usuarios", conexion);
+            listaper = new List<persona>();
+            comando = new SQLiteCommand("SELECT * FROM usuarios", conexion);
 
             conexion.Open();
-                reader = comando.ExecuteReader();
-                try
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
 
-                        persona t = new persona(reader["nom_usuario"].ToString(), int.Parse(reader["EsAdmin"].ToString()));
+                    persona t = new persona(reader["nom_usuario"].ToString(), int.Parse(reader["EsAdmin"].ToString()));
 
-                        lista.Add(t);
-                    }
+                    listaper.Add(t);
+                }
                 reader.Close();
                 conexion.Close();
-                return lista;
-                   
+                return listaper;
 
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    reader.Close();
-                    return null;
-                }
-            
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                return null;
+            }
+
         }
 
         internal void modificar(string nombre, int admin, string oldnom)
@@ -203,121 +206,303 @@ namespace proyecto_Final.Recursos
             comando.ExecuteNonQuery();
             conexion.Close();
         }
+        internal List<string> devolverfichas(string nom)
+        {
+
+
+            listastr = new List<string>();
+            comando = new SQLiteCommand("SELECT Nombre from ficha where nom_usuario=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", nom);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+
+        }
+
+        internal void borrarficha(string v)
+        {
+            conexion.Open();
+            string query = "DELETE FROM ficha WHERE Nombre=@nombre";
+            comando = new SQLiteCommand(query, conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+        internal List<string> devolverClases()
+        {
+            listastr = new List<string>();
+            comando = new SQLiteCommand("SELECT Nombre from Clase", conexion);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+
+        }
+        internal List<string> devolverRazas()
+        {
+            listastr = new List<string>();
+            comando = new SQLiteCommand("SELECT Nombre from Raza", conexion);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal List<string> devolversubclase(string v)
+        {
+            listastr = new List<string>();
+            comando = new SQLiteCommand("SELECT Nombre from subclase where clase_padre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal IEnumerable devolversubraza(string v)
+        {
+            listastr = new List<string>();
+            comando = new SQLiteCommand("SELECT nombre from subraza where raza_padre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
         //llenar las bases de datos
-        internal void llenarhechizos(string nombre,string indice) {
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Hechizos (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
+        //internal void llenarhechizos(string nombre, string indice)
+        //{
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Hechizos (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
 
-                try
-                {
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void llenarRasgos(string nombre, string indice)
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarRasgos(string nombre, string indice)
+        //{
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Rasgos (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        try
+        //        {
+
+        //            comando.ExecuteNonQuery();
+        //            ;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarClases(string nombre, string indice)
+        //{
+
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Clase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
+
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarRazas(string nombre, string indice)
+        //{
+
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Raza (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
+
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarsubrazas(string nombre, string indice)
+        //{
+
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subraza (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
+
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarsubclases(string nombre, string indice)
+        //{
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subclase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
+
+
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        //internal void llenarRazarasgo(string nombre, string indice)
+        //{
+        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Rasgos (Nombre, indice) VALUES (@nombre, @indice)", conexion))
+
+        //    {
+        //        comando.Parameters.AddWithValue("@nombre", nombre);
+        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        try
+        //        {
+        //            comando.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            conexion.Close();
+        //        }
+        //    }
+        //}
+        internal void conectar()
         {
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Rasgos (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
-
-                try
-                {
-                    comando.ExecuteNonQuery();
-;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void llenarClases(string nombre, string indice)
-        {
-
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Clase (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
-
-                try
-                {
-                    comando.ExecuteNonQuery();
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void llenarRazas(string nombre, string indice)
-        {
-           
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Raza (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
-
-                try
-                {
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void llenarsubrazas(string nombre, string indice)
-        {
-           
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subraza (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
-
-                try
-                {
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void llenarsubclases(string nombre, string indice)
-        {
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subclase (nombre, indice) VALUES (@nombre, @indice)", conexion))
-            {
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@indice", indice);
-
-
-                try
-                {
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    conexion.Close();
-                }
-            }
-        }
-        internal void conectar() {
             conexion.Open();
         }
         internal void desconectar()
@@ -325,7 +510,7 @@ namespace proyecto_Final.Recursos
             conexion.Close();
         }
 
-
+        
     }
 }
 
