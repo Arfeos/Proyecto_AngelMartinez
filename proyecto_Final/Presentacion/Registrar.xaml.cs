@@ -53,7 +53,7 @@ namespace proyecto_Final.Presentacion
         private void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
             miBase = new BBDD(); // Crea una nueva instancia de la base de datos
-            if (miBase.insertar(usuarioForm.Text, contraseñaForm.Password.ToString(), 0) )// Inserta el usuario y la contraseña en la base de datos
+            if (miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(),Correo.Text, 0) )// Inserta el usuario y la contraseña en la base de datos
             {
                 inicioSesion.Visibility = Visibility.Visible; // Hace visible la ventana de inicio de sesión
                 this.Close(); // Cierra la ventana actual
@@ -79,7 +79,7 @@ namespace proyecto_Final.Presentacion
         /// <param name="e">Argumentos del evento</param>
         public void registrar_Click(object sender, RoutedEventArgs e) {
             miBase = new BBDD(); // Crea una nueva instancia de la base de datos
-            if (miBase.insertar(usuarioForm.Text, contraseñaForm.Password.ToString(),0)) // Inserta el usuario y la contraseña en la base de datos
+            if (miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(), Correo.Text,0)) // Inserta el usuario y la contraseña en la base de datos
             {
                 inicioSesion.Visibility = Visibility.Visible; // Hace visible la ventana de inicio de sesión
                 this.Close(); // Cierra la ventana actual

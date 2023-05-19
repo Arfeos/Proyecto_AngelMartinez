@@ -54,6 +54,6 @@
         <Button x:Name="btnmasCa" Content="+" HorizontalAlignment="Left" Margin="179,444,0,0" VerticalAlignment="Top" Width="15" Click="btn_Click"/>
         <Image Margin="10,129,365,249" Source="/Resources/costes.png" Stretch="Fill"/>
         <Image Margin="300,327,77,18" Source="/Resources/modificadores.png" Stretch="Fill"/>
-        <Button Content="crear" HorizontalAlignment="Left" Margin="50,483,0,0" VerticalAlignment="Top" Height="26" Width="121"/>
+        <Button x:Name="btncrear" Content="crear" HorizontalAlignment="Left" Margin="50,483,0,0" VerticalAlignment="Top" Height="26" Width="121" Click="btncrear_Click"/>
     </Grid>
 </Window>

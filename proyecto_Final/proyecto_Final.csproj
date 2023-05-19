@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\1º parte.png" />
+    <None Remove="Resources\1ºparte.png" />
     <None Remove="Resources\carolingia.ttf" />
     <None Remove="Resources\costes.png" />
     <None Remove="Resources\d20.png" />
@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\1º parte.png">
+    <Resource Include="Resources\1ºparte.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\carolingia.ttf">
@@ -58,7 +58,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Obfuscar" Version="2.2.37">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
 
@@ -102,3 +107,4 @@
   </ItemGroup>
 
 </Project>
+    

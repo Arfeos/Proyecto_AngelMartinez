@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:proyecto_Final.Presentacion"
       xmlns:uc="clr-namespace:proyecto_Final.control"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="300" Width="500"
       Title="inicio" Loaded="Page_Loaded"
       >
     <Page.Resources>

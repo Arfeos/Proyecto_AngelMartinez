@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final.Presentacion"
         mc:Ignorable="d"
-        Title="Registrar" Height="450" Width="800" Closed="Window_Closed" Icon="/Resources/icono.ico">
+        Title="Registrar" Height="450" Width="800" Closed="Window_Closed" Icon="/Resources/icono.ico"
+        ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,22 +21,24 @@
                 <MenuItem x:Name="registrar" Header="registrar" Click="registrar_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <Image Source="/Resources/d20.png" Margin="26,10,26,39"/>
+        <Image Source="/Resources/d20.png" Margin="26,12,26,37"/>
 
         <TextBox x:Name="usuarioForm" Width="300" Height="30" Margin="0,-75,0,0" FontSize="18px" TextChanged="usuarioForm_TextChanged">
             <TextBox.ToolTip>
                 <TextBlock Text="Escribe el nombre de usuario" Background="Beige"/>
             </TextBox.ToolTip>
         </TextBox>
-        <PasswordBox x:Name="contraseñaForm" Width="300" Height="30" Margin="0,100,0,0" FontSize="18px"></PasswordBox>
+        <PasswordBox x:Name="contraseñaForm" Width="300" Height="30" Margin="250,229,250,175" FontSize="18px"></PasswordBox>
         <Button x:Name="btnAcceder" Width="150" Height="30" Margin="0,350,0,0" Click="btnAcceder_Click" >Registrar
             <Button.ToolTip>
                 <TextBlock Text="Accede aquí" Background="Beige"/>
             </Button.ToolTip>
         </Button>
-     
+
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="165,153,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF0028ED" FontSize="20"/>
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="135,240,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF0028ED" FontSize="20"/>
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="135,217,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF0028ED" FontSize="20"/>
+        <TextBox x:Name="Correo" Width="300" Height="30" Margin="250,296,250,108" FontSize="18px"/>
+        <Label Content="Correo" HorizontalAlignment="Left" Margin="165,284,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0028ED" FontSize="20"/>
 
     </Grid>
 </Window>

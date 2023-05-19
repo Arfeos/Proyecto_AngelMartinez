@@ -63,9 +63,9 @@ namespace proyecto_Final.Recursos {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] _1º_parte {
+        internal static byte[] _1ºparte {
             get {
-                object obj = ResourceManager.GetObject("_1º_parte", resourceCulture);
+                object obj = ResourceManager.GetObject("_1ºparte", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -76,6 +76,16 @@ namespace proyecto_Final.Recursos {
         internal static byte[] carolingia {
             get {
                 object obj = ResourceManager.GetObject("carolingia", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] costes {
+            get {
+                object obj = ResourceManager.GetObject("costes", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -116,6 +126,16 @@ namespace proyecto_Final.Recursos {
         internal static byte[] logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] modificadores {
+            get {
+                object obj = ResourceManager.GetObject("modificadores", resourceCulture);
                 return ((byte[])(obj));
             }
         }

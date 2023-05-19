@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,14 +17,14 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    
+
     /// <summary>
     /// Lógica de interacción para Administrador.xaml
     /// </summary>
     public partial class Administrador : Page
     {
         List<persona> lista = new List<persona>();
-        BBDD bd= new BBDD();
+        BBDD bd = new BBDD();
         public Administrador()
         {
             InitializeComponent();
@@ -31,15 +32,18 @@ namespace proyecto_Final.Presentacion
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            actualizar();
+            Thread actualizarThread = new Thread(new ThreadStart(actualizar));
+            actualizarThread.Start();
         }
         /// <summary>
         /// actualiza la lista de usuarios
         /// </summary>
         public void actualizar() {
-            lista_bd.ItemsSource = "";
-            lista = bd.recoger();
-            lista_bd.ItemsSource =lista;
+            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                lista = bd.recoger();
+                lista_bd.ItemsSource = bd.recoger();
+            }));
         }
         /// <summary>
         /// borra el usuario con ese nombre
@@ -47,7 +51,8 @@ namespace proyecto_Final.Presentacion
         private void Borrar_btn_Click(object sender, RoutedEventArgs e)
         {
             bd.borrar(usuario.Text);
-            actualizar();
+            Thread actualizarThread = new Thread(new ThreadStart(actualizar));
+            actualizarThread.Start();
 
         }
 

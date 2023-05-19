@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final.Presentacion"
         mc:Ignorable="d"
-        Title="usuario" Height="800" Width="800"
+        Title="usuario" 
+                  SizeToContent="WidthAndHeight"
         Source="/Presentacion/inicio.xaml" Closed="NavigationWindow_Closed" Loaded="NavigationWindow_Loaded" Icon="/Resources/icono.ico"
                   ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
 

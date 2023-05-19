@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:proyecto_Final.Presentacion"
       mc:Ignorable="d"
-      Title="Administrador" Loaded="Page_Loaded" IsVisibleChanged="Page_IsVisibleChanged" >
+      Height="415" Width="775"
+      Title="Administrador"  Loaded="Page_Loaded" IsVisibleChanged="Page_IsVisibleChanged" >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -64,7 +64,7 @@ namespace proyecto_Final.Presentacion
                 db.modificar(nombre.Text, admin, nom);
             }
             if (categoria == 2) {
-                db.insertar(nombre.Text,cont.Text,admin);
+                db.insertarusuarios(nombre.Text,cont.Text,"a",admin);
             }
             Close();
         }

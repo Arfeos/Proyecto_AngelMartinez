@@ -16,7 +16,7 @@
     <Grid Style="{StaticResource papiro}" Loaded="Grid_Loaded">
         <Label  Style="{StaticResource chula}" Content="fichas" FontSize="20" HorizontalAlignment="Left" Margin="20,14,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="lista_fichas" HorizontalAlignment="Left" Height="325" Margin="20,53,0,0" VerticalAlignment="Top" Width="156" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button x:Name="BtnCargar" Content="Cargar"  HorizontalAlignment="Left" Margin="270,53,0,0" VerticalAlignment="Top" Height="31" Width="95"/>
+        <Button x:Name="BtnCargar" Content="Cargar"  HorizontalAlignment="Left" Margin="270,53,0,0" VerticalAlignment="Top" Height="31" Width="95" Click="BtnCargar_Click"/>
         <Button x:Name="Btncrear" Content="Crear" HorizontalAlignment="Left" Margin="270,119,0,0" VerticalAlignment="Top" Height="31" Width="95" Click="Btncrear_Click"/>
         <Button x:Name="Btnborrar" Content="Borrar" HorizontalAlignment="Left" Margin="270,184,0,0" VerticalAlignment="Top" Height="32" Width="95" Click="BtnBorrar_Click"/>
 

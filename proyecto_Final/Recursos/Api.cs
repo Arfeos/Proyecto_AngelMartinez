@@ -49,7 +49,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString());
             }
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace proyecto_Final.Recursos
             using (var httpClient = new HttpClient { BaseAddress = direccion })
 
             {
-                string consulta = "/api/classes/" + listaF[e];
+                string consulta =db.devolverurlclase(listaF[e]) ;
                 using (var response = await httpClient.GetAsync(consulta))
                 {
 
@@ -146,7 +146,7 @@ namespace proyecto_Final.Recursos
         internal async Task llamarSubClases()
         {
 
-            var direccion = new Uri("https://www.dnd5eapi.co/");
+            var direccion = new Uri("https://www.dnd5eapi.co");
             using (var httpClient = new HttpClient { BaseAddress = direccion })
 
             {
@@ -163,7 +163,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString());
             }
 
         }
@@ -175,11 +175,11 @@ namespace proyecto_Final.Recursos
         internal async Task llamarsubClase(int e)
         {
 
-            var direccion = new Uri("https://www.dnd5eapi.co/");
+            var direccion = new Uri("https://www.dnd5eapi.co");
             using (var httpClient = new HttpClient { BaseAddress = direccion })
 
             {
-                string consulta = "/api/subclasses/" + listaF[e];
+                string consulta =db.devolverurlsubclase(listaF[e]);
                 using (var response = await httpClient.GetAsync(consulta))
                 {
 
@@ -203,7 +203,7 @@ namespace proyecto_Final.Recursos
             using (var httpClient = new HttpClient { BaseAddress = direccion })
 
             {
-                string consulta = "/api/races/" + listaF[e];
+                string consulta = db.devolverurlraza(listaF[e]);
                 using (var response = await httpClient.GetAsync(consulta))
                 {
 
@@ -249,7 +249,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString());
             }
 
         }
@@ -277,7 +277,7 @@ namespace proyecto_Final.Recursos
             for (int i = 0; i < doc.RootElement.GetProperty("results").GetArrayLength(); i++)
             {
 
-                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("url").ToString());
+                listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString());
             }
 
 
@@ -294,7 +294,7 @@ namespace proyecto_Final.Recursos
             using (var httpClient = new HttpClient { BaseAddress = direccion })
 
             {
-                string consulta = "/api/subraces/" + listaF[e];
+                string consulta = db.devolverurlsubraza(listaF[e]);
                 using (var response = await httpClient.GetAsync(consulta))
                 {
 

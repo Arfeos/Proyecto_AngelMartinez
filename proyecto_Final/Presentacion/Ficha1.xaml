@@ -5,16 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:proyecto_Final.Presentacion"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="600"
+     d:DesignHeight="1250" d:DesignWidth="1000"
       Title="Ficha1"
+      Height="500"
+      Width="1000" Loaded="Page_Loaded"
       >
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="\Resources\1º parte.png"/>
-        </Grid.Background>
-        <Label Content="18" HorizontalAlignment="Left" Margin="40,176,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
-        <Label Content="18" HorizontalAlignment="Left" Margin="40,250,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
-        <Label Content="18" HorizontalAlignment="Left" Margin="40,325,0,0" VerticalAlignment="Top" Height="24" Width="28"/>
-    </Grid>
+    <ScrollViewer>
+        <Grid Height="1250"
+      Width="1000">
+            <Grid.Background>
+                <ImageBrush ImageSource="\Resources\1ºparte.png"/>
+            </Grid.Background>
+            <Canvas>
+
+                <Label x:Name="Nombre" Content="Label" Canvas.Left="75" Canvas.Top="70" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="23" Width="240"/>
+                <TextBox x:Name="txtFue" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="165" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <TextBox x:Name="txtDes" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="230" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <TextBox x:Name="txtCon" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="300" Width="28" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <TextBox x:Name="txtInt" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="367" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <TextBox x:Name="txtSab" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="437" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"   HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <TextBox x:Name="txtCar" Background="Transparent" Canvas.Left="32" TextWrapping="Wrap"  Canvas.Top="505" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <Label x:Name="bonFue" Canvas.Left="32" Canvas.Top="140" HorizontalContentAlignment="Center"/>
+                <Label x:Name="bonDes" Canvas.Left="32" Canvas.Top="209" HorizontalContentAlignment="Center"/>
+                <Label x:Name="bonCon" Canvas.Left="32" Canvas.Top="275" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                <Label x:Name="bonInt" Canvas.Left="32" Canvas.Top="344" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                <Label x:Name="bonSab" Canvas.Left="32" Canvas.Top="414" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                <Label x:Name="bonCar" Canvas.Left="32" Canvas.Top="480" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                <Image Source="https://www.dndbeyond.com/avatars/thumbnails/6/371/420/618/636272706155064423.png" Height="361" Canvas.Left="685" Canvas.Top="189" Width="265"/>
+                <TextBox Canvas.Left="620" TextWrapping="Wrap" Text="TextBox" Canvas.Top="54" Width="150" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"/>
+                <TextBox Canvas.Left="795" TextWrapping="Wrap" Text="TextBox" Canvas.Top="54" Width="140" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="Label" Canvas.Left="440" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Center" Width="110"/>
+                <TextBox Canvas.Left="560" TextWrapping="Wrap" Text="TextBox" Canvas.Top="52" Width="30" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+
+            </Canvas>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -23,7 +23,6 @@ namespace proyecto_Final.Presentacion
     {
         persona usuario;
         BBDD db;
-        List<string> listfichas;
         NavigationWindow wind;
         public fichas(persona us,NavigationWindow pag)
         {
@@ -35,8 +34,7 @@ namespace proyecto_Final.Presentacion
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            listfichas = db.devolverfichas(usuario.Usuario);
-            lista_fichas.ItemsSource = listfichas;
+            lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -46,14 +44,29 @@ namespace proyecto_Final.Presentacion
 
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
-            db.borrarficha(listfichas[lista_fichas.SelectedIndex]);
-            lista_fichas.ItemsSource = listfichas;
+            db.borrarficha(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+            lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
         }
 
         private void Btncrear_Click(object sender, RoutedEventArgs e)
         {
-            creacion creacion = new creacion();
-            creacion.Show();
+            creacion creacion = new creacion(usuario.Usuario);
+            creacion.ShowDialog();
+            lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
+        }
+
+        private void BtnCargar_Click(object sender, RoutedEventArgs e)
+        {
+            VentFich ventfich = new VentFich();
+            Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+            ventfich.NavigationService.Navigate(fich);
+            ventfich.Show();
         }
     }
 }
+
+
+
+
+
+

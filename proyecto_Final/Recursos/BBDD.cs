@@ -1,9 +1,9 @@
-﻿using proyecto_Final.Presentacion;
+﻿using MySql.Data.MySqlClient;
+using proyecto_Final.Presentacion;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -20,21 +20,21 @@ namespace proyecto_Final.Recursos
     /// </summary>
     public class BBDD
     {
-        private SQLiteConnection conexion;
-        private SQLiteCommand comando;
-        private SQLiteDataReader reader;
+        private MySqlConnection conexion;
+        private MySqlCommand comando;
+        private MySqlDataReader reader;
         int esAdministrador;
-        private string us;
+        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma;
         List<persona> listaper;
         List<string> listastr;
-        string ruta = "C:\\Users\\angel\\curso22-23\\DI\\ejerciciosDI\\tema_3\\proyecto_Final\\proyecto_Final\\Resources\\db.db";
+        //string ruta = "C:\\Users\\angel\\curso22-23\\DI\\ejerciciosDI\\tema_3\\proyecto_Final\\proyecto_Final\\Resources\\db.db";
         //string strAppPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
         //string strFilePath = Path.Combine(strAppPath, "Resources");
         //string strFullFilename = Path.Combine(strFilePath, "db.db");
 
         public BBDD()
         {
-            conexion = new SQLiteConnection("Data Source=" + ruta + "; Version=3; New=false; Compress=True;");
+            conexion = new MySqlConnection("Server=127.0.0.1;port=3306;user=root;password=CIFP1;database=rol");
         }
         public static string pasarSHA256(string con)
         {
@@ -56,7 +56,7 @@ namespace proyecto_Final.Recursos
         public bool Conectar(string usuario, string contraseña)
         {
             string con = pasarSHA256(contraseña);
-            comando = new SQLiteCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario and contraseña=@contraseña", conexion);
+            comando = new MySqlCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario and contraseña=@contraseña and Activo=1", conexion);
             comando.Parameters.AddWithValue("@usuario", usuario);
             comando.Parameters.AddWithValue("@contraseña", con);
             try
@@ -109,16 +109,17 @@ namespace proyecto_Final.Recursos
         /// <param name="usuario">Nombre de usuario.</param>
         /// <param name="contraseña">Contraseña del usuario.</param>
         /// <returns>True si la operación fue exitosa, False si hubo un error.</returns>
-        public bool insertar(string usuario, string contraseña, int administrador)
+        public bool insertarusuarios(string usuario, string contraseña,String correo,  int administrador)
         {
             string con = pasarSHA256(contraseña);
             conexion.Open();
-            SQLiteTransaction transaction = conexion.BeginTransaction();
-            using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO usuarios (nom_usuario, contraseña, EsAdmin) VALUES (@usuario, @contraseña,@administrador)", conexion))
+            MySqlTransaction transaction = conexion.BeginTransaction();
+            using (MySqlCommand comando = new MySqlCommand("INSERT INTO usuarios (nom_usuario, contraseña, EsAdmin ,Correo) VALUES (@usuario, @contraseña,@administrador, @Correo)", conexion))
             {
                 comando.Parameters.AddWithValue("@usuario", usuario);
                 comando.Parameters.AddWithValue("@contraseña", con);
                 comando.Parameters.AddWithValue("@administrador", administrador);
+                comando.Parameters.AddWithValue("@Correo", correo);
 
                 try
                 {
@@ -145,7 +146,7 @@ namespace proyecto_Final.Recursos
         {
             conexion.Open();
             string query = "DELETE FROM usuarios WHERE nom_usuario =@usuario";
-            comando = new SQLiteCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario", conexion);
+            comando = new MySqlCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario", conexion);
             comando.Parameters.AddWithValue("@usuario", usuario);
             reader = comando.ExecuteReader();
             if (reader.Read())
@@ -154,7 +155,7 @@ namespace proyecto_Final.Recursos
                     MessageBox.Show("no se puede eliminar a un administrador");
                 else
                 {
-                    comando = new SQLiteCommand(query, conexion);
+                    comando = new MySqlCommand(query, conexion);
                     comando.Parameters.AddWithValue("@usuario", usuario);
                     comando.ExecuteNonQuery();
                 }
@@ -167,7 +168,7 @@ namespace proyecto_Final.Recursos
         {
 
             listaper = new List<persona>();
-            comando = new SQLiteCommand("SELECT * FROM usuarios", conexion);
+            comando = new MySqlCommand("SELECT * FROM usuarios", conexion);
 
             conexion.Open();
             reader = comando.ExecuteReader();
@@ -199,7 +200,7 @@ namespace proyecto_Final.Recursos
         {
             conexion.Open();
             string query = "update usuarios set nom_usuario=@nombre ,EsAdmin=@admin WHERE nom_usuario =@oldnom";
-            comando = new SQLiteCommand(query, conexion);
+            comando = new MySqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@admin", admin);
             comando.Parameters.AddWithValue("@oldnom", oldnom);
@@ -211,7 +212,7 @@ namespace proyecto_Final.Recursos
 
 
             listastr = new List<string>();
-            comando = new SQLiteCommand("SELECT Nombre from ficha where nom_usuario=@nombre", conexion);
+            comando = new MySqlCommand("SELECT Nombre from ficha where nom_usuario=@nombre", conexion);
             comando.Parameters.AddWithValue("@nombre", nom);
             conexion.Open();
             reader = comando.ExecuteReader();
@@ -244,7 +245,7 @@ namespace proyecto_Final.Recursos
         {
             conexion.Open();
             string query = "DELETE FROM ficha WHERE Nombre=@nombre";
-            comando = new SQLiteCommand(query, conexion);
+            comando = new MySqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@nombre", v);
             comando.ExecuteNonQuery();
             conexion.Close();
@@ -252,7 +253,7 @@ namespace proyecto_Final.Recursos
         internal List<string> devolverClases()
         {
             listastr = new List<string>();
-            comando = new SQLiteCommand("SELECT Nombre from Clase", conexion);
+            comando = new MySqlCommand("SELECT Nombre from Clase", conexion);
             conexion.Open();
             reader = comando.ExecuteReader();
             try
@@ -282,7 +283,7 @@ namespace proyecto_Final.Recursos
         internal List<string> devolverRazas()
         {
             listastr = new List<string>();
-            comando = new SQLiteCommand("SELECT Nombre from Raza", conexion);
+            comando = new MySqlCommand("SELECT Nombre from Raza", conexion);
             conexion.Open();
             reader = comando.ExecuteReader();
             try
@@ -311,7 +312,7 @@ namespace proyecto_Final.Recursos
         internal List<string> devolversubclase(string v)
         {
             listastr = new List<string>();
-            comando = new SQLiteCommand("SELECT Nombre from subclase where clase_padre=@nombre", conexion);
+            comando = new MySqlCommand("SELECT Nombre from subclase where clase_padre=@nombre", conexion);
             comando.Parameters.AddWithValue("@nombre", v);
             conexion.Open();
             reader = comando.ExecuteReader();
@@ -341,7 +342,7 @@ namespace proyecto_Final.Recursos
         internal IEnumerable devolversubraza(string v)
         {
             listastr = new List<string>();
-            comando = new SQLiteCommand("SELECT nombre from subraza where raza_padre=@nombre", conexion);
+            comando = new MySqlCommand("SELECT nombre from subraza where raza_padre=@nombre", conexion);
             comando.Parameters.AddWithValue("@nombre", v);
             conexion.Open();
             reader = comando.ExecuteReader();
@@ -368,10 +369,202 @@ namespace proyecto_Final.Recursos
                 return null;
             }
         }
+        internal void insertarficha(string clase, string subclase, string raza, string subraza, string nombre, string usuario, int fuerza, int destreza, int constitucion, int sabiduria, int inteligencia, int carisma)
+        {
+            conexion.Open();
+            MySqlTransaction transaction = conexion.BeginTransaction();
+            using (MySqlCommand comando = new MySqlCommand("INSERT INTO ficha (Nombre,nom_usuario,Clase,Subclase,Raza,subraza,Fuerza,Destreza,Constitucion,Sabiduria,Inteligencia,Carisma) VALUES (@nombre, @usuario, @Clase, @subclase, @Raza, @subraza, @Fuerza, @Destreza, @Constitucion, @Sabiduria, @Inteligencia, @Carisma)", conexion))
+            {
+                comando.Parameters.AddWithValue("@nombre", nombre);
+                comando.Parameters.AddWithValue("@usuario", usuario);
+                comando.Parameters.AddWithValue("@Clase", clase);
+                comando.Parameters.AddWithValue("@subclase", subclase);
+                comando.Parameters.AddWithValue("@Raza", raza);
+                comando.Parameters.AddWithValue("@subraza", subraza);
+                comando.Parameters.AddWithValue("@Fuerza", fuerza);
+                comando.Parameters.AddWithValue("@Destreza", destreza);
+                comando.Parameters.AddWithValue("@Constitucion", constitucion);
+                comando.Parameters.AddWithValue("@Sabiduria", sabiduria);
+                comando.Parameters.AddWithValue("@Inteligencia", inteligencia);
+                comando.Parameters.AddWithValue("@Carisma", carisma);
+                try
+                {
+                    comando.ExecuteNonQuery();
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ha ocurrido un error al ejecutar la creacion");
+                    conexion.Close();
+                }
+            }
+        }
+        internal string devolverurlclase(string v)
+        {
+
+            comando = new MySqlCommand("SELECT indice from Clase where Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                
+                reader.Read();
+                    string a = reader["indice"].ToString();
+                    reader.Close();
+                    conexion.Close();
+                    return a;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal string devolverurlsubclase(string v)
+        {
+
+            comando = new MySqlCommand("SELECT indice from subclase where Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+
+                reader.Read();
+                string a = reader["indice"].ToString();
+                reader.Close();
+                conexion.Close();
+                return a;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal string devolverurlraza(string v)
+        {
+
+            comando = new MySqlCommand("SELECT indice from raza where Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+
+                reader.Read();
+                string a = reader["indice"].ToString();
+                reader.Close();
+                conexion.Close();
+                return a;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal string devolverurlsubraza(string v)
+        {
+
+            comando = new MySqlCommand("SELECT indice from subraza where Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+
+                reader.Read();
+                string a = reader["indice"].ToString();
+                reader.Close();
+                conexion.Close();
+                return a;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+        }
+        internal void cargarficha(string v)
+        {
+            comando = new MySqlCommand("SELECT * FROM ficha WHERE  Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@nombre", v);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                reader.Read();
+                fuerza = reader["Fuerza"].ToString();
+                destreza = reader["Destreza"].ToString();
+                constitucion = reader["Constitucion"].ToString();
+                inteligencia = reader["Inteligencia"].ToString();
+                sabiduria = reader["Sabiduria"].ToString();
+                carisma = reader["Carisma"].ToString();
+                reader.Close();
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+            }
+        }
+        public string devolverfuerza()
+        {
+            return fuerza;
+        }
+        public string devolverdestreza()
+        {
+            return destreza;
+        }
+        public string devolverconstitucion()
+        {
+            return constitucion;
+        }
+        public string devolverInteligencia()
+        {
+            return inteligencia;
+        }
+        public string devolversabiduria()
+        {
+            return sabiduria;
+        }
+        public string devolvercarisma()
+        {
+            return carisma;
+        }
         //llenar las bases de datos
         //internal void llenarhechizos(string nombre, string indice)
         //{
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Hechizos (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Hechizos (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);
         //        comando.Parameters.AddWithValue("@indice", indice);
@@ -389,7 +582,7 @@ namespace proyecto_Final.Recursos
         //}
         //internal void llenarRasgos(string nombre, string indice)
         //{
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Rasgos (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Rasgos (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@indice", indice);
         //        comando.Parameters.AddWithValue("@nombre", nombre);
@@ -409,7 +602,7 @@ namespace proyecto_Final.Recursos
         //internal void llenarClases(string nombre, string indice)
         //{
 
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Clase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Clase (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);
         //        comando.Parameters.AddWithValue("@indice", indice);
@@ -429,7 +622,7 @@ namespace proyecto_Final.Recursos
         //internal void llenarRazas(string nombre, string indice)
         //{
 
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Raza (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Raza (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);
         //        comando.Parameters.AddWithValue("@indice", indice);
@@ -448,7 +641,7 @@ namespace proyecto_Final.Recursos
         //internal void llenarsubrazas(string nombre, string indice)
         //{
 
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subraza (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO subraza (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);
         //        comando.Parameters.AddWithValue("@indice", indice);
@@ -466,7 +659,7 @@ namespace proyecto_Final.Recursos
         //}
         //internal void llenarsubclases(string nombre, string indice)
         //{
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO subclase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO subclase (nombre, indice) VALUES (@nombre, @indice)", conexion))
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);
         //        comando.Parameters.AddWithValue("@indice", indice);
@@ -485,7 +678,7 @@ namespace proyecto_Final.Recursos
         //}
         //internal void llenarRazarasgo(string nombre, string indice)
         //{
-        //    using (SQLiteCommand comando = new SQLiteCommand("INSERT INTO Rasgos (Nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Rasgos (Nombre, indice) VALUES (@nombre, @indice)", conexion))
 
         //    {
         //        comando.Parameters.AddWithValue("@nombre", nombre);

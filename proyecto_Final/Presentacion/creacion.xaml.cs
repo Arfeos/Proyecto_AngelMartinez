@@ -1,8 +1,10 @@
 ﻿using proyecto_Final.Recursos;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +22,22 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class creacion : Window
     {
-        string name;
+        string usuario;
         int fuerza, destreza, constitucion, sabiduria, inteligencia, carisma, contador;
+        public creacion(string us)
+        {
+            this.usuario = us;
+            fuerza = 8;
+            destreza = 8;
+            constitucion = 8;
+            sabiduria = 8;
+            inteligencia = 8;
+            carisma = 8;
+            contador = 27;
+            db = new BBDD();
+            InitializeComponent();
 
+        }
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             Button botonPresionado = (Button)sender;
@@ -36,8 +51,13 @@ namespace proyecto_Final.Presentacion
                             contador--;
                         }                    
                         else {
-                            fuerza++;
-                            contador -= 2;
+                            if (contador >= 2)
+                            {
+                                fuerza++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -79,8 +99,13 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            destreza++;
-                            contador -= 2;
+                            if (contador >= 2)
+                            {
+                                destreza++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -123,8 +148,13 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            constitucion++;
-                            contador -= 2;
+                            if (contador >= 2)
+                            {
+                                constitucion++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -167,8 +197,13 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            sabiduria++;
-                            contador -= 2;
+                            if (contador > 2)
+                            {
+                                sabiduria++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -211,8 +246,13 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            inteligencia++;
-                            contador -= 2;
+                            if (contador > 2)
+                            {
+                                inteligencia++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -255,8 +295,13 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            carisma++;
-                            contador -= 2;
+                            if (contador > 2)
+                            {
+                                carisma++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
                         }
                     }
                     else if (contador <= 0)
@@ -288,11 +333,20 @@ namespace proyecto_Final.Presentacion
                     }
                     break;
             }
-            actualizar();
+            Thread actualizarThread = new Thread(new ThreadStart(actualizar));
+            actualizarThread.Start();
+        }
+
+        private void btncrear_Click(object sender, RoutedEventArgs e)
+        {
+            db.insertarficha(CBClase.Text,CBSubclase.Text,CBRaza.Text,CBSubraza.Text,nombre.Text,usuario,fuerza,destreza,constitucion,sabiduria,inteligencia,carisma);
+            Close();
         }
 
         private void actualizar()
         {
+            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
             contFu.Content = fuerza.ToString();
             contDe.Content = destreza.ToString();
             contCo.Content = constitucion.ToString();
@@ -300,6 +354,7 @@ namespace proyecto_Final.Presentacion
             contIn.Content = inteligencia.ToString();
             contCa.Content = carisma.ToString();
             txtcontador.Content = "quedan " + contador.ToString() + " a repartir";
+            }));
         }
 
         private void CBRaza_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -328,18 +383,6 @@ namespace proyecto_Final.Presentacion
             CBRaza.ItemsSource = db.devolverRazas();
         }
 
-        public creacion()
-        {
-            fuerza = 8;
-            destreza = 8;
-            constitucion = 8;
-            sabiduria = 8;
-            inteligencia = 8;
-            carisma = 8;
-            contador = 27;
-            db = new BBDD();
-            InitializeComponent();
 
-        }
     }
 }
