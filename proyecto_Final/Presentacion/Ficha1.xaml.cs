@@ -41,6 +41,7 @@ namespace proyecto_Final.Presentacion
             txtInt.Text = db.devolverInteligencia();
             txtSab.Text = db.devolversabiduria();
             txtCar.Text = db.devolvercarisma();
+            txtclase.Content=db.devolverclase();
             bonFue.Content = sacarbono((string)txtFue.Text);
             bonDes.Content = sacarbono((string)txtDes.Text);
             bonCon.Content = sacarbono((string)txtCon.Text);

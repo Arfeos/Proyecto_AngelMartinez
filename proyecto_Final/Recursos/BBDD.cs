@@ -24,7 +24,7 @@ namespace proyecto_Final.Recursos
         private MySqlCommand comando;
         private MySqlDataReader reader;
         int esAdministrador;
-        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma;
+        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma,clase,subclase;
         List<persona> listaper;
         List<string> listastr;
         //string ruta = "C:\\Users\\angel\\curso22-23\\DI\\ejerciciosDI\\tema_3\\proyecto_Final\\proyecto_Final\\Resources\\db.db";
@@ -102,6 +102,7 @@ namespace proyecto_Final.Recursos
         {
             return us;
         }
+        public string devolverclase() { return clase; }
 
         /// <summary>
         /// Método para insertar usuarios en la base de datos.
@@ -525,6 +526,8 @@ namespace proyecto_Final.Recursos
                 destreza = reader["Destreza"].ToString();
                 constitucion = reader["Constitucion"].ToString();
                 inteligencia = reader["Inteligencia"].ToString();
+                clase = reader["Clase"].ToString();
+                subclase = reader["subclase"].ToString();
                 sabiduria = reader["Sabiduria"].ToString();
                 carisma = reader["Carisma"].ToString();
                 reader.Close();

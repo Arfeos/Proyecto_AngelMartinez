@@ -197,7 +197,7 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            if (contador > 2)
+                            if (contador >= 2)
                             {
                                 sabiduria++;
                                 contador -= 2;
@@ -246,7 +246,7 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            if (contador > 2)
+                            if (contador >= 2)
                             {
                                 inteligencia++;
                                 contador -= 2;
@@ -295,7 +295,7 @@ namespace proyecto_Final.Presentacion
                         }
                         else
                         {
-                            if (contador > 2)
+                            if (contador >= 2)
                             {
                                 carisma++;
                                 contador -= 2;
@@ -339,8 +339,13 @@ namespace proyecto_Final.Presentacion
 
         private void btncrear_Click(object sender, RoutedEventArgs e)
         {
+            if (CBRaza.Items[CBRaza.SelectedIndex].ToString()=="None") {
+                MessageBox.Show("seleccione una raza valida");
+            }
+            else { 
             db.insertarficha(CBClase.Text,CBSubclase.Text,CBRaza.Text,CBSubraza.Text,nombre.Text,usuario,fuerza,destreza,constitucion,sabiduria,inteligencia,carisma);
             Close();
+            }
         }
 
         private void actualizar()
@@ -359,7 +364,13 @@ namespace proyecto_Final.Presentacion
 
         private void CBRaza_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            CBSubraza.ItemsSource = null;
+            CBSubraza.Items.Clear();
             CBSubraza.ItemsSource = db.devolversubraza(db.devolverRazas()[CBRaza.SelectedIndex]);
+            if (CBSubraza.Items.Count == null || CBSubraza.Items.Count == 0) {
+                CBSubraza.ItemsSource =null;
+                CBSubraza.Items.Add("None"); }
+            CBSubraza.SelectedIndex=0;
         }
 
         private void CBClase_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -381,6 +392,7 @@ namespace proyecto_Final.Presentacion
             txtcontador.Content = "quedan " + contador.ToString() + " a repartir";
             CBClase.ItemsSource = db.devolverClases();
             CBRaza.ItemsSource = db.devolverRazas();
+            CBRaza.SelectedIndex = 8;
         }
 
 
