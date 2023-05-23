@@ -15,11 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace proyecto_Final.Presentacion
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+namespace proyecto_Final.Presentacion { 
+
     public partial class InicioSesion : Window
     {
         private BBDD miBase;
@@ -28,12 +25,6 @@ namespace proyecto_Final.Presentacion
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Evento que se dispara al hacer clic en el botón "Acceder".
-        /// Crea una instancia de la clase BBDD para conectarse a la base de datos con los datos de usuario y contraseña.
-        /// Si se puede conectar, crea un objeto persona y usuario y muestra la ventana de usuario. Oculta la ventana actual.
-        /// Si no se puede conectar, muestra un mensaje de error.
-        /// </summary>
         private void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
             miBase = new BBDD();
@@ -52,22 +43,13 @@ namespace proyecto_Final.Presentacion
             }
         }
 
-        /// <summary>
-        /// Evento que se dispara al hacer clic en el botón "Registrar".
-        /// Crea una instancia de la clase Registrar y la muestra en una ventana. Oculta la ventana actual.
-        /// </summary>
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
             Registrar reg = new Registrar(this, miBase);
             reg.Show();
             Visibility = Visibility.Collapsed;
         }
-        /// <summary>
-        /// Evento que se dispara al darle click  a acceder en el contextmenu.
-        /// Crea una instancia de la clase BBDD para conectarse a la base de datos con los datos de usuario y contraseña.
-        /// Si se puede conectar, crea un objeto persona y usuario y muestra la ventana de usuario. Oculta la ventana actual.
-        /// Si no se puede conectar, muestra un mensaje de error.
-        /// </summary>
+
         private void Acceder_Click(object sender, RoutedEventArgs e)
         {
             miBase = new BBDD();

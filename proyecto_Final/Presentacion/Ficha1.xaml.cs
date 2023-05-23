@@ -1,7 +1,9 @@
 ﻿using proyecto_Final.Recursos;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,16 +25,21 @@ namespace proyecto_Final.Presentacion
     {
         string nom;
         BBDD db;
+        bool ignorar;
+       
         
         public Ficha1(string nom)
         {
             this.nom=nom;
             db= new BBDD();
             InitializeComponent();
+            ignorar=true;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Fuebon.Content = "10";
+            MessageBox.Show(Fuebon.Content.ToString());
             Nombre.Content = nom;
             db.cargarficha(nom);
             txtFue.Text = db.devolverfuerza();
@@ -42,12 +49,13 @@ namespace proyecto_Final.Presentacion
             txtSab.Text = db.devolversabiduria();
             txtCar.Text = db.devolvercarisma();
             txtclase.Content=db.devolverclase();
-            bonFue.Content = sacarbono((string)txtFue.Text);
-            bonDes.Content = sacarbono((string)txtDes.Text);
-            bonCon.Content = sacarbono((string)txtCon.Text);
-            bonInt.Content = sacarbono((string)txtInt.Text);
-            bonSab.Content = sacarbono((string)txtSab.Text);
-            bonCar.Content = sacarbono((string)txtCar.Text);
+            //Fuebon.Content = sacarbono(txtFue.Text);
+            Desbon.Content = sacarbono(txtDes.Text);
+            Conbon.Content = sacarbono(txtCar.Text);
+            Intbon.Content = sacarbono(txtInt.Text);
+            Sabbon.Content = sacarbono(txtSab.Text);
+            Carbon.Content = sacarbono(txtCar.Text);
+            ignorar = false;
         }
 
         private string sacarbono(string numero)
@@ -90,5 +98,22 @@ namespace proyecto_Final.Presentacion
                     return "ERR";
             }
         }
+
+
+        private void textbox_textchanged(object sender, TextChangedEventArgs e)
+        {
+            MessageBox.Show(Fuebon.Content.ToString());
+            actualizar(sender,Fuebon,Desbon,Conbon,Intbon,Sabbon,Carbon);
+        }
+
+        private void actualizar(object sender, Label fuebon, Label desbon, Label conbon, Label intbon, Label sabbon, Label carbon)
+        {
+            if (ignorar) { }
+            else
+            {
+                MessageBox.Show(fuebon.Content.ToString());
+            }
+        }
     }
 }
+    

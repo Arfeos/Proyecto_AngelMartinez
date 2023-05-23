@@ -16,20 +16,14 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    /// <summary>
-    /// Clase que representa una ventana de navegación de usuario.
-    /// </summary>
+
     public partial class usuario : NavigationWindow
     {
         bool inicio = false;
         InicioSesion mibase;
         persona per;
 
-        /// <summary>
-        /// Crea una nueva instancia de la clase usuario.
-        /// </summary>
-        /// <param name="f1">La instancia de InicioSesion que llama a la ventana de usuario.</param>
-        /// <param name="per">La instancia de persona que representa al usuario que ha iniciado sesión.</param>
+
         public usuario(InicioSesion f1, persona per)
         {
             this.per = per;
@@ -43,11 +37,6 @@ namespace proyecto_Final.Presentacion
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Método que se ejecuta cuando la ventana de usuario es cerrada.
-        /// </summary>
-        /// <param name="sender">El objeto que ha generado el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
         private void NavigationWindow_Closed(object sender, EventArgs e)
         {
             mibase.usuarioForm.Text = "";
@@ -55,11 +44,6 @@ namespace proyecto_Final.Presentacion
             mibase.Visibility = Visibility.Visible;
         }
 
-        /// <summary>
-        /// Método que se ejecuta cuando la ventana de usuario es cargada.
-        /// </summary>
-        /// <param name="sender">El objeto que ha generado el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
         private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
         {
             if (inicio)

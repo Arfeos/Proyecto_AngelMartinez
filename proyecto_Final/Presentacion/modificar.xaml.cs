@@ -16,9 +16,7 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    /// <summary>
-    /// Lógica de interacción para modificar.xaml
-    /// </summary>
+
     public partial class modificar : Window
     {
         string nom;

@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    /// <summary>
-    /// Página que muestra las subrazas disponibles.
-    /// </summary>
+
     public partial class subRazas : Page
     {
         List<String> subrazas = new List<String>();
@@ -31,10 +29,6 @@ namespace proyecto_Final.Presentacion
             InitializeComponent();
         }
 
-
-        /// <summary>
-        /// Carga las subrazas disponibles en la lista de subrazas.
-        /// </summary>
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await api.llamarsubRazas();
@@ -42,9 +36,6 @@ namespace proyecto_Final.Presentacion
             listarazas.ItemsSource = subrazas;
         }
 
-        /// <summary>
-        /// Muestra los datos de la subraza seleccionada.
-        /// </summary>
         private async void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             await api.llamarsubRaza(listarazas.SelectedIndex);

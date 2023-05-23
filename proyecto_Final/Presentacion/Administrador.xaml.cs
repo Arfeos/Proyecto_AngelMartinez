@@ -17,14 +17,11 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-
-    /// <summary>
-    /// Lógica de interacción para Administrador.xaml
-    /// </summary>
     public partial class Administrador : Page
     {
         List<persona> lista = new List<persona>();
         BBDD bd = new BBDD();
+
         public Administrador()
         {
             InitializeComponent();
@@ -35,37 +32,31 @@ namespace proyecto_Final.Presentacion
             Thread actualizarThread = new Thread(new ThreadStart(actualizar));
             actualizarThread.Start();
         }
-        /// <summary>
-        /// actualiza la lista de usuarios
-        /// </summary>
-        public void actualizar() {
+
+        public void actualizar()
+        {
             System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 lista = bd.recoger();
                 lista_bd.ItemsSource = bd.recoger();
             }));
         }
-        /// <summary>
-        /// borra el usuario con ese nombre
-        /// </summary>
+
         private void Borrar_btn_Click(object sender, RoutedEventArgs e)
         {
             bd.borrar(usuario.Text);
             Thread actualizarThread = new Thread(new ThreadStart(actualizar));
             actualizarThread.Start();
-
         }
 
         private void Actualizar_btn_Click(object sender, RoutedEventArgs e)
         {
             string nom = lista[lista_bd.SelectedIndex].Usuario;
             int admin = lista[lista_bd.SelectedIndex].EsAdmin;
-            NavigationWindow nav=(NavigationWindow)Window.GetWindow(this);
-            modificar mod = new modificar(nom, 1,admin ,nav);
+            NavigationWindow nav = (NavigationWindow)Window.GetWindow(this);
+            modificar mod = new modificar(nom, 1, admin, nav);
             mod.Show();
-            nav.Visibility= Visibility.Collapsed;
-
-
+            nav.Visibility = Visibility.Collapsed;
         }
 
         private void añadir_btn_Click(object sender, RoutedEventArgs e)

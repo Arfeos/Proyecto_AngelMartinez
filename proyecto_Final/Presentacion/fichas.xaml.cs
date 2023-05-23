@@ -16,9 +16,7 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    /// <summary>
-    /// Lógica de interacción para fichas.xaml
-    /// </summary>
+
     public partial class fichas : Window
     {
         persona usuario;

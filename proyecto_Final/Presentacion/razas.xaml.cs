@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-    /// <summary>
-    /// Lógica de interacción para Clases.xaml
-    /// </summary>
+
     public partial class razas : Page
     {
         List<String> Razas = new List<String>();
@@ -33,9 +31,6 @@ namespace proyecto_Final.Presentacion
             InitializeComponent();
         }
 
-        /// <summary>
-        /// evento que carga la lista al cargar la pagina
-        /// </summary>
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await api.llamarRazas();
@@ -44,9 +39,7 @@ namespace proyecto_Final.Presentacion
             listarazas.ItemsSource=Razas;  
 
         }
-        /// <summary>
-        /// evento que al seleccionar una raza carga sus datos
-        /// </summary>
+
         private async void listaclase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             await api.llamarRaza(listarazas.SelectedIndex);
