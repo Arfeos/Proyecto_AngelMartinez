@@ -1,5 +1,6 @@
 ﻿using proyecto_Final.Recursos;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -26,20 +27,40 @@ namespace proyecto_Final.Presentacion
         string nom;
         BBDD db;
         bool ignorar;
-       
+        Api api;
         
+
         public Ficha1(string nom)
         {
+            ignorar = true;
             this.nom=nom;
             db= new BBDD();
+            api= new Api();
             InitializeComponent();
-            ignorar=true;
+            
+
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Fuebon.Content = "10";
-            MessageBox.Show(Fuebon.Content.ToString());
+            await cargarmetodosini();
+           
+            Fuebon.Content = sacarbono(txtFue.Text);
+            Desbon.Content = sacarbono(txtDes.Text);
+            Conbon.Content = sacarbono(txtCon.Text);
+            Intbon.Content = sacarbono(txtInt.Text);
+            Sabbon.Content = sacarbono(txtSab.Text);
+            Carbon.Content = sacarbono(txtCar.Text); 
+            ignorar = false;
+            
+            
+            
+            actualizarsalvaciones();
+            //actualizarhablidades();
+        }
+
+        private async Task cargarmetodosini()
+        {
             Nombre.Content = nom;
             db.cargarficha(nom);
             txtFue.Text = db.devolverfuerza();
@@ -48,14 +69,33 @@ namespace proyecto_Final.Presentacion
             txtInt.Text = db.devolverInteligencia();
             txtSab.Text = db.devolversabiduria();
             txtCar.Text = db.devolvercarisma();
-            txtclase.Content=db.devolverclase();
-            //Fuebon.Content = sacarbono(txtFue.Text);
-            Desbon.Content = sacarbono(txtDes.Text);
-            Conbon.Content = sacarbono(txtCar.Text);
-            Intbon.Content = sacarbono(txtInt.Text);
-            Sabbon.Content = sacarbono(txtSab.Text);
-            Carbon.Content = sacarbono(txtCar.Text);
-            ignorar = false;
+            txtclase.Content = db.devolverclase()+" "+db.devolversubclase();
+            due.Content=db.devolverdueño();
+            velo.Content = (await api.devolvervelocidad(db.devolverRaza())).ToString();
+            niv.Text = db.devolvernivel().ToString();
+            BitmapImage imageSource = new BitmapImage();
+            imageSource.BeginInit();
+            imageSource.UriSource = new Uri(db.devolverimagen(db.devolverclase()), UriKind.RelativeOrAbsolute);
+            imageSource.EndInit();
+            img.Source = imageSource;
+            await api.llamarClaseurl(db.devolverurlclase(db.devolverclase()));
+            dg.Content = api.devolverpgolpe();
+            perpas.Content = (10 + Int32.Parse((string)Sabbon.Content)).ToString();
+            inic.Content = Desbon.Content;
+            if (db.devolversubraza().Equals("None"))
+            {
+                txtRaza.Content = db.devolverRaza();
+            }
+            else {
+                txtRaza.Content = db.devolverRaza()+" "+db.devolversubraza();
+            }
+        }
+
+        private void actualizarsalvaciones()
+        {
+            if ((bool)rdFue.IsChecked) {
+               // SalFue.Content= bon
+            }
         }
 
         private string sacarbono(string numero)
@@ -102,18 +142,43 @@ namespace proyecto_Final.Presentacion
 
         private void textbox_textchanged(object sender, TextChangedEventArgs e)
         {
-            MessageBox.Show(Fuebon.Content.ToString());
-            actualizar(sender,Fuebon,Desbon,Conbon,Intbon,Sabbon,Carbon);
-        }
-
-        private void actualizar(object sender, Label fuebon, Label desbon, Label conbon, Label intbon, Label sabbon, Label carbon)
-        {
             if (ignorar) { }
             else
             {
-                MessageBox.Show(fuebon.Content.ToString());
+               
+                TextBox textBox = sender as TextBox;
+
+                switch (textBox.Name)
+                {
+                    case "txtFue":
+                        Fuebon.Content = sacarbono(txtFue.Text);
+                        break;
+                    case "txtDes":
+                        Desbon.Content = sacarbono(txtDes.Text);
+                        break;
+                    case "txtCon":
+                        Conbon.Content = sacarbono(txtCon.Text);
+                        break;
+                    case "txtInt":
+                        Intbon.Content = sacarbono(txtInt.Text);
+                        break;
+                    case "txtSab":
+                        Sabbon.Content = sacarbono(txtSab.Text);
+                        break;
+                    case "txtCar":
+                        Carbon.Content = sacarbono(txtCar.Text);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+
+
     }
-}
+    }
+
+       
+    
+
     

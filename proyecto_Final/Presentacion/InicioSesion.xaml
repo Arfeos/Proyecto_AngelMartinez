@@ -26,7 +26,7 @@
                 <TextBlock Text="Escribe el nombre de usuario" Background="Beige"/>
             </TextBox.ToolTip>
         </TextBox>
-        <PasswordBox x:Name="contraseñaForm" Width="300" Height="30" Margin="0,100,0,0"  FontSize="18px" >
+        <PasswordBox x:Name="contraseñaForm" Password="Admin1234" Width="300" Height="30" Margin="0,100,0,0"  FontSize="18px" >
             <PasswordBox.ToolTip>
                 <TextBlock Text="Escribe la contraseña" Background="Beige"/>
             </PasswordBox.ToolTip>

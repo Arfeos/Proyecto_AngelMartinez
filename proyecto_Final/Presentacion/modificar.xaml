@@ -15,7 +15,7 @@
     </Window.Resources>
     <Grid Style="{StaticResource papiro}" Margin="0,0,0,-1">
         <Label Style="{StaticResource ResourceKey=chula}" Content="nombre" HorizontalAlignment="Left" Margin="27,39,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Es administrador" FontFamily="{StaticResource Elegante}" HorizontalAlignment="Left" Margin="27,114,0,0" VerticalAlignment="Top" x:Name="CkAdmin" Click="CkAdmin_Click"/>
+        <CheckBox Content="Es administrador" FontFamily="{StaticResource Elegante}" HorizontalAlignment="Left" Margin="27,114,0,0" VerticalAlignment="Top" x:Name="CkAdmin" Click="CkAdmin_Click"/>
         <TextBox x:Name="nombre" HorizontalAlignment="Left" Margin="27,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
 
         <Button x:Name="btn_Finalizar" Content="Finalizar" HorizontalAlignment="Left" Margin="360,191,0,0" VerticalAlignment="Top" Height="28" Width="70" Click="btn_Finalizar_Click"/>

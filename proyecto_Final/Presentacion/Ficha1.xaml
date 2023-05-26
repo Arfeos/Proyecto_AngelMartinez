@@ -31,14 +31,93 @@
                 <Label x:Name="Intbon" Content="2"   FontSize="23" Canvas.Left="57" Canvas.Top="564" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
                 <Label x:Name="Sabbon" Content="2"  FontSize="23" Canvas.Left="57" Canvas.Top="684" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
                 <Label x:Name="Carbon" Content="2"   FontSize="23" Canvas.Left="57" Canvas.Top="799" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-                <Image Source="https://www.dndbeyond.com/avatars/thumbnails/6/371/420/618/636272706155064423.png" Height="361" Canvas.Left="685" Canvas.Top="189" Width="265"/>
-                <TextBox Canvas.Left="620" TextWrapping="Wrap" Text="TextBox" Canvas.Top="54" Width="150" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"/>
-                <TextBox Canvas.Left="795" TextWrapping="Wrap" Text="TextBox" Canvas.Top="54" Width="140" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="txtclase" Content="Label" Canvas.Left="440" Canvas.Top="52" HorizontalAlignment="Center" VerticalAlignment="Top" Width="110"/>
-                <TextBox Canvas.Left="560" TextWrapping="Wrap" Text="TextBox" Canvas.Top="52" Width="30" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="perpas" Content="2"   FontSize="23" Canvas.Left="35" Canvas.Top="910" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                <Image x:Name="img"  Height="361" Canvas.Left="685" Canvas.Top="189" Width="265"/>
+                <TextBox Canvas.Left="620" TextWrapping="Wrap" Text="" Canvas.Top="54" Width="150" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"/>
+                <Label x:Name="due" Canvas.Left="795"  Content="TextBox" Canvas.Top="50" Width="140" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="txtclase" Content="label" Canvas.Left="440" Canvas.Top="52" HorizontalAlignment="Center" VerticalAlignment="Top" Width="110"/>
+                <TextBox x:Name="niv" Canvas.Left="560" TextWrapping="Wrap" Text="TextBox" Canvas.Top="52" Width="30" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <RichTextBox x:Name="rtxtInv" Height="260" Width="280" Canvas.Left="350" Canvas.Top="920" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel Canvas.Left="145" Canvas.Top="300" Height="135" Width="15" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White">
+                    <CheckBox x:Name="rdFue" Width="37" Height="15"/>
+                    <CheckBox x:Name="rdDes" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdCon" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdInt" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdSab" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdCar" Width="37" Height="15" Margin="0,7,0,0"/>
+                </StackPanel>
+                <StackPanel Height="405" Width="15" Canvas.Left="145" Canvas.Top="485" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White">
+                    <CheckBox x:Name="rdAcro" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdArca" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdAtle" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdEnga" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdHist" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdInte" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdInti" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdInve" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdJuMa" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdMedi" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdNatu" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdPerc" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdPersp" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdPersu" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdReli" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdSigi" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdSupe" Width="37" Height="15" Margin="0,7,0,0"/>
+                    <CheckBox x:Name="rdTrAn" Width="37" Height="15" Margin="0,7,0,0"/>
 
 
+                </StackPanel>
+                <RichTextBox x:Name="rtxtRasPer" Height="60" Width="265" Canvas.Left="355" Canvas.Top="605" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <RichTextBox x:Name="rtxtide" Height="50" Width="265" Canvas.Left="355" Canvas.Top="690" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <RichTextBox x:Name="rtxtVin" Height="45" Width="265" Canvas.Left="355" Canvas.Top="765" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <RichTextBox x:Name="rtxtDef" Height="41" Width="265" Canvas.Left="355" Canvas.Top="837" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ListBox Height="583" Width="294" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="663" Canvas.Top="600" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="SalFue" Content="1" Canvas.Left="169" Canvas.Top="300" HorizontalAlignment="Left" VerticalAlignment="Center" Width="26"/>
+                <Label x:Name="SalDes" Content="2" Canvas.Left="169" Canvas.Top="322" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="SalCon" Content="3" Canvas.Left="169" Canvas.Top="344" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="SalInt" Content="4" Canvas.Left="169" Canvas.Top="365" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="SalSab" Content="5" Canvas.Left="169" Canvas.Top="387" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label  x:Name="SalCar" Content="6" Canvas.Left="169" Canvas.Top="409" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Acr" Content="2" Canvas.Left="169" Canvas.Top="485" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Arc" Content="2" Canvas.Left="169" Canvas.Top="506" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Atl" Content="2" Canvas.Left="169" Canvas.Top="528" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Eng" Content="2" Canvas.Left="169" Canvas.Top="549" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="His" Content="2" Canvas.Left="169" Canvas.Top="571" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Inte" Content="2" Canvas.Left="169" Canvas.Top="593" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Inti" Content="2" Canvas.Left="169" Canvas.Top="614" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Inv" Content="2" Canvas.Left="169" Canvas.Top="636" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="JuMa" Content="2" Canvas.Left="169" Canvas.Top="657" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Med" Content="2" Canvas.Left="169" Canvas.Top="679" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Nat" Content="2" Canvas.Left="169" Canvas.Top="700" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Perc" Content="2" Canvas.Left="169" Canvas.Top="722" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Persp" Content="2" Canvas.Left="169" Canvas.Top="744" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Persu" Content="2" Canvas.Left="169" Canvas.Top="765" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Rel" Content="2" Canvas.Left="169" Canvas.Top="787" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Sig" Content="2" Canvas.Left="169" Canvas.Top="808" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="Sup" Content="2" Canvas.Left="169" Canvas.Top="830" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="AnHa" Content="2" Canvas.Left="169" Canvas.Top="852" Width="26" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
+            <Label x:Name="txtRaza" Content="12" HorizontalAlignment="Left" Margin="440,99,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="620,99,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                <ComboBoxItem Content="legal malvado"/>
+                <ComboBoxItem Content="neutral malvado"/>
+                <ComboBoxItem Content="caotico malvado"/>
+                <ComboBoxItem Content="legal neutral"/>
+                <ComboBoxItem Content="neutral puro"/>
+                <ComboBoxItem Content="caotico neutral"/>
+                <ComboBoxItem Content="legal bueno"/>
+                <ComboBoxItem Content="neutral bueno"/>
+                <ComboBoxItem Content="caotico bueno"/>
+            </ComboBox>
+            <TextBox x:Name="Exp" HorizontalAlignment="Left" Margin="795,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+            <TextBox x:Name="clArm"  HorizontalAlignment="Left" Margin="375,206,0,0" TextWrapping="Wrap" Text="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="40" FontSize="20" Height="29"/>
+            <Label x:Name="inic" Content="" HorizontalAlignment="Left" Margin="463,206,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Height="39" Width="50"/>
+            <Label x:Name="velo" Content="" HorizontalAlignment="Left" Margin="562,206,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Height="39" Width="50"/>
+            <TextBox x:Name="acpg"  Text="123"  HorizontalAlignment="Left" Margin="375,315,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="237" Height="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <Label x:Name="maxpg" Content="Label" HorizontalAlignment="Left" Margin="500,289,0,0" VerticalAlignment="Top" Width="60"/>
+            <TextBox x:Name="tempg"  HorizontalAlignment="Left" Margin="375,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Height="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"  FontWeight="Bold"/>
+            <Label x:Name="dg" Content="Label" HorizontalAlignment="Left" Margin="386,510,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="31" Width="73"/>
 
         </Grid>
     </ScrollViewer>

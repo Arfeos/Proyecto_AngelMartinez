@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace proyecto_Final.Recursos
 {
@@ -23,14 +24,11 @@ namespace proyecto_Final.Recursos
         private MySqlConnection conexion;
         private MySqlCommand comando;
         private MySqlDataReader reader;
-        int esAdministrador;
-        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma,clase,subclase;
+        int esAdministrador,nivel;
+        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma,clase,raza,subclase, subraza, dueño;
         List<persona> listaper;
         List<string> listastr;
-        //string ruta = "C:\\Users\\angel\\curso22-23\\DI\\ejerciciosDI\\tema_3\\proyecto_Final\\proyecto_Final\\Resources\\db.db";
-        //string strAppPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-        //string strFilePath = Path.Combine(strAppPath, "Resources");
-        //string strFullFilename = Path.Combine(strFilePath, "db.db");
+
 
         public BBDD()
         {
@@ -102,7 +100,7 @@ namespace proyecto_Final.Recursos
         {
             return us;
         }
-        public string devolverclase() { return clase; }
+
 
         /// <summary>
         /// Método para insertar usuarios en la base de datos.
@@ -138,30 +136,30 @@ namespace proyecto_Final.Recursos
 
         }
 
-        /// <summary>
-        /// Método para borrar usuarios en la base de datos.
-        /// </summary>
-        /// <param name="usuario">Nombre de usuario.</param>
-        /// <returns>True si la operación fue exitosa, False si hubo un error.</returns>
+
         public void borrar(string usuario)
         {
+            bool borrar = true;
             conexion.Open();
-            string query = "DELETE FROM usuarios WHERE nom_usuario =@usuario";
+            string query = "UPDATE usuarios SET Activo=0 WHERE nom_usuario =@usuario";
             comando = new MySqlCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario", conexion);
             comando.Parameters.AddWithValue("@usuario", usuario);
             reader = comando.ExecuteReader();
             if (reader.Read())
             {
-                if (reader["EsAdmin"].ToString() == "1")
+                if (reader["EsAdmin"].ToString() == "1") { 
                     MessageBox.Show("no se puede eliminar a un administrador");
-                else
-                {
-                    comando = new MySqlCommand(query, conexion);
-                    comando.Parameters.AddWithValue("@usuario", usuario);
-                    comando.ExecuteNonQuery();
+                    borrar = false;
                 }
+               
             }
-
+            reader.Close();
+             if(borrar)
+            {           
+                    comando = new MySqlCommand(query, conexion);
+                comando.Parameters.AddWithValue("@usuario", usuario);
+                comando.ExecuteNonQuery();
+            }
             conexion.Close();
 
         }
@@ -169,7 +167,7 @@ namespace proyecto_Final.Recursos
         {
 
             listaper = new List<persona>();
-            comando = new MySqlCommand("SELECT * FROM usuarios", conexion);
+            comando = new MySqlCommand("SELECT * FROM usuarios where Activo=1", conexion);
 
             conexion.Open();
             reader = comando.ExecuteReader();
@@ -340,7 +338,7 @@ namespace proyecto_Final.Recursos
                 return null;
             }
         }
-        internal IEnumerable devolversubraza(string v)
+        internal IEnumerable devolversubrazas(string v)
         {
             listastr = new List<string>();
             comando = new MySqlCommand("SELECT nombre from subraza where raza_padre=@nombre", conexion);
@@ -403,10 +401,11 @@ namespace proyecto_Final.Recursos
         }
         internal string devolverurlclase(string v)
         {
+            conexion.Open();
 
             comando = new MySqlCommand("SELECT indice from Clase where Nombre=@nombre", conexion);
             comando.Parameters.AddWithValue("@nombre", v);
-            conexion.Open();
+           
             reader = comando.ExecuteReader();
             try
             {
@@ -522,14 +521,18 @@ namespace proyecto_Final.Recursos
             try
             {
                 reader.Read();
+                clase = reader["Clase"].ToString();
+                raza = reader["Raza"].ToString();
+                subclase = reader["subclase"].ToString();
+                subraza = reader["subraza"].ToString();
                 fuerza = reader["Fuerza"].ToString();
                 destreza = reader["Destreza"].ToString();
                 constitucion = reader["Constitucion"].ToString();
                 inteligencia = reader["Inteligencia"].ToString();
-                clase = reader["Clase"].ToString();
-                subclase = reader["subclase"].ToString();
                 sabiduria = reader["Sabiduria"].ToString();
                 carisma = reader["Carisma"].ToString();
+                dueño = reader["nom_usuario"].ToString();
+                nivel =Int32.Parse( reader["nivel"].ToString());
                 reader.Close();
                 conexion.Close();
             }
@@ -540,29 +543,76 @@ namespace proyecto_Final.Recursos
                 conexion.Close();
             }
         }
-        public string devolverfuerza()
+        internal string devolverfuerza()
         {
             return fuerza;
         }
-        public string devolverdestreza()
+        internal string devolverdestreza()
         {
             return destreza;
         }
-        public string devolverconstitucion()
+        internal string devolverconstitucion()
         {
             return constitucion;
         }
-        public string devolverInteligencia()
+        internal string devolverInteligencia()
         {
             return inteligencia;
         }
-        public string devolversabiduria()
+        internal string devolversabiduria()
         {
             return sabiduria;
         }
-        public string devolvercarisma()
+        internal string devolvercarisma()
         {
             return carisma;
+        }
+        internal string devolverRaza()
+        {
+            return raza;
+        }
+        internal string devolversubraza()
+        {
+            return subraza;
+        }
+        internal string devolverclase()
+        {
+            return clase;
+        }
+        internal string devolversubclase()
+        {
+            return subclase;
+        }
+        internal string devolverdueño()
+        {
+            return dueño;
+        }
+        internal int devolvernivel()
+        {
+            return nivel;
+        }
+        internal string devolverimagen(String clase)
+        {
+            comando = new MySqlCommand("SELECT url FROM imagenes WHERE  Clase=@Clase", conexion);
+            comando.Parameters.AddWithValue("@Clase", clase);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                reader.Read();
+                string st = reader["url"].ToString();
+                conexion.Close();
+                
+                    reader.Close();
+                return st ;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
         }
         //llenar las bases de datos
         //internal void llenarhechizos(string nombre, string indice)
@@ -706,7 +756,7 @@ namespace proyecto_Final.Recursos
             conexion.Close();
         }
 
-        
+
     }
 }
 

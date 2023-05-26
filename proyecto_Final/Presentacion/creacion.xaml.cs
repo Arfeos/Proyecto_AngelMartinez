@@ -337,6 +337,11 @@ namespace proyecto_Final.Presentacion
             actualizarThread.Start();
         }
 
+        private void btn_rand_Click(object sender, RoutedEventArgs e)
+        {
+            randomizar();
+        }
+
         private void btncrear_Click(object sender, RoutedEventArgs e)
         {
             if (CBRaza.Items[CBRaza.SelectedIndex].ToString()=="None") {
@@ -347,6 +352,8 @@ namespace proyecto_Final.Presentacion
             Close();
             }
         }
+
+
 
         private void actualizar()
         {
@@ -361,12 +368,17 @@ namespace proyecto_Final.Presentacion
             txtcontador.Content = "quedan " + contador.ToString() + " a repartir";
             }));
         }
+        private  async void randomizar() {
+            Api api = new Api();
+            nombre.Text = await api.devolvernombre(CBRaza.Items[CBRaza.SelectedIndex].ToString().ToLower());
+            
+        }
 
         private void CBRaza_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CBSubraza.ItemsSource = null;
             CBSubraza.Items.Clear();
-            CBSubraza.ItemsSource = db.devolversubraza(db.devolverRazas()[CBRaza.SelectedIndex]);
+            CBSubraza.ItemsSource = db.devolversubrazas(db.devolverRazas()[CBRaza.SelectedIndex]);
             if (CBSubraza.Items.Count == null || CBSubraza.Items.Count == 0) {
                 CBSubraza.ItemsSource =null;
                 CBSubraza.Items.Add("None"); }

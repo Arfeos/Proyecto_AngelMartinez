@@ -55,10 +55,15 @@ namespace proyecto_Final.Presentacion
 
         private void BtnCargar_Click(object sender, RoutedEventArgs e)
         {
-            VentFich ventfich = new VentFich();
-            Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
-            ventfich.NavigationService.Navigate(fich);
-            ventfich.Show();
+            try
+            {
+                VentFich ventfich = new VentFich();
+                Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+                ventfich.NavigationService.Navigate(fich);
+                ventfich.Show();
+            }catch (ArgumentOutOfRangeException ex) {
+                MessageBox.Show("elige un ficha");
+            }
         }
     }
 }

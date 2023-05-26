@@ -17,18 +17,12 @@ namespace proyecto_Final.Recursos
         private string respuesta;
 
         private JsonDocument doc;
-        /// <summary>
-        /// Llama a la API para obtener una lista de las clases disponibles.
-        /// </summary>
-        /// <returns>Una tarea que se puede esperar hasta que se complete la llamada.</returns>
+        
         List<String> listaF = new List<string>();
         string listaventajas;
         string objetos;
         string nombre, pgolpe;
-        /// <summary>
-        /// Obtiene la lista de clases devuelta por la API.
-        /// </summary>
-        /// <returns>La lista de clases disponibles.</returns>
+       
         public async Task llamarClases()
         {
 
@@ -52,20 +46,36 @@ namespace proyecto_Final.Recursos
                 listaF.Add(doc.RootElement.GetProperty("results")[i].GetProperty("name").ToString());
             }
         }
-        /// <summary>
-        /// Obtiene la lista de clases devuelta por la API.
-        /// </summary>
-        /// <returns>La lista de clases disponibles.</returns>
+        public async Task<string> devolvernombre(string clase) {
+            var direccion = new Uri("https://muna.ironarachne.com/");
+            using (var httpClient = new HttpClient { BaseAddress = direccion })
+
+            {
+
+                string consulta = clase;
+                using (var response = await httpClient.GetAsync(consulta))
+                {
+
+                    respuesta = await response.Content.ReadAsStringAsync();
+                }
+                try
+                {
+                    doc = JsonDocument.Parse(respuesta);
+                }catch (Exception ex) {
+                    MessageBox.Show("ha habido un error al leer los datos de la api por favor compruebe que todos los datos son correctos");
+                    return"";
+                }
+            }
+            String nombre;
+            nombre = doc.RootElement.GetProperty("names")[0].ToString();
+            return nombre;
+        }
         public List<string> devolverlista()
         {
 
             return listaF;
         }
-        /// <summary>
-        /// Llama a la API para obtener información detallada sobre una clase específica.
-        /// </summary>
-        /// <param name="e">El índice de la clase en la lista devuelta por la API.</param>
-        /// <returns>Una tarea que se puede esperar hasta que se complete la llamada.</returns>
+   
         public async Task llamarClase(int e)
         {
 
@@ -305,6 +315,44 @@ namespace proyecto_Final.Recursos
             nombre = doc.RootElement.GetProperty("race").GetProperty("name").ToString();
             pgolpe = doc.RootElement.GetProperty("desc").ToString();
 
+        }
+
+        internal async Task llamarClaseurl(string v)
+        {
+
+            var direccion = new Uri("https://www.dnd5eapi.co/");
+            using (var httpClient = new HttpClient { BaseAddress = direccion })
+
+            {
+                string consulta = v;
+                using (var response = await httpClient.GetAsync(consulta))
+                {
+
+                    respuesta = await response.Content.ReadAsStringAsync();
+                }
+                doc = JsonDocument.Parse(respuesta);
+            }
+            MessageBox.Show(doc.RootElement.GetProperty("proficiency_choices")[0].GetProperty("desc").ToString());
+            pgolpe = doc.RootElement.GetProperty("hit_die").ToString();
+        }
+
+        internal async Task<string> devolvervelocidad(string v)
+        {
+
+            var direccion = new Uri("https://www.dnd5eapi.co/");
+            using (var httpClient = new HttpClient { BaseAddress = direccion })
+
+            {
+                string consulta =db.devolverurlraza(v);
+                using (var response = await httpClient.GetAsync(consulta))
+                {
+
+                    respuesta = await response.Content.ReadAsStringAsync();
+                }
+                doc = JsonDocument.Parse(respuesta);
+            }
+
+            return doc.RootElement.GetProperty("speed").ToString();
         }
         //llenar tablas
         //internal async Task llenarClase(BBDD db)
