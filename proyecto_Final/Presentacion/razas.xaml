@@ -22,10 +22,10 @@
         <Label Content="mejoras" Margin="408,66,333,563"/>
         <TextBlock x:Name="mejoras_stats" HorizontalAlignment="Left" Margin="408,97,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="116" Width="372"/>
         <Label Content="leguajes" Margin="408,213,333,417"/>
-        <TextBlock x:Name="lenguaje" HorizontalAlignment="Left" Margin="408,243,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
-        <Label Content="descripcion de tamaño" Margin="408,331,333,299"/>
-        <Label Content="rasgos" Margin="408,448,333,182"/>
-        <TextBlock x:Name="descripcion" HorizontalAlignment="Left" Margin="408,365,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
-        <TextBlock x:Name="rasgos" HorizontalAlignment="Left" Margin="408,490,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
+        <TextBlock x:Name="lenguaje" HorizontalAlignment="Left" Margin="408,243,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="125" Width="372"/>
+        <Label Content="descripcion de tamaño" Margin="408,373,333,257"/>
+        <Label Content="rasgos" Margin="408,495,333,135"/>
+        <TextBlock x:Name="descripcion" HorizontalAlignment="Left" Margin="408,407,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
+        <TextBlock x:Name="rasgos" HorizontalAlignment="Left" Margin="408,537,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
     </Grid>
 </Page>

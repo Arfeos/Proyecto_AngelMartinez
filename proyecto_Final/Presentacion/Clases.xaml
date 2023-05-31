@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Style="{StaticResource papiro}">
+    <Grid Style="{StaticResource papiro}" Margin="0,15,1,-15">
 
         <ListBox x:Name="listaclase" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
         <Label Content="Clase" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
@@ -24,8 +24,8 @@
         <Label Content="dados de golpe" HorizontalAlignment="Left" Margin="408,107,0,0" VerticalAlignment="Top" Height="34" Width="172"/>
         <TextBlock HorizontalAlignment="Left" x:Name="pgolpe" Margin="408,146,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="232"/>
         <Label Content="ventajas" HorizontalAlignment="Left" Margin="408,169,0,0" VerticalAlignment="Top" Height="25" Width="172"/>
-        <TextBlock x:Name="Ventajas"  Margin="408,199,10,276" ScrollViewer.CanContentScroll="True"/>
+        <TextBlock x:Name="Ventajas"  Margin="408,199,10,250" ScrollViewer.CanContentScroll="True"/>
         <Label Content="objetos iniciales" HorizontalAlignment="Left" Margin="408,407,0,0" VerticalAlignment="Top" Height="25" Width="172"/>
-        <TextBlock x:Name="objetos_inciales"  Margin="408,432,10,43" ScrollViewer.CanContentScroll="True"/>
+        <TextBlock x:Name="objetos_inciales"  Margin="408,432,10,10" ScrollViewer.CanContentScroll="True"/>
     </Grid>
 </Page>

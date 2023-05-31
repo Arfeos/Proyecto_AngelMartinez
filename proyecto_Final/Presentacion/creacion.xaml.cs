@@ -24,6 +24,7 @@ namespace proyecto_Final.Presentacion
     {
         string usuario;
         int fuerza, destreza, constitucion, sabiduria, inteligencia, carisma, contador;
+        Api api;
         public creacion(string us)
         {
             this.usuario = us;
@@ -35,6 +36,7 @@ namespace proyecto_Final.Presentacion
             carisma = 8;
             contador = 27;
             db = new BBDD();
+            api = new Api();
             InitializeComponent();
 
         }
@@ -342,14 +344,22 @@ namespace proyecto_Final.Presentacion
             randomizar();
         }
 
-        private void btncrear_Click(object sender, RoutedEventArgs e)
+        private async void btncrear_Click(object sender, RoutedEventArgs e)
         {
+            if (contador != 0) {
+                MessageBox.Show("faltan puntos por gastar");
+            }
+            else { 
             if (CBRaza.Items[CBRaza.SelectedIndex].ToString()=="None") {
                 MessageBox.Show("seleccione una raza valida");
             }
             else { 
+
             db.insertarficha(CBClase.Text,CBSubclase.Text,CBRaza.Text,CBSubraza.Text,nombre.Text,usuario,fuerza,destreza,constitucion,sabiduria,inteligencia,carisma);
+             await   api.añadirdatosraza(CBRaza.Text,nombre.Text);
+                    await api.añadirdatossubraza(CBSubraza.Text, nombre.Text);
             Close();
+            }
             }
         }
 

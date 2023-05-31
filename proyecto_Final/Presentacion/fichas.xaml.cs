@@ -1,6 +1,7 @@
 ﻿using proyecto_Final.Recursos;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,10 +58,13 @@ namespace proyecto_Final.Presentacion
         {
             try
             {
-                VentFich ventfich = new VentFich();
-                Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
-                ventfich.NavigationService.Navigate(fich);
-                ventfich.Show();
+               
+           
+                    VentFich ventfich = new VentFich();
+                    Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+                    ventfich.NavigationService.Navigate(fich);
+                    ventfich.Show();
+                
             }catch (ArgumentOutOfRangeException ex) {
                 MessageBox.Show("elige un ficha");
             }

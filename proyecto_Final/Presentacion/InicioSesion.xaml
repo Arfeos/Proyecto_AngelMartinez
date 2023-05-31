@@ -46,5 +46,6 @@
             </Button.ToolTip>
         </Button>
         <Label Content="en caso de querer entrar sin registro previo haga doble click aqui" Margin="200,369,210,10" MouseDoubleClick="Label_MouseDoubleClick"/>
+        <Button x:Name="btn_llenar" Content="Button" HorizontalAlignment="Left" Margin="676,190,0,0" VerticalAlignment="Top" Click="btn_rellenar_Click"/>
     </Grid>
 </Window>

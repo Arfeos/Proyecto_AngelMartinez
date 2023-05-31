@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace proyecto_Final.Presentacion { 
+namespace proyecto_Final.Presentacion {
 
     public partial class InicioSesion : Window
     {
@@ -76,22 +76,27 @@ namespace proyecto_Final.Presentacion {
 
         }
 
-    
 
-        //private async void btn_rellenar_Click(object sender, RoutedEventArgs e)
-        //{
-        //   Api api= new Api();
-        //   BBDD db= new BBDD();
-        //    db.conectar();
-        //    await api.llenarClase(db);
-        //    await api.llenarHechizos(db);
-        //    await api.llenarRasgos(db);
-        //    await api.llenarRaza(db);
-        //    await api.llenarsubclases(db);
-        //    await api.llenarsubrazas(db);
-        //    await api.llenarRazarasgo(db);
-        //    db.desconectar();
 
-        //}
-    }
+        private async void btn_rellenar_Click(object sender, RoutedEventArgs e)
+        {
+            Api api = new Api();
+            BBDD db = new BBDD();
+            db.conectar();
+            //    await api.llenarClase(db);
+            await api.llenarHechizos(db);
+            await api.llenarRasgos(db);
+            //    await api.llenarRaza(db);
+            //    await api.llenarsubclases(db);
+            //    await api.llenarsubrazas(db);
+                await api.llenarrazarasgo(db);
+            db.desconectar();
+
+            
+        }
+        
+    } 
 }
+
+
+    

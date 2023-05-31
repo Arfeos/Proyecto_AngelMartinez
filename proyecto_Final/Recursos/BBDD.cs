@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities.Collections;
 using proyecto_Final.Presentacion;
 using System;
 using System.Collections;
@@ -25,7 +26,7 @@ namespace proyecto_Final.Recursos
         private MySqlCommand comando;
         private MySqlDataReader reader;
         int esAdministrador,nivel;
-        private string us,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma,clase,raza,subclase, subraza, dueño;
+        private string us,STR,DEX,CON,INT,WIS,carisma,clase,raza,subclase, subraza, dueño;
         List<persona> listaper;
         List<string> listastr;
 
@@ -368,11 +369,11 @@ namespace proyecto_Final.Recursos
                 return null;
             }
         }
-        internal void insertarficha(string clase, string subclase, string raza, string subraza, string nombre, string usuario, int fuerza, int destreza, int constitucion, int sabiduria, int inteligencia, int carisma)
+        internal void insertarficha(string clase, string subclase, string raza, string subraza, string nombre, string usuario, int STR, int DEX, int CON, int WIS, int INT, int CAR)
         {
             conexion.Open();
             MySqlTransaction transaction = conexion.BeginTransaction();
-            using (MySqlCommand comando = new MySqlCommand("INSERT INTO ficha (Nombre,nom_usuario,Clase,Subclase,Raza,subraza,Fuerza,Destreza,Constitucion,Sabiduria,Inteligencia,Carisma) VALUES (@nombre, @usuario, @Clase, @subclase, @Raza, @subraza, @Fuerza, @Destreza, @Constitucion, @Sabiduria, @Inteligencia, @Carisma)", conexion))
+            using (MySqlCommand comando = new MySqlCommand("INSERT INTO ficha (Nombre,nom_usuario,Clase,Subclase,Raza,subraza,STR,DEX,CON,WIS,INTE,CHA) VALUES (@nombre, @usuario, @Clase, @subclase, @Raza, @subraza, @STR, @DEX, @CON, @WIS, @INT, @CAR)", conexion))
             {
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@usuario", usuario);
@@ -380,12 +381,12 @@ namespace proyecto_Final.Recursos
                 comando.Parameters.AddWithValue("@subclase", subclase);
                 comando.Parameters.AddWithValue("@Raza", raza);
                 comando.Parameters.AddWithValue("@subraza", subraza);
-                comando.Parameters.AddWithValue("@Fuerza", fuerza);
-                comando.Parameters.AddWithValue("@Destreza", destreza);
-                comando.Parameters.AddWithValue("@Constitucion", constitucion);
-                comando.Parameters.AddWithValue("@Sabiduria", sabiduria);
-                comando.Parameters.AddWithValue("@Inteligencia", inteligencia);
-                comando.Parameters.AddWithValue("@Carisma", carisma);
+                comando.Parameters.AddWithValue("@STR", STR);
+                comando.Parameters.AddWithValue("@DEX", DEX);
+                comando.Parameters.AddWithValue("@CON", CON);
+                comando.Parameters.AddWithValue("@WIS", WIS);
+                comando.Parameters.AddWithValue("@INT", INT);
+                comando.Parameters.AddWithValue("@CAR", CAR);
                 try
                 {
                     comando.ExecuteNonQuery();
@@ -512,7 +513,7 @@ namespace proyecto_Final.Recursos
                 return null;
             }
         }
-        internal void cargarficha(string v)
+        internal async Task cargarficha(string v)
         {
             comando = new MySqlCommand("SELECT * FROM ficha WHERE  Nombre=@nombre", conexion);
             comando.Parameters.AddWithValue("@nombre", v);
@@ -525,12 +526,12 @@ namespace proyecto_Final.Recursos
                 raza = reader["Raza"].ToString();
                 subclase = reader["subclase"].ToString();
                 subraza = reader["subraza"].ToString();
-                fuerza = reader["Fuerza"].ToString();
-                destreza = reader["Destreza"].ToString();
-                constitucion = reader["Constitucion"].ToString();
-                inteligencia = reader["Inteligencia"].ToString();
-                sabiduria = reader["Sabiduria"].ToString();
-                carisma = reader["Carisma"].ToString();
+                STR = reader["STR"].ToString();
+                DEX = reader["DEX"].ToString();
+                CON = reader["CON"].ToString();
+                INT = reader["INTE"].ToString();
+                WIS = reader["WIS"].ToString();
+                carisma = reader["CHA"].ToString();
                 dueño = reader["nom_usuario"].ToString();
                 nivel =Int32.Parse( reader["nivel"].ToString());
                 reader.Close();
@@ -543,27 +544,27 @@ namespace proyecto_Final.Recursos
                 conexion.Close();
             }
         }
-        internal string devolverfuerza()
+        internal string devolverSTR()
         {
-            return fuerza;
+            return STR;
         }
-        internal string devolverdestreza()
+        internal string devolverDEX()
         {
-            return destreza;
+            return DEX;
         }
-        internal string devolverconstitucion()
+        internal string devolverCON()
         {
-            return constitucion;
+            return CON;
         }
-        internal string devolverInteligencia()
+        internal string devolverINT()
         {
-            return inteligencia;
+            return INT;
         }
-        internal string devolversabiduria()
+        internal string devolverWIS()
         {
-            return sabiduria;
+            return WIS;
         }
-        internal string devolvercarisma()
+        internal string devolverCAR()
         {
             return carisma;
         }
@@ -615,138 +616,121 @@ namespace proyecto_Final.Recursos
             }
         }
         //llenar las bases de datos
-        //internal void llenarhechizos(string nombre, string indice)
+        internal void llenarhechizos(string nombre, string indice)
+        {
+            using (MySqlCommand comando = new MySqlCommand("insert into hechizos (nombre, indice) values (@nombre, @indice)", conexion))
+            {
+                comando.Parameters.AddWithValue("@nombre", nombre);
+                comando.Parameters.AddWithValue("@indice", indice);
+
+                try
+                {
+                    comando.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    conexion.Close();
+                }
+            }
+        }
+        internal void llenarrasgos(string nombre, string indice)
+        {
+            using (MySqlCommand comando = new MySqlCommand("insert into rasgos (nombre, indice) values (@nombre, @indice)", conexion))
+            {
+                comando.Parameters.AddWithValue("@indice", indice);
+                comando.Parameters.AddWithValue("@nombre", nombre);
+                try
+                {
+
+                    comando.ExecuteNonQuery();
+                    ;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    conexion.Close();
+                }
+            }
+        }
+        //internal void llenarclases(string nombre, string indice)
         //{
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Hechizos (nombre, indice) VALUES (@nombre, @indice)", conexion))
+
+        //    using (MySqlCommand comando = new MySqlCommand("insert into clase (nombre, indice) values (@nombre, @indice)", conexion))
         //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        comando.parameters.addwithvalue("@nombre", nombre);
+        //        comando.parameters.addwithvalue("@indice", indice);
 
         //        try
         //        {
-        //            comando.ExecuteNonQuery();
+        //            comando.executenonquery();
+
         //        }
-        //        catch (Exception ex)
+        //        catch (exception ex)
         //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
+        //            console.writeline(ex.message);
+        //            conexion.close();
         //        }
         //    }
         //}
-        //internal void llenarRasgos(string nombre, string indice)
-        //{
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Rasgos (nombre, indice) VALUES (@nombre, @indice)", conexion))
-        //    {
-        //        comando.Parameters.AddWithValue("@indice", indice);
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        try
-        //        {
-
-        //            comando.ExecuteNonQuery();
-        //            ;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
-        //        }
-        //    }
-        //}
-        //internal void llenarClases(string nombre, string indice)
+        //internal void llenarrazas(string nombre, string indice)
         //{
 
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Clase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (mysqlcommand comando = new mysqlcommand("insert into raza (nombre, indice) values (@nombre, @indice)", conexion))
         //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        comando.parameters.addwithvalue("@nombre", nombre);
+        //        comando.parameters.addwithvalue("@indice", indice);
 
         //        try
         //        {
-        //            comando.ExecuteNonQuery();
-
+        //            comando.executenonquery();
         //        }
-        //        catch (Exception ex)
+        //        catch (exception ex)
         //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
-        //        }
-        //    }
-        //}
-        //internal void llenarRazas(string nombre, string indice)
-        //{
-
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Raza (nombre, indice) VALUES (@nombre, @indice)", conexion))
-        //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
-
-        //        try
-        //        {
-        //            comando.ExecuteNonQuery();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
+        //            console.writeline(ex.message);
+        //            conexion.close();
         //        }
         //    }
         //}
         //internal void llenarsubrazas(string nombre, string indice)
         //{
 
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO subraza (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (mysqlcommand comando = new mysqlcommand("insert into subraza (nombre, indice) values (@nombre, @indice)", conexion))
         //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        comando.parameters.addwithvalue("@nombre", nombre);
+        //        comando.parameters.addwithvalue("@indice", indice);
 
         //        try
         //        {
-        //            comando.ExecuteNonQuery();
+        //            comando.executenonquery();
         //        }
-        //        catch (Exception ex)
+        //        catch (exception ex)
         //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
+        //            console.writeline(ex.message);
+        //            conexion.close();
         //        }
         //    }
         //}
         //internal void llenarsubclases(string nombre, string indice)
         //{
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO subclase (nombre, indice) VALUES (@nombre, @indice)", conexion))
+        //    using (mysqlcommand comando = new mysqlcommand("insert into subclase (nombre, indice) values (@nombre, @indice)", conexion))
         //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
+        //        comando.parameters.addwithvalue("@nombre", nombre);
+        //        comando.parameters.addwithvalue("@indice", indice);
 
 
         //        try
         //        {
-        //            comando.ExecuteNonQuery();
+        //            comando.executenonquery();
         //        }
-        //        catch (Exception ex)
+        //        catch (exception ex)
         //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
+        //            console.writeline(ex.message);
+        //            conexion.close();
         //        }
         //    }
         //}
-        //internal void llenarRazarasgo(string nombre, string indice)
-        //{
-        //    using (MySqlCommand comando = new MySqlCommand("INSERT INTO Rasgos (Nombre, indice) VALUES (@nombre, @indice)", conexion))
 
-        //    {
-        //        comando.Parameters.AddWithValue("@nombre", nombre);
-        //        comando.Parameters.AddWithValue("@indice", indice);
-        //        try
-        //        {
-        //            comando.ExecuteNonQuery();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            conexion.Close();
-        //        }
-        //    }
-        //}
         internal void conectar()
         {
             conexion.Open();
@@ -756,7 +740,113 @@ namespace proyecto_Final.Recursos
             conexion.Close();
         }
 
+        internal async Task<string> devolvervalor(string rasgo,string nombre)
+        {
+            comando = new MySqlCommand("SELECT * FROM ficha WHERE  Nombre=@nombre", conexion);
+            comando.Parameters.AddWithValue("@rasgo", rasgo);
+            comando.Parameters.AddWithValue("@nombre", nombre);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+                String st=null;
+                reader.Read();
+                if (rasgo=="STR") {
+                    
+                   st = reader["STR"].ToString(); 
+                }
+                if (rasgo == "DEX")
+                {
 
+                    st = reader["DEX"].ToString();
+                }
+                if (rasgo == "CON")
+                {
+
+                     st =reader["CON"].ToString();
+                }
+                if (rasgo == "INTE")
+                {
+
+                   st = reader["INTE"].ToString();
+                }
+                if (rasgo == "WIS")
+                {
+
+                   st = reader["WIS"].ToString();
+                }
+                if (rasgo == "CHA")
+                { 
+                   st = reader["CHA"].ToString();
+                }
+                conexion.Close();
+
+                reader.Close();
+                return st;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+            
+        }
+
+        internal async Task modificarrasgo(string rasgo, int valor, string nombre)
+        {
+            conexion.Open();
+            string query = "update ficha set "+rasgo+"=@valor WHERE Nombre ='"+nombre+"'";
+            comando = new MySqlCommand(query, conexion);
+
+
+            comando.Parameters.AddWithValue("@valor", valor);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+
+        internal async Task insertarrasgos(string rasgo, string nombre)
+        {
+           conexion.Open();
+            string query = "insert into ficha_rasgo values(@nombre, @rasgo )";
+            comando = new MySqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@nombre", nombre);
+            comando.Parameters.AddWithValue("@rasgo", rasgo);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+
+        internal async Task<List<string>> devolverRasgos(string nom)
+        {
+            listastr= new List<string> ();  
+            comando = new MySqlCommand("SELECT * FROM rasgos WHERE  indice in (select indice_rasgo from ficha_rasgo where nombre_personaje=@nom)", conexion);
+            comando.Parameters.AddWithValue("@nom",nom);
+            conexion.Open();
+            reader = comando.ExecuteReader();
+            try
+            {
+
+                while (reader.Read())
+                {
+
+                    string a = reader["Nombre"].ToString();
+
+                    listastr.Add(a);
+                }
+                reader.Close();
+                conexion.Close();
+                return listastr;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                reader.Close();
+                conexion.Close();
+                return null;
+            }
+
+        }
     }
 }
 
