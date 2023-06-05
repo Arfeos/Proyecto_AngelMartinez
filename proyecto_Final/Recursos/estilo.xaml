@@ -12,12 +12,24 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <ControlTemplate TargetType="Button" x:Key="bott">
+        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="10">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
     <Style  TargetType="Button">
         <Setter Property="Background">
             <Setter.Value>
                 <ImageBrush ImageSource="/./Resources/papiro_sucio.jpg"/>
+
             </Setter.Value>
         </Setter>
+        <Setter Property="Template" Value="{StaticResource bott}"/>
+
         <Setter Property="FontFamily" Value="{StaticResource Elegante}"/>
     </Style>
+
 </ResourceDictionary>

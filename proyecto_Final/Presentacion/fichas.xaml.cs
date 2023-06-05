@@ -1,4 +1,5 @@
-﻿using proyecto_Final.Recursos;
+﻿using proyecto_Final.control;
+using proyecto_Final.Recursos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,8 +44,13 @@ namespace proyecto_Final.Presentacion
 
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
+            if (db.comprobardocumento("fich" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString()))
+                db.borrardocumento("fich" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+            if (db.comprobardocumento("hech" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString()))
+                db.borrardocumento("hech" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
             db.borrarficha(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
             lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
+            
         }
 
         private void Btncrear_Click(object sender, RoutedEventArgs e)
@@ -57,9 +63,7 @@ namespace proyecto_Final.Presentacion
         private void BtnCargar_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-               
-           
+            {           
                     VentFich ventfich = new VentFich();
                     Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
                     ventfich.NavigationService.Navigate(fich);

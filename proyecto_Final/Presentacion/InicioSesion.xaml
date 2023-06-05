@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final"
         mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800"
         Title="inicio sesion" Height="450" Width="800" Icon="/Resources/logo.ico"  ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <ResourceDictionary>
@@ -14,38 +15,40 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid Background="DarkGray">
+
+
         <Grid.ContextMenu>
             <ContextMenu>
-            <MenuItem x:Name="Acceder" Header="Acceder" Click="Acceder_Click"/>
+                <MenuItem x:Name="Acceder" Header="Acceder" Click="Acceder_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <Image Source="/Resources/d20.png" Margin="26,10,26,47"/>
+        <Image Source="/Resources/d20.png" Margin="-43,0,-4,65" />
 
-        <TextBox x:Name="usuarioForm" Width="300" Height="30" Margin="0,-75,0,0" FontSize="18px" Text="Admin">
+        <TextBox x:Name="usuarioForm" Width="300" Margin="250,157,250,225" FontSize="18px" Text="Admin" >
             <TextBox.ToolTip>
                 <TextBlock Text="Escribe el nombre de usuario" Background="Beige"/>
             </TextBox.ToolTip>
         </TextBox>
-        <PasswordBox x:Name="contraseñaForm" Password="Admin1234" Width="300" Height="30" Margin="0,100,0,0"  FontSize="18px" >
+        <PasswordBox x:Name="contraseñaForm" Password="Admin1234" Width="300" Margin="250,238,250,140"  FontSize="18px"  >
             <PasswordBox.ToolTip>
                 <TextBlock Text="Escribe la contraseña" Background="Beige"/>
             </PasswordBox.ToolTip>
-            
+
         </PasswordBox>
-        <Button x:Name="btnAcceder" Margin="584,300,31,85"  Click="btnAcceder_Click" >Entrar
+        <Button x:Name="btnAcceder" Margin="584,300,31,85"  Click="btnAcceder_Click"  >Entrar
             <Button.ToolTip>
                 <TextBlock Text="Accede aquí" Background="Beige"/>
             </Button.ToolTip>
         </Button>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="155,153,0,0" VerticalAlignment="Top" Width="125" Foreground="#FF0028ED" FontSize="20"/>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="155,153,0,0" VerticalAlignment="Top" Width="125" Foreground="#FF0028ED" FontSize="20" />
 
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="125,238,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF0028ED" FontSize="22" Height="38"/>
-        <Button x:Name="btnRegistrar" Margin="584,367,31,16"  Content="Registrar" Click="btnRegistrar_Click" >
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="125,238,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF0028ED" FontSize="22" Height="38" />
+        <Button x:Name="btnRegistrar" Margin="584,367,31,16"  Content="Registrar" Click="btnRegistrar_Click"  >
             <Button.ToolTip>
                 <TextBlock Text="Registrar si no tienes cuenta" Background="Beige"/>
             </Button.ToolTip>
         </Button>
-        <Label Content="en caso de querer entrar sin registro previo haga doble click aqui" Margin="200,369,210,10" MouseDoubleClick="Label_MouseDoubleClick"/>
-        <Button x:Name="btn_llenar" Content="Button" HorizontalAlignment="Left" Margin="676,190,0,0" VerticalAlignment="Top" Click="btn_rellenar_Click"/>
+        <Label Content="en caso de querer entrar sin registro previo haga doble click aqui" Margin="200,369,210,10" MouseDoubleClick="Label_MouseDoubleClick" />
+
     </Grid>
 </Window>

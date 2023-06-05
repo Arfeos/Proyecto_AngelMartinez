@@ -10,11 +10,12 @@
 
   <ItemGroup>
     <None Remove="Resources\1ºparte.png" />
+    <None Remove="Resources\2ºparte.png" />
     <None Remove="Resources\carolingia.ttf" />
     <None Remove="Resources\costes.png" />
     <None Remove="Resources\d20.png" />
-    <None Remove="Resources\db.db" />
     <None Remove="Resources\icono.ico" />
+    <None Remove="Resources\loading.gif" />
     <None Remove="Resources\logo.ico" />
     <None Remove="Resources\modificadores.png" />
     <None Remove="Resources\papiro.jpg" />
@@ -40,13 +41,16 @@
     <Resource Include="Resources\1ºparte.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\2ºparte.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\carolingia.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\db.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Resources\costes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\loading.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\logo.ico">
@@ -66,6 +70,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
     <PackageReference Include="WPFMaskedTextBox" Version="5.0.1" />
   </ItemGroup>
 
@@ -106,10 +111,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Ficheros\" />
   </ItemGroup>
 
 </Project>

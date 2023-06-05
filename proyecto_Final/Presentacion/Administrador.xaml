@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:proyecto_Final.Presentacion"
       mc:Ignorable="d"
       Height="415" Width="775"
-      Title="Administrador"  Loaded="Page_Loaded" IsVisibleChanged="Page_IsVisibleChanged" >
+
+      Title="Administrador"  Loaded="Page_Loaded" >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,5 +24,6 @@
         <Button x:Name="Borrar_btn" Content="Borrar" Click="Borrar_btn_Click"  Height="50" Width="100" Margin="105,124,570,241"/>
         <Button x:Name="Actualizar_btn" Content="actualizar"  Height="50" Width="100"  Click="Actualizar_btn_Click" Margin="105,199,570,166"/>
         <Button x:Name="añadir_btn" Content="añadir" Height="50" Width="100" Margin="105,275,570,90" Click="añadir_btn_Click" />
+        <Button x:Name="reactivar_btn" Content="reactivar" Height="50" Width="100" Margin="105,351,570,14" Click="reactivar_btn_Click"  />
     </Grid>
 </Page>

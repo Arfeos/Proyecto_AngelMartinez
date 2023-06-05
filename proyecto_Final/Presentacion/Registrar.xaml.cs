@@ -1,4 +1,4 @@
-﻿using proyecto_Final.Recursos;
+﻿using proyecto_Final.control;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +32,10 @@ namespace proyecto_Final.Presentacion
 
         }
 
-        private void btnAcceder_Click(object sender, RoutedEventArgs e)
+        private async void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
             miBase = new BBDD();
-            if (miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(), Correo.Text, 0))
+            if (await miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(), Correo.Text, 0))
             {
                 inicioSesion.Visibility = Visibility.Visible;
                 this.Close();
@@ -51,10 +51,10 @@ namespace proyecto_Final.Presentacion
             this.Close();
         }
 
-        public void registrar_Click(object sender, RoutedEventArgs e)
+        public async void registrar_Click(object sender, RoutedEventArgs e)
         {
             miBase = new BBDD();
-            if (miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(), Correo.Text, 0))
+            if (await miBase.insertarusuarios(usuarioForm.Text, contraseñaForm.Password.ToString(), Correo.Text, 0))
             {
                 inicioSesion.Visibility = Visibility.Visible;
                 this.Close();

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final.Presentacion"
         mc:Ignorable="d"
-        Title="fichas" Height="450" Width="400" Closed="Window_Closed">
+        Icon="/Resources/logo.ico"  ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow"
+        Title="fichas" Height="450" Width="400" Closed="Window_Closed" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -1,4 +1,4 @@
-﻿using proyecto_Final.Recursos;
+﻿using proyecto_Final.control;
 using System;
 using System.Collections.Generic;
 using System.Linq;

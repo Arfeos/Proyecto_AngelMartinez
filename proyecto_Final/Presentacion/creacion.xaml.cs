@@ -1,4 +1,4 @@
-﻿using proyecto_Final.Recursos;
+﻿using proyecto_Final.control;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,7 +64,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -112,7 +112,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -161,7 +161,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -210,7 +210,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -259,7 +259,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -308,7 +308,7 @@ namespace proyecto_Final.Presentacion
                     }
                     else if (contador <= 0)
                     {
-                        MessageBox.Show("no quedan puntas");
+                        MessageBox.Show("no quedan puntos");
                     }
                     else
                     {
@@ -346,6 +346,9 @@ namespace proyecto_Final.Presentacion
 
         private async void btncrear_Click(object sender, RoutedEventArgs e)
         {
+            if (CBRaza.Text == "Half-Elf") {
+                MessageBox.Show("al cargar la ficha por primera vez tienes 1+ en dos caracteristicas a elegir entre Fuerza,destreza,constitucion,inteligencia o sabiduria");
+            }
             if (contador != 0) {
                 MessageBox.Show("faltan puntos por gastar");
             }
@@ -353,11 +356,16 @@ namespace proyecto_Final.Presentacion
             if (CBRaza.Items[CBRaza.SelectedIndex].ToString()=="None") {
                 MessageBox.Show("seleccione una raza valida");
             }
-            else { 
-
+            else {
+                    carga car = new carga();
+                    car.Show();
+                    List<string> comp = new List<string> { };
             db.insertarficha(CBClase.Text,CBSubclase.Text,CBRaza.Text,CBSubraza.Text,nombre.Text,usuario,fuerza,destreza,constitucion,sabiduria,inteligencia,carisma);
-             await   api.añadirdatosraza(CBRaza.Text,nombre.Text);
+                    await api.añadirdatosraza(CBRaza.Text,nombre.Text);
                     await api.añadirdatossubraza(CBSubraza.Text, nombre.Text);
+                    await api.añadirdatossubclase(CBSubclase.Text, nombre.Text);
+                    await api.añadirdatosclase(CBClase.Text, nombre.Text);
+                    car.Close();
             Close();
             }
             }
@@ -397,8 +405,9 @@ namespace proyecto_Final.Presentacion
 
         private void CBClase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CBSubraza.ItemsSource = "";
+            CBSubclase.ItemsSource =null;
             CBSubclase.ItemsSource = db.devolversubclase(db.devolverClases()[CBClase.SelectedIndex]);
+            CBSubclase.SelectedIndex = 0;
         }
 
         BBDD db;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_Final.Presentacion"
         mc:Ignorable="d"
-        Title="modificar" Height="250" Width="500" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="modificar" Height="250" Width="500" Closing="Window_Closing" Loaded="Window_Loaded" Icon="/Resources/logo.ico"  ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

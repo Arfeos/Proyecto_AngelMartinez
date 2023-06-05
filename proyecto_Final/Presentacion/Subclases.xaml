@@ -16,10 +16,10 @@
     </Page.Resources>
     <Grid Style="{StaticResource papiro}" >
         <ListBox x:Name="listaclase" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
-        <Label Content="Subclase" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
-        <Label Content="Clase" HorizontalAlignment="Left" Margin="408,57,0,0" VerticalAlignment="Top"/>
-        <Label Content="descripcion" HorizontalAlignment="Left" Margin="408,127,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="clase" HorizontalAlignment="Left" Margin="408,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" />
-        <TextBlock x:Name="desc" HorizontalAlignment="Left" Margin="408,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Height="339" Width="367"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Subclase" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Clase" HorizontalAlignment="Left" Margin="408,57,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="descripcion" HorizontalAlignment="Left" Margin="408,127,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="clase" HorizontalAlignment="Left" Margin="408,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <TextBlock x:Name="desc" HorizontalAlignment="Left" Margin="408,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Height="338" Width="367"/>
     </Grid>
 </Page>
