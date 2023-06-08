@@ -32,15 +32,12 @@ namespace proyecto_Final.Presentacion
         bool ignorar;
         Api api;
         int cont;
-        public Ficha1()
-        {
-            ignorar = true;
-            db = new BBDD();
-            api = new Api();
 
-            InitializeComponent();
-        }
 
+        /// <summary>
+        /// Constructor de la clase Ficha1 que recibe el nombre del personaje.
+        /// </summary>
+        /// <param name="nom">Nombre del personaje</param>
         public Ficha1(string nom)
         {
             ignorar = true;
@@ -51,13 +48,19 @@ namespace proyecto_Final.Presentacion
             Nombre.Content = nom;
         }
 
+        /// <summary>
+        /// Evento que se ejecuta cuando se carga la página.
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento</param>
+        /// <param name="e">Argumentos del evento</param>
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             carga car = new carga();
             this.Visibility = Visibility.Collapsed;
-            car.Show(); 
+            car.Show();
+
             await cargarmetodosini();
-            await ficheros.CargarDatosDesdeArchivo("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(),Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
+            await ficheros.CargarDatosDesdeArchivo("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
             Fuebon.Content = sacarbono(STR.Text);
             Desbon.Content = sacarbono(DEX.Text);
             Conbon.Content = sacarbono(CON.Text);
@@ -71,17 +74,21 @@ namespace proyecto_Final.Presentacion
             list.ItemsSource = await db.devolverRasgos(nom);
             car.Close();
             this.Visibility = Visibility.Visible;
-            if(rdFue.IsChecked==false && rdDes.IsChecked==false && rdCon.IsChecked==false && rdInt.IsChecked == false && rdSab.IsChecked == false && rdCar.IsChecked == false)
+            if (rdFue.IsChecked == false && rdDes.IsChecked == false && rdCon.IsChecked == false && rdInt.IsChecked == false && rdSab.IsChecked == false && rdCar.IsChecked == false)
             {
                 await api.avisarsalvacion(db);
             }
-            if (rdAcro.IsChecked == false && rdArca.IsChecked == false && rdAtle.IsChecked == false && rdEnga.IsChecked == false && rdHist.IsChecked == false && rdInte.IsChecked == false && rdInti.IsChecked == false && rdInve.IsChecked == false && rdJuMa.IsChecked == false && rdMedi.IsChecked == false && rdNatu.IsChecked == false && rdPerc.IsChecked == false && rdPersp.IsChecked == false && rdPersu.IsChecked == false && rdReli.IsChecked == false && rdSigi.IsChecked == false && rdSupe.IsChecked == false && rdTrAn.IsChecked == false) {
+            if (rdAcro.IsChecked == false && rdArca.IsChecked == false && rdAtle.IsChecked == false && rdEnga.IsChecked == false && rdHist.IsChecked == false && rdInte.IsChecked == false && rdInti.IsChecked == false && rdInve.IsChecked == false && rdJuMa.IsChecked == false && rdMedi.IsChecked == false && rdNatu.IsChecked == false && rdPerc.IsChecked == false && rdPersp.IsChecked == false && rdPersu.IsChecked == false && rdReli.IsChecked == false && rdSigi.IsChecked == false && rdSupe.IsChecked == false && rdTrAn.IsChecked == false)
+            {
                 await api.avisarcompetencias(db);
             }
             perpas.Content = 10 + Int32.Parse(Sabbon.Content.ToString());
             ignorar = false;
         }
 
+        /// <summary>
+        /// Actualiza las habilidades del personaje.
+        /// </summary>
         private void actualizarhablidades()
         {
             if ((bool)rdAcro.IsChecked)
@@ -245,9 +252,11 @@ namespace proyecto_Final.Presentacion
             }
         }
 
+        /// <summary>
+        /// Carga los métodos iniciales al iniciar la aplicación.
+        /// </summary>
         private async Task cargarmetodosini()
         {
-
             db.cargarficha(Nombre.Content.ToString());
             STR.Text = db.devolverSTR();
             DEX.Text = db.devolverDEX();
@@ -273,12 +282,18 @@ namespace proyecto_Final.Presentacion
             {
                 txtRaza.Content = db.devolverRaza();
             }
-            else {
+            else
+            {
                 txtRaza.Content = db.devolverRaza() + " " + db.devolversubraza();
             }
-            maxpg.Content=(Int32.Parse(Conbon.Content.ToString())+Int32.Parse(dg.Content.ToString()))*Int32.Parse(niv.Text);
+
+            // Calcular y mostrar el valor máximo de puntos de golpe
+            maxpg.Content = (Int32.Parse(Conbon.Content.ToString()) + Int32.Parse(dg.Content.ToString())) * Int32.Parse(niv.Text);
         }
 
+        /// <summary>
+        /// Actualiza las salvaciones del personaje.
+        /// </summary>
         private void actualizarsalvaciones()
         {
             try
@@ -340,16 +355,21 @@ namespace proyecto_Final.Presentacion
             catch (FormatException ex) { }
         }
 
+        /// <summary>
+        /// Calcula la bonificación de Carbono para un número específico.
+        /// </summary>
+        /// <param name="numero">Número para el cual se calculará la bonificación de Carbono.</param>
+        /// <returns>La bonificación de Carbono correspondiente al número dado.</returns>
         private string sacarbono(string numero)
         {
             try
             {
                 int i = Int32.Parse(numero);
+
                 switch (i)
                 {
                     case 1:
                         return "-5";
-                        
                     case int n when n < 4 && n > 1:
                         return "-4";
                     case int n when n < 6 && n > 3:
@@ -384,16 +404,21 @@ namespace proyecto_Final.Presentacion
                         return "ERR";
                 }
             }
-            catch (FormatException ex) { return "ERR"; }
+            catch (FormatException ex)
+            {
+                return "ERR";
+            }
         }
-    
 
-
+        /// <summary>
+        /// Maneja el evento de cambio de texto en los TextBox.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void textbox_textchanged(object sender, TextChangedEventArgs e)
         {
-            
+
             if (ignorar) { }
-           
             else
             {
                 TextBox textBox = sender as TextBox;
@@ -422,15 +447,21 @@ namespace proyecto_Final.Presentacion
                     default:
                         break;
                 }
+
+
                 actualizarsalvaciones();
                 actualizarhablidades();
                 inic.Content = Desbon.Content;
-                perpas.Content=10+Int32.Parse(Sabbon.Content.ToString());
+                perpas.Content = 10 + Int32.Parse(Sabbon.Content.ToString());
                 maxpg.Content = (Int32.Parse(Conbon.Content.ToString()) + Int32.Parse(dg.Content.ToString())) * Int32.Parse(niv.Text);
             }
-            
         }
-
+        /// <summary>
+        /// Maneja el evento de verificación de CheckBox.
+        /// Actualiza las salvaciones según el CheckBox modificado.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void ch_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chckbox = sender as CheckBox;
@@ -470,27 +501,42 @@ namespace proyecto_Final.Presentacion
             }
         }
 
-
-
+        /// <summary>
+        /// Maneja el evento de descarga de la página.
+        /// Guarda los datos de la ficha en un archivo y los actualiza en la base de datos.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            await db.modificarficha((string)Nombre.Content.ToString(),STR.Text,DEX.Text,CON.Text,INT.Text,WIS.Text,CHA.Text, niv.Text);
-            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt",Nombre.Content.ToString(),Tras, niv,rtxtInv,rdFue,rdDes,rdCon,rdInt,rdSab,rdCar,rdCar,rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn,rtxtRasPer,rtxtide,rtxtVin,rtxtDef,Ali,rtxtcomp );
+            await db.modificarficha((string)Nombre.Content.ToString(), STR.Text, DEX.Text, CON.Text, INT.Text, WIS.Text, CHA.Text, niv.Text);
+            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
         }
 
+        /// <summary>
+        /// Maneja el evento de entrada de texto en los TextBox.
+        /// Permite solo la entrada de números.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-
-
+        /// <summary>
+        /// Maneja el evento de pérdida de enfoque del TextBox de nivel.
+        /// Actualiza los rasgos de clase y subclase según el nivel ingresado.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void niv_LostFocus(object sender, RoutedEventArgs e)
         {
             carga car = new carga();
             car.Show();
-            if (Int32.Parse(niv.Text) < cont) {
+            if (Int32.Parse(niv.Text) < cont)
+            {
                 do
                 {
                     await api.eliminardatossubclaseporniv(db.devolversubclase(), Nombre.Content.ToString(), cont);
@@ -499,28 +545,42 @@ namespace proyecto_Final.Presentacion
                 } while (cont > Int32.Parse(niv.Text));
                 list.ItemsSource = await db.devolverRasgos(nom);
             }
-            if (Int32.Parse(niv.Text) >= cont) {
-                do {
+            if (Int32.Parse(niv.Text) >= cont)
+            {
+                do
+                {
                     await api.añadirdatossubclaseporniv(db.devolversubclase(), nom, cont);
                     compmod.Content = await api.añadirdatosclaseporniv(db.devolverclase(), nom, cont);
                     cont++;
-                } while (cont<= Int32.Parse(niv.Text));
+                } while (cont <= Int32.Parse(niv.Text));
                 list.ItemsSource = await db.devolverRasgos(nom);
                 maxpg.Content = (Int32.Parse(Conbon.Content.ToString()) + Int32.Parse(dg.Content.ToString())) * Int32.Parse(niv.Text);
             }
             car.Close();
         }
 
+        /// <summary>
+        /// Maneja el evento de doble clic en un elemento de la lista.
+        /// Muestra la descripción del elemento seleccionado.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void list_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (list.SelectedItem!= null)
+            if (list.SelectedItem != null)
             {
-                string desc = await  api.devolverdesc(list.SelectedItem.ToString());
-                datos dat = new datos(list.SelectedItem.ToString(),desc);
+                string desc = await api.devolverdesc(list.SelectedItem.ToString());
+                datos dat = new datos(list.SelectedItem.ToString(), desc);
                 dat.Show();
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de doble clic en una etiqueta.
+        /// Muestra la ventana de tirada de dados.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Label label = sender as Label;
@@ -528,8 +588,12 @@ namespace proyecto_Final.Presentacion
             tir.Show();
         }
 
-
-
+        /// <summary>
+        /// Maneja el evento de clic en el botón.
+        /// Crea una nueva instancia de la página Ficha2 y navega a ella.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Ficha2 fich;
@@ -541,7 +605,6 @@ namespace proyecto_Final.Presentacion
                 {
                     fich = new Ficha2(Nombre.Content.ToString(), db.devolverclase(), bono, Int32.Parse(Fuebon.Content.ToString()) + Int32.Parse(compmod.Content.ToString()), niv.Text.ToString());
                 }
-
                 else if (bono == "DEX")
                 {
                     fich = new Ficha2(Nombre.Content.ToString(), db.devolverclase(), bono, Int32.Parse(Desbon.Content.ToString()) + Int32.Parse(compmod.Content.ToString()), niv.Text.ToString());
@@ -562,7 +625,10 @@ namespace proyecto_Final.Presentacion
                 {
                     fich = new Ficha2(Nombre.Content.ToString(), db.devolverclase(), bono, Int32.Parse(Carbon.Content.ToString()) + Int32.Parse(compmod.Content.ToString()), niv.Text.ToString());
                 }
-                else { fich = null; }
+                else
+                {
+                    fich = null;
+                }
                 this.NavigationService.Navigate(fich);
             }
         }

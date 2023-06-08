@@ -22,12 +22,19 @@ namespace proyecto_Final.Presentacion
     {
         int carac, total , d1,d2;
         Random rand;
+        /// <summary>
+        /// contructor de la clase tirada
+        /// </summary>
+        /// <param name="cont"> contador de la puntuacion de la habilidad</param>
         public tirada(string cont)
         {
             InitializeComponent();
             rand = new Random();
             carac = Int32.Parse(cont);
         }
+        /// <summary>
+        /// Maneja el evento Click del botón "btn_tirada". Realiza una tirada de dados en función de la opción seleccionada (ventaja, neutro o desventaja) y muestra el resultado en un cuadro de mensaje.
+        /// </summary>
         private void btn_tirada_Click(object sender, RoutedEventArgs e)
         {
             if (ventaja.IsChecked == true) {
@@ -105,8 +112,10 @@ namespace proyecto_Final.Presentacion
             }
         }
 
-        
 
+        /// <summary>
+        /// Maneja el evento PreviewTextInput del control "tx". Permite solo la entrada de caracteres numéricos y el signo de menos ("-").
+        /// </summary>
         private void tx_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9-]+");

@@ -20,13 +20,21 @@ namespace proyecto_Final.Presentacion
     public partial class datos : Window
     {
         string nom, des;
-        public datos(string nomb,string descr)
+        /// Clase parcial que representa la ventana de visualización de datos.
+        /// </summary>
+        public datos(string nomb, string descr)
         {
             this.nom = nomb;
             this.des = descr;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Manejador del evento "Loaded" del Grid en la ventana de visualización de datos.
+        /// Actualiza los elementos visuales con los datos proporcionados.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             nombre.Content = nom;

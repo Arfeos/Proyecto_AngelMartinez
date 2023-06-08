@@ -33,6 +33,7 @@ namespace proyecto_Final.control
         private string us, STR, DEX, CON, INT, WIS, carisma, clase, raza, subclase, subraza, dueño;
         List<persona> listaper;
         List<string> listastr;
+       
         /// <summary>
         /// Constructor de la clase BBDD. Inicializa una nueva instancia de la clase MySqlConnection.
         /// </summary>
@@ -64,7 +65,7 @@ namespace proyecto_Final.control
         /// <param name="usuario">Nombre de usuario.</param>
         /// <param name="contraseña">Contraseña del usuario.</param>
         /// <returns>True si la conexión es exitosa, False en caso contrario.</returns>
-        public bool Conectar(string usuario, string contraseña)
+        public async Task<bool> Conectar(string usuario, string contraseña)
         {
             string con = pasarSHA256(contraseña);
             comando = new MySqlCommand("SELECT * FROM usuarios WHERE nom_usuario=@usuario and contraseña=@contraseña and Activo=1", conexion);
@@ -657,7 +658,6 @@ namespace proyecto_Final.control
         /// carga los datos de una ficha
         /// </summary>
         /// <param name="v">nombre de la ficha.</param>
-
         internal async Task cargarficha(string v)
         {
             comando = new MySqlCommand("SELECT * FROM ficha WHERE  Nombre=@nombre", conexion);
@@ -825,6 +825,11 @@ namespace proyecto_Final.control
             }
         }
         //llenar las bases de datos
+        /// <summary>
+        /// Inserta un nuevo hechizo en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre del hechizo.</param>
+        /// <param name="indice">Índice del hechizo.</param>
         internal void llenarhechizos(string nombre, string indice)
         {
             using (MySqlCommand comando = new MySqlCommand("insert into hechizos (nombre, indice) values (@nombre, @indice)", conexion))
@@ -843,6 +848,12 @@ namespace proyecto_Final.control
                 }
             }
         }
+
+        /// <summary>
+        /// Inserta un nuevo rasgo en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre del rasgo.</param>
+        /// <param name="indice">Índice del rasgo.</param>
         internal void llenarrasgos(string nombre, string indice)
         {
             using (MySqlCommand comando = new MySqlCommand("insert into rasgos (nombre, indice) values (@nombre, @indice)", conexion))
@@ -851,9 +862,7 @@ namespace proyecto_Final.control
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 try
                 {
-
                     comando.ExecuteNonQuery();
-                    ;
                 }
                 catch (Exception ex)
                 {
@@ -862,10 +871,15 @@ namespace proyecto_Final.control
                 }
             }
         }
+
+        /// <summary>
+        /// Inserta una nueva clase en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la clase.</param>
+        /// <param name="indice">Índice de la clase.</param>
         internal void llenarClases(string nombre, string indice)
         {
-
-            using (comando = new MySqlCommand("insert into clase (nombre, indice) values (@nombre, @indice)", conexion))
+            using (MySqlCommand comando = new MySqlCommand("insert into clase (nombre, indice) values (@nombre, @indice)", conexion))
             {
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@indice", indice);
@@ -873,7 +887,6 @@ namespace proyecto_Final.control
                 try
                 {
                     comando.ExecuteNonQuery();
-
                 }
                 catch (Exception ex)
                 {
@@ -882,10 +895,15 @@ namespace proyecto_Final.control
                 }
             }
         }
+
+        /// <summary>
+        /// Inserta una nueva raza en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la raza.</param>
+        /// <param name="indice">Índice de la raza.</param>
         internal void llenarRazas(string nombre, string indice)
         {
-
-            using (comando = new MySqlCommand("insert into raza (nombre, indice) values (@nombre, @indice)", conexion))
+            using (MySqlCommand comando = new MySqlCommand("insert into raza (nombre, indice) values (@nombre, @indice)", conexion))
             {
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@indice", indice);
@@ -901,9 +919,14 @@ namespace proyecto_Final.control
                 }
             }
         }
+
+        /// <summary>
+        /// Inserta una nueva subraza en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la subraza.</param>
+        /// <param name="indice">Índice de la subraza.</param>
         internal void llenarsubrazas(string nombre, string indice)
         {
-
             using (MySqlCommand comando = new MySqlCommand("insert into subraza (nombre, indice) values (@nombre, @indice)", conexion))
             {
                 comando.Parameters.AddWithValue("@nombre", nombre);
@@ -920,13 +943,17 @@ namespace proyecto_Final.control
                 }
             }
         }
+        /// <summary>
+        /// Inserta una nueva subclase en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la subclase.</param>
+        /// <param name="indice">Índice de la subclase.</param>
         internal void llenarsubclases(string nombre, string indice)
         {
             using (MySqlCommand comando = new MySqlCommand("insert into subclase (nombre, indice) values (@nombre, @indice)", conexion))
             {
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@indice", indice);
-
 
                 try
                 {
@@ -940,59 +967,68 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Abre la conexión a la base de datos.
+        /// </summary>
         internal void conectar()
         {
             conexion.Open();
         }
+
+        /// <summary>
+        /// Cierra la conexión a la base de datos.
+        /// </summary>
         internal void desconectar()
         {
             conexion.Close();
         }
 
+        /// <summary>
+        /// Devuelve el valor de un rasgo para un personaje específico.
+        /// </summary>
+        /// <param name="rasgo">Nombre del rasgo.</param>
+        /// <param name="nombre">Nombre del personaje.</param>
+        /// <returns>El valor del rasgo.</returns>
         internal async Task<string> devolvervalor(string rasgo, string nombre)
         {
-
             comando = new MySqlCommand("SELECT * FROM ficha WHERE  Nombre=@nombre", conexion);
             comando.Parameters.AddWithValue("@rasgo", rasgo);
             comando.Parameters.AddWithValue("@nombre", nombre);
             conexion.Open();
             reader = comando.ExecuteReader();
+
             try
             {
                 string st = null;
                 reader.Read();
+
                 if (rasgo == "STR")
                 {
-
                     st = reader["STR"].ToString();
                 }
                 if (rasgo == "DEX")
                 {
-
                     st = reader["DEX"].ToString();
                 }
                 if (rasgo == "CON")
                 {
-
                     st = reader["CON"].ToString();
                 }
                 if (rasgo == "INTE")
                 {
-
                     st = reader["INTE"].ToString();
                 }
                 if (rasgo == "WIS")
                 {
-
                     st = reader["WIS"].ToString();
                 }
                 if (rasgo == "CHA")
                 {
                     st = reader["CHA"].ToString();
                 }
-                conexion.Close();
 
                 reader.Close();
+                conexion.Close();
                 return st;
             }
             catch (Exception ex)
@@ -1002,21 +1038,29 @@ namespace proyecto_Final.control
                 conexion.Close();
                 return null;
             }
-
         }
 
+        /// <summary>
+        /// Modifica el valor de un rasgo para un personaje específico.
+        /// </summary>
+        /// <param name="rasgo">Nombre del rasgo.</param>
+        /// <param name="valor">Nuevo valor del rasgo.</param>
+        /// <param name="nombre">Nombre del personaje.</param>
         internal async Task modificarrasgo(string rasgo, int valor, string nombre)
         {
             conexion.Open();
             string query = "update ficha set " + rasgo + "=@valor WHERE Nombre ='" + nombre + "'";
             comando = new MySqlCommand(query, conexion);
-
-
             comando.Parameters.AddWithValue("@valor", valor);
             comando.ExecuteNonQuery();
             conexion.Close();
         }
 
+        /// <summary>
+        /// Inserta un nuevo rasgo para un personaje específico.
+        /// </summary>
+        /// <param name="rasgo">Nombre del rasgo.</param>
+        /// <param name="nombre">Nombre del personaje.</param>
         internal async Task insertarrasgos(string rasgo, string nombre)
         {
             if (!consultarrasgo(nombre, rasgo))
@@ -1031,6 +1075,11 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Devuelve una lista de rasgos asociados a un personaje.
+        /// </summary>
+        /// <param name="nom">Nombre del personaje.</param>
+        /// <returns>Una lista de rasgos.</returns>
         internal async Task<List<string>> devolverRasgos(string nom)
         {
             listastr = new List<string>();
@@ -1038,14 +1087,12 @@ namespace proyecto_Final.control
             comando.Parameters.AddWithValue("@nom", nom);
             conexion.Open();
             reader = comando.ExecuteReader();
+
             try
             {
-
                 while (reader.Read())
                 {
-
                     string a = reader["indice_rasgo"].ToString();
-
                     listastr.Add(a);
                 }
                 reader.Close();
@@ -1059,9 +1106,14 @@ namespace proyecto_Final.control
                 conexion.Close();
                 return null;
             }
-
         }
 
+        /// <summary>
+        /// Guarda un documento en la base de datos.
+        /// </summary>
+        /// <param name="contenido">Contenido del documento.</param>
+        /// <param name="ficha">Nombre de la ficha asociada al documento.</param>
+        /// <param name="nombre">Nombre del documento.</param>
         internal async Task guardardoc(string contenido, string ficha, string nombre)
         {
             if (comprobardocumento(ficha))
@@ -1077,6 +1129,10 @@ namespace proyecto_Final.control
             conexion.Close();
         }
 
+        /// <summary>
+        /// Borra un documento de la base de datos.
+        /// </summary>
+        /// <param name="ficha">Nombre de la ficha asociada al documento.</param>
         internal void borrardocumento(string ficha)
         {
             conexion.Open();
@@ -1087,6 +1143,11 @@ namespace proyecto_Final.control
             conexion.Close();
         }
 
+        /// <summary>
+        /// Comprueba si un documento existe en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre del documento.</param>
+        /// <returns>true si el documento existe, false en caso contrario.</returns>
         internal bool comprobardocumento(string nombre)
         {
             string query = "SELECT COUNT(*) FROM documentos WHERE nom_doc = @nombre";
@@ -1102,6 +1163,11 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Carga el contenido de una ficha desde la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la ficha.</param>
+        /// <returns>Un array de strings con el contenido de la ficha.</returns>
         internal async Task<string[]> cargarfichabd(string nombre)
         {
             comando = new MySqlCommand("select * from documentos WHERE nom_doc = @nombre", conexion);
@@ -1123,10 +1189,15 @@ namespace proyecto_Final.control
                     reader.Close();
                     return null;
                 }
-
             }
         }
 
+        /// <summary>
+        /// Consulta si un rasgo existe para un personaje en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre del personaje.</param>
+        /// <param name="rasgo">Nombre del rasgo.</param>
+        /// <returns>true si el rasgo existe, false en caso contrario.</returns>
         internal bool consultarrasgo(string nombre, string rasgo)
         {
             string query = "SELECT COUNT(*) FROM ficha_rasgo WHERE nombre_personaje = @nombre and indice_rasgo=@rasgo ";
@@ -1143,10 +1214,21 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Modifica los valores de una ficha en la base de datos.
+        /// </summary>
+        /// <param name="nombre">Nombre de la ficha.</param>
+        /// <param name="STR">Valor de la característica STR.</param>
+        /// <param name="DEX">Valor de la característica DEX.</param>
+        /// <param name="CON">Valor de la característica CON.</param>
+        /// <param name="INT">Valor de la característica INT.</param>
+        /// <param name="WIS">Valor de la característica WIS.</param>
+        /// <param name="CHA">Valor de la característica CHA.</param>
+        /// <param name="niv">Nivel de la ficha.</param>
         internal async Task modificarficha(string nombre, string STR, string DEX, string CON, string INT, string WIS, string CHA, string niv)
         {
             conexion.Open();
-            string query = "update ficha set STR=@STR, DEX=@DEX, CON=@CON, INTE=@INT, WIS=@WIS, CHA=@CHA, nivel=@nivel where Nombre=@nombre  ";
+            string query = "update ficha set STR=@STR, DEX=@DEX, CON=@CON, INTE=@INT, WIS=@WIS, CHA=@CHA, nivel=@nivel where Nombre=@nombre";
             comando = new MySqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@STR", STR);
             comando.Parameters.AddWithValue("@DEX", DEX);
@@ -1160,6 +1242,11 @@ namespace proyecto_Final.control
             conexion.Close();
         }
 
+        /// <summary>
+        /// Borra un rasgo de un personaje en la base de datos.
+        /// </summary>
+        /// <param name="rasgo">Nombre del rasgo a borrar.</param>
+        /// <param name="nombre">Nombre del personaje.</param>
         internal async Task Borrarrasgos(string rasgo, string nombre)
         {
             conexion.Open();
@@ -1171,15 +1258,20 @@ namespace proyecto_Final.control
             conexion.Close();
         }
 
+        /// <summary>
+        /// Devuelve una lista de hechizos asociados a un personaje y un nivel específico.
+        /// </summary>
+        /// <param name="nombre">Nombre del personaje.</param>
+        /// <param name="niv">Nivel de los hechizos.</param>
+        /// <returns>Una lista de hechizos.</returns>
         internal async Task<List<string>> devolverhechizos(string nombre, int niv)
         {
-            List<string> lista = new List<string> { };
-            comando = new MySqlCommand("select * from ficha_hechizo WHERE nom_per ='" + nombre + "' and niv='" + niv + "'", conexion);
+            List<string> lista = new List<string>();
+            comando = new MySqlCommand("select * from ficha_hechizo WHERE nom_per='" + nombre + "' and niv='" + niv + "'", conexion);
 
             conexion.Open();
             using (MySqlDataReader reader = comando.ExecuteReader())
             {
-
                 while (reader.Read())
                 {
                     string cad = reader["nom_hechizo"].ToString();
@@ -1189,11 +1281,12 @@ namespace proyecto_Final.control
                 reader.Close();
                 return lista;
             }
-
-
-
         }
-
+        /// <summary>
+        /// Devuelve la URL de un hechizo dado su nombre.
+        /// </summary>
+        /// <param name="v">Nombre del hechizo.</param>
+        /// <returns>URL del hechizo o null si no se encuentra.</returns>
         internal string devolverurlhechizo(string v)
         {
             comando = new MySqlCommand("select * from hechizos WHERE Nombre=@nombre", conexion);
@@ -1201,7 +1294,6 @@ namespace proyecto_Final.control
             conexion.Open();
             using (MySqlDataReader reader = comando.ExecuteReader())
             {
-
                 if (reader.Read())
                 {
                     string cad = reader["indice"].ToString();
@@ -1215,33 +1307,29 @@ namespace proyecto_Final.control
                     reader.Close();
                     return null;
                 }
-
             }
-
-
         }
 
+        /// <summary>
+        /// Recoge los nombres de los usuarios inactivos.
+        /// </summary>
+        /// <returns>Lista de nombres de usuarios inactivos.</returns>
         internal List<string> recogerusuariosinactivos()
         {
-           List<string> lista = new List<string>();
+            List<string> lista = new List<string>();
             comando = new MySqlCommand("SELECT * FROM usuarios where Activo=0", conexion);
-
             conexion.Open();
             reader = comando.ExecuteReader();
             try
             {
                 while (reader.Read())
                 {
-
-                    string a= reader["nom_usuario"].ToString();
-
+                    string a = reader["nom_usuario"].ToString();
                     lista.Add(a);
                 }
                 reader.Close();
                 conexion.Close();
                 return lista;
-
-
             }
             catch (Exception ex)
             {
@@ -1251,13 +1339,16 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Reactiva un usuario inactivo.
+        /// </summary>
+        /// <param name="usuario">Nombre del usuario a reactivar.</param>
         internal void reactivar(string usuario)
         {
             conexion.Open();
             string query = "update usuarios set Activo=1 where nom_usuario=@usu  ";
             comando = new MySqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@usu", usuario);
-
             comando.ExecuteNonQuery();
             conexion.Close();
         }

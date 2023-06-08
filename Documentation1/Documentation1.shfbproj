@@ -31,7 +31,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
-    <SyntaxFilters>C#</SyntaxFilters>
+    <SyntaxFilters>C#, XAML Usage</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>True</KeepLogFile>
@@ -40,13 +40,13 @@
     <BuildAssemblerVerbosity>AllMessages</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\proyecto_Final\bin\Debug\net6.0-windows\proyecto_Final.xml" xmlns="" />
-      <DocumentationSource sourceFile="..\proyecto_Final\bin\Debug\net6.0-windows\proyecto_Final.dll" xmlns="" />
+      <DocumentationSource sourceFile="..\proyecto_Final\bin\Debug\net6.0-windows\Api D&amp;D.xml" />
+      <DocumentationSource sourceFile="..\proyecto_Final\bin\Debug\net6.0-windows\Api D&amp;D.dll" />
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="proyecto_Final.Presentacion" isDocumented="True" xmlns="" />
     </NamespaceSummaries>
-    <VisibleItems>InheritedFrameworkInternalMembers, InheritedFrameworkPrivateMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
+    <VisibleItems>Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
     <NamingMethod>Guid</NamingMethod>
@@ -91,6 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.33.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+      <HintPath>..\proyecto_Final\bin\Debug\net6.0-windows\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <!-- Import the common build targets during NuGet restore because before the packages are being installed, $(SHFBROOT) is not set yet -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="'$(MSBuildRestoreSessionId)' != ''" />

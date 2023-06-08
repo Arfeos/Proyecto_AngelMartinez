@@ -92,6 +92,9 @@ namespace proyecto_Final.Presentacion
             nav.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Evento que se dispara al hacer clic en el botón "Reactivar".
+        /// </summary>
         private void reactivar_btn_Click(object sender, RoutedEventArgs e)
         {
             reactivar rec = new reactivar(this);

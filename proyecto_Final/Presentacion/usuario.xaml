@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="usuario" 
                   SizeToContent="WidthAndHeight"
-        Source="/Presentacion/inicio.xaml" Closed="NavigationWindow_Closed" Loaded="NavigationWindow_Loaded" Icon="/Resources/icono.ico"
+        Source="/Presentacion/inicio.xaml" Closed="NavigationWindow_Closed" Loaded="NavigationWindow_Loaded" Icon="/Resources/logo.ico"
                   ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
 
     <Window.Resources>

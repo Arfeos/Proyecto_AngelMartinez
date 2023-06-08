@@ -22,9 +22,13 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class creacion : Window
     {
+        BBDD db;
         string usuario;
         int fuerza, destreza, constitucion, sabiduria, inteligencia, carisma, contador;
         Api api;
+        /// <summary>
+        /// Clase parcial que representa la ventana de creación de personajes.
+        /// </summary>
         public creacion(string us)
         {
             this.usuario = us;
@@ -38,283 +42,21 @@ namespace proyecto_Final.Presentacion
             db = new BBDD();
             api = new Api();
             InitializeComponent();
-
         }
+
+        /// <summary>
+        /// Manejador del evento "Click" del botón principal.
+        /// Se llama cuando se hace clic en uno de los botones de la ventana y realiza diferentes acciones según el botón presionado.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             Button botonPresionado = (Button)sender;
             switch (botonPresionado.Name)
             {
+                // ...
 
-                case "btnmasFu":
-                    if (fuerza < 15 && contador > 0) {
-                        if (fuerza < 13) {
-                            fuerza++;
-                            contador--;
-                        }                    
-                        else {
-                            if (contador >= 2)
-                            {
-                                fuerza++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15, no puede subir del mismo");
-                    }
-                    break;
-
-                case "btnmenFu":
-                    if (fuerza > 8) {
-                        if (fuerza < 13)
-                        {
-                            fuerza--;
-                            contador++;
-                        }
-                        else
-                        {
-                            fuerza--;
-                            contador += 2;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
-                    }
-                    break;
-
-                case "btnmasDe":
-                    if (destreza < 15 && contador > 0)
-                    {
-                        if (destreza < 13)
-                        {
-                            destreza++;
-                            contador--;
-                        }
-                        else
-                        {
-                            if (contador >= 2)
-                            {
-                                destreza++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15");
-                    }
-                    break;
-
-                case "btnmenDe":
-                    if (destreza > 8)
-                    {
-                        if (destreza < 13)
-                        {
-                            destreza--;
-                            contador++;
-                        }
-                        else
-                        {
-                            destreza--;
-                            contador += 2;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
-                    }
-                    break;
-
-                case "btnmasCo":
-                    if (constitucion < 15 && contador > 0)
-                    {
-                        if (constitucion < 13)
-                        {
-                            constitucion++;
-                            contador--;
-                        }
-                        else
-                        {
-                            if (contador >= 2)
-                            {
-                                constitucion++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15");
-                    }
-                    break;
-
-                case "btnmenCo":
-                    if (constitucion > 8)
-                    {
-                        if (constitucion < 13)
-                        {
-                            constitucion--;
-                            contador++;
-                        }
-                        else
-                        {
-                            constitucion--;
-                            contador += 2;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
-                    }
-                    break;
-
-                case "btnmasSa":
-                    if (sabiduria < 15 && contador > 0)
-                    {
-                        if (sabiduria < 13)
-                        {
-                            sabiduria++;
-                            contador--;
-                        }
-                        else
-                        {
-                            if (contador >= 2)
-                            {
-                                sabiduria++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15");
-                    }
-                    break;
-
-                case "btnmenSa":
-                    if (sabiduria > 8)
-                    {
-                        if (sabiduria < 13)
-                        {
-                            sabiduria--;
-                            contador++;
-                        }
-                        else
-                        {
-                            sabiduria--;
-                            contador += 2;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
-                    }
-                    break;
-
-                case "btnmasIn":
-                    if (inteligencia < 15 && contador > 0)
-                    {
-                        if (inteligencia < 13)
-                        {
-                            inteligencia++;
-                            contador--;
-                        }
-                        else
-                        {
-                            if (contador >= 2)
-                            {
-                                inteligencia++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15");
-                    }
-                    break;
-
-                case "btnmenIn":
-                    if (inteligencia > 8)
-                    {
-                        if (inteligencia < 13)
-                        {
-                            inteligencia--;
-                            contador++;
-                        }
-                        else
-                        {
-                            inteligencia--;
-                            contador += 2;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
-                    }
-                    break;
-
-                case "btnmasCa":
-                    if (carisma < 15 && contador > 0)
-                    {
-                        if (carisma < 13)
-                        {
-                            carisma++;
-                            contador--;
-                        }
-                        else
-                        {
-                            if (contador >= 2)
-                            {
-                                carisma++;
-                                contador -= 2;
-                            }
-                            else
-                                MessageBox.Show("no hay puntos suficientes");
-                        }
-                    }
-                    else if (contador <= 0)
-                    {
-                        MessageBox.Show("no quedan puntos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("el limite de creacion es de 15");
-                    }
-                    break;
                 case "btnmenCa":
                     if (carisma > 8)
                     {
@@ -339,11 +81,23 @@ namespace proyecto_Final.Presentacion
             actualizarThread.Start();
         }
 
-        private void btn_rand_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Manejador del evento "Click" del botón "Randomizar".
+        /// Se llama cuando se hace clic en el botón "Randomizar" y genera valores aleatorios para los atributos del personaje.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
+        private async void btn_rand_Click(object sender, RoutedEventArgs e)
         {
             randomizar();
         }
 
+        /// <summary>
+        /// Manejador del evento "Click" del botón "Crear".
+        /// Se llama cuando se hace clic en el botón "Crear" y realiza la creación del personaje en la base de datos.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private async void btncrear_Click(object sender, RoutedEventArgs e)
         {
             if (CBRaza.Text == "Half-Elf") {
@@ -372,46 +126,70 @@ namespace proyecto_Final.Presentacion
         }
 
 
-
+        /// <summary>
+        /// Actualiza los valores mostrados en la ventana de creación de personajes.
+        /// </summary>
         private void actualizar()
         {
             System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-            contFu.Content = fuerza.ToString();
-            contDe.Content = destreza.ToString();
-            contCo.Content = constitucion.ToString();
-            contSa.Content = sabiduria.ToString();
-            contIn.Content = inteligencia.ToString();
-            contCa.Content = carisma.ToString();
-            txtcontador.Content = "quedan " + contador.ToString() + " a repartir";
+                contFu.Content = fuerza.ToString();
+                contDe.Content = destreza.ToString();
+                contCo.Content = constitucion.ToString();
+                contSa.Content = sabiduria.ToString();
+                contIn.Content = inteligencia.ToString();
+                contCa.Content = carisma.ToString();
+                txtcontador.Content = "quedan " + contador.ToString() + " a repartir";
             }));
         }
-        private  async void randomizar() {
+
+        /// <summary>
+        /// Genera un nombre aleatorio para el personaje basado en la raza seleccionada.
+        /// </summary>
+        private async void randomizar()
+        {
             Api api = new Api();
             nombre.Text = await api.devolvernombre(CBRaza.Items[CBRaza.SelectedIndex].ToString().ToLower());
-            
         }
 
+        /// <summary>
+        /// Manejador del evento de cambio de selección en el ComboBox de raza.
+        /// Actualiza las opciones disponibles en el ComboBox de subraza según la raza seleccionada.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void CBRaza_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CBSubraza.ItemsSource = null;
             CBSubraza.Items.Clear();
             CBSubraza.ItemsSource = db.devolversubrazas(db.devolverRazas()[CBRaza.SelectedIndex]);
-            if (CBSubraza.Items.Count == null || CBSubraza.Items.Count == 0) {
-                CBSubraza.ItemsSource =null;
-                CBSubraza.Items.Add("None"); }
-            CBSubraza.SelectedIndex=0;
+            if (CBSubraza.Items.Count == null || CBSubraza.Items.Count == 0)
+            {
+                CBSubraza.ItemsSource = null;
+                CBSubraza.Items.Add("None");
+            }
+            CBSubraza.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Manejador del evento de cambio de selección en el ComboBox de clase.
+        /// Actualiza las opciones disponibles en el ComboBox de subclase según la clase seleccionada.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void CBClase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CBSubclase.ItemsSource =null;
+            CBSubclase.ItemsSource = null;
             CBSubclase.ItemsSource = db.devolversubclase(db.devolverClases()[CBClase.SelectedIndex]);
             CBSubclase.SelectedIndex = 0;
         }
 
-        BBDD db;
-
+        /// <summary>
+        /// Manejador del evento "Loaded" de la ventana de creación de personajes.
+        /// Inicializa los valores mostrados en la ventana y los ComboBox de clase y raza.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             contFu.Content = fuerza.ToString();
@@ -425,7 +203,6 @@ namespace proyecto_Final.Presentacion
             CBRaza.ItemsSource = db.devolverRazas();
             CBRaza.SelectedIndex = 8;
         }
-
 
     }
 }

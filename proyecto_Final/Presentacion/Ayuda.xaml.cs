@@ -20,6 +20,10 @@ namespace proyecto_Final.Presentacion
     /// </summary>
     public partial class Ayuda : Page
     {
+
+        /// <summary>
+        /// Constructor de la clase Ayuda.
+        /// </summary>
         public Ayuda()
         {
             InitializeComponent();

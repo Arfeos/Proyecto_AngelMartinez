@@ -19,7 +19,9 @@ namespace proyecto_Final.Presentacion
     /// Lógica de interacción para VentFich.xaml
     /// </summary>
     public partial class VentFich : NavigationWindow
-    {
+    {/// <summary>
+    /// constructor de la clase ventFich
+    /// </summary>
         public VentFich()
         {
             InitializeComponent();

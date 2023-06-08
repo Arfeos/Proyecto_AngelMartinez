@@ -14,9 +14,18 @@ using System.Windows.Documents;
 
 namespace proyecto_Final.control
 {
+    /// <summary>
+    /// Clase que proporciona métodos para guardar los datos de los controles en un archivo y cargar datos desde un archivo a los controles.
+    /// </summary>
     internal class ficheros
     {
-
+        /// <summary>
+        /// Guarda los datos de los controles en un archivo y los guarda en la base de datos.
+        /// </summary>
+        /// <param name="rutaArchivo">Ruta del archivo a guardar.</param>
+        /// <param name="nombre">Nombre del archivo.</param>
+        /// <param name="controles">Controles cuyos datos se guardarán.</param>
+        /// <returns>Una tarea que representa la operación asincrónica.</returns>
         public static async Task GuardarDatos(string rutaArchivo, string nombre, params Control[] controles)
         {
             BBDD db = new BBDD();
@@ -32,11 +41,11 @@ namespace proyecto_Final.control
                     {
                         writer.WriteLine($"CheckBox:{checkBox.Name}:{checkBox.IsChecked}");
                     }
-                    else if (control is RichTextBox richtextbox)
+                    else if (control is RichTextBox richTextBox)
                     {
-                        TextRange textRange = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
+                        TextRange textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
                         string contenido = textRange.Text;
-                        writer.Write($"RichTextBox:{richtextbox.Name}:{contenido}");
+                        writer.Write($"RichTextBox:{richTextBox.Name}:{contenido}");
                     }
                     else if (control is ComboBox comboBox)
                     {
@@ -51,6 +60,13 @@ namespace proyecto_Final.control
             }
         }
 
+        /// <summary>
+        /// Carga los datos desde un archivo y los asigna a los controles correspondientes.
+        /// </summary>
+        /// <param name="rutaArchivo">Ruta del archivo a cargar.</param>
+        /// <param name="nombre">Nombre del archivo.</param>
+        /// <param name="controles">Controles a los que se asignarán los datos cargados.</param>
+        /// <returns>Una tarea que representa la operación asincrónica.</returns>
         public static async Task CargarDatosDesdeArchivo(string rutaArchivo, string nombre, params Control[] controles)
         {
             BBDD db = new BBDD();
@@ -94,18 +110,16 @@ namespace proyecto_Final.control
                                     comboBox.SelectedIndex = indice;
                                 }
                             }
-
                         }
-
-
                     }
-                    catch (IndexOutOfRangeException) { return; }
-
-
+                    catch (IndexOutOfRangeException)
+                    {
+                        return;
+                    }
                 }
-
             }
         }
     }
+
 }
 

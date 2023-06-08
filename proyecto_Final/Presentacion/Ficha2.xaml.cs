@@ -29,25 +29,44 @@ namespace proyecto_Final.Presentacion
         Api api;
         BBDD db;
         List<string> lista;
+        /// <summary>
+        /// Maneja el evento al descargar la pagina.
+        /// guarda los datos en la base de datos
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private async void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            await ficheros.GuardarDatos("hech" + nom + ".txt",nom, act1,act2,act3,act4,act5,act6,act7,act8,act9);
+            await ficheros.GuardarDatos("hech" + nom + ".txt", nom, act1, act2, act3, act4, act5, act6, act7, act8, act9);
         }
-        public Ficha2(string nombre, string clase, string bono, int ataque,string niv)
+
+        /// <summary>
+        /// Constructor de la clase Ficha2.
+        /// </summary>
+        /// <param name="nombre">Nombre del personaje.</param>
+        /// <param name="clase">Clase del personaje.</param>
+        /// <param name="bono">Bono del personaje.</param>
+        /// <param name="ataque">Valor de ataque del personaje.</param>
+        /// <param name="niv">Nivel del personaje.</param>
+        public Ficha2(string nombre, string clase, string bono, int ataque, string niv)
         {
             InitializeComponent();
             this.nom = nombre;
-            this.clas= clase;
+            this.clas = clase;
             this.bon = bono;
             this.niv = niv;
             this.at = ataque;
-           db=new BBDD();
-
+            db = new BBDD();
             api = new Api();
         }
-
+        /// <summary>
+        /// Maneja el evento de carga de la pagina.
+        /// carga los datos del documento
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {   
+        {
             carga car = new carga();
             car.Show();
             Nombre.Content = clas;
@@ -56,8 +75,10 @@ namespace proyecto_Final.Presentacion
             spcAtt.Content = at;
             await ficheros.CargarDatosDesdeArchivo("hech" + nom + ".txt", nom, act1, act2, act3, act4, act5, act6, act7, act8, act9);
             this.lista = await api.sacarniveles(clas, niv);
-            for (int i = 0; i < lista.Count; i++) {
-                switch (i) {
+            for (int i = 0; i < lista.Count; i++)
+            {
+                switch (i)
+                {
                     case 0:
                         slt1.Content = lista[i];
                         break;
@@ -101,6 +122,12 @@ namespace proyecto_Final.Presentacion
             this.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Maneja el evento de doble clic en un hechizo.
+        /// Muestra los datos del hechizo en una ventana emergente.
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private async void cantrip_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ListBox listbox = sender as ListBox;

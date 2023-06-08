@@ -18,13 +18,21 @@ using System.Windows.Shapes;
 
 namespace proyecto_Final.Presentacion
 {
-
+    /// <summary>
+    /// Lógica de interacción para Fichas.xaml
+    /// </summary>
     public partial class fichas : Window
     {
         persona usuario;
         BBDD db;
         NavigationWindow wind;
-        public fichas(persona us,NavigationWindow pag)
+
+        /// <summary>
+        /// Constructor de la clase fichas.
+        /// </summary>
+        /// <param name="us">Objeto persona que representa al usuario.</param>
+        /// <param name="pag">Ventana de navegación asociada.</param>
+        public fichas(persona us, NavigationWindow pag)
         {
             this.wind = pag;
             this.usuario = us;
@@ -42,6 +50,12 @@ namespace proyecto_Final.Presentacion
             wind.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón "BtnBorrar".
+        /// Borra la ficha seleccionada y los documentos asociados.
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
             if (db.comprobardocumento("fich" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString()))
@@ -50,9 +64,14 @@ namespace proyecto_Final.Presentacion
                 db.borrardocumento("hech" + lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
             db.borrarficha(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
             lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
-            
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón "Btncrear".
+        /// Abre la ventana de creación de fichas.
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void Btncrear_Click(object sender, RoutedEventArgs e)
         {
             creacion creacion = new creacion(usuario.Usuario);
@@ -60,17 +79,24 @@ namespace proyecto_Final.Presentacion
             lista_fichas.ItemsSource = db.devolverfichas(usuario.Usuario);
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón "BtnCargar".
+        /// Carga la ficha seleccionada en una nueva ventana de ficha.
+        /// </summary>
+        /// <param name="sender">Objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void BtnCargar_Click(object sender, RoutedEventArgs e)
         {
             try
-            {           
-                    VentFich ventfich = new VentFich();
-                    Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
-                    ventfich.NavigationService.Navigate(fich);
-                    ventfich.Show();
-                
-            }catch (ArgumentOutOfRangeException ex) {
-                MessageBox.Show("elige un ficha");
+            {
+                VentFich ventfich = new VentFich();
+                Ficha1 fich = new Ficha1(lista_fichas.Items[lista_fichas.SelectedIndex].ToString());
+                ventfich.NavigationService.Navigate(fich);
+                ventfich.Show();
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Elige una ficha.");
             }
         }
     }
