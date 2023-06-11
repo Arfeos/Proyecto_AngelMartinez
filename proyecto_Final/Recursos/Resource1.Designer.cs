@@ -73,6 +73,26 @@ namespace proyecto_Final.Recursos {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
+        internal static byte[] _1RUS {
+            get {
+                object obj = ResourceManager.GetObject("_1RUS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] _1RUS1 {
+            get {
+                object obj = ResourceManager.GetObject("_1RUS1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
         internal static byte[] _2ºparte {
             get {
                 object obj = ResourceManager.GetObject("_2ºparte", resourceCulture);

@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\1RUS.gif" />
+    <None Remove="Resources\1RUS.mp4" />
     <None Remove="Resources\1ºparte.png" />
     <None Remove="Resources\2ºparte.png" />
     <None Remove="Resources\carolingia.ttf" />
@@ -25,9 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\d20.png">
+    <Resource Include="Resources\1RUS.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
+    <Resource Include="Resources\d20.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\1RUS.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\icono.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

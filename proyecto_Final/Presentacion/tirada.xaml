@@ -28,5 +28,6 @@
         <Label Content="modifier" Margin="207,30,158,165" Style="{StaticResource ResourceKey=chula}"/>
         <TextBox x:Name="mod" Text="0" HorizontalAlignment="Left" Margin="282,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" PreviewTextInput="tx_PreviewTextInput"/>
         <Button x:Name="btn_tirada"  Content="Roll" HorizontalAlignment="Left" Margin="304,154,0,0" FontSize="20" VerticalAlignment="Top" Height="45" Width="100" Click="btn_tirada_Click"/>
+        <MediaElement x:Name="me" Source="1RUS.mp4" HorizontalAlignment="Left" Height="249" VerticalAlignment="Top" Width="465" MediaEnded="me_MediaEnded" Visibility="Visible"/>
     </Grid>
 </Window>

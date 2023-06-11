@@ -22,6 +22,14 @@ namespace proyecto_Final.Presentacion
     {
         int carac, total , d1,d2;
         Random rand;
+
+        private void me_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            // Mostrar nuevamente el MediaElement
+            me.Visibility = Visibility.Hidden;
+           
+        }
+
         /// <summary>
         /// contructor de la clase tirada
         /// </summary>
@@ -35,9 +43,14 @@ namespace proyecto_Final.Presentacion
         /// <summary>
         /// Maneja el evento Click del botón "btn_tirada". Realiza una tirada de dados en función de la opción seleccionada (ventaja, neutro o desventaja) y muestra el resultado en un cuadro de mensaje.
         /// </summary>
-        private void btn_tirada_Click(object sender, RoutedEventArgs e)
+        private async void btn_tirada_Click(object sender, RoutedEventArgs e)
         {
-            if (ventaja.IsChecked == true) {
+            string ruta = "/Resources/1RUS.mp4";
+            me.Source = new Uri(ruta, UriKind.RelativeOrAbsolute);
+            me.Visibility = Visibility.Visible;
+            me.Play();
+            if (ventaja.IsChecked == true)
+            {
                 d1 = rand.Next(1, 21);
                 d2 = rand.Next(1, 21);
                 if (d1 < d2)
@@ -55,8 +68,8 @@ namespace proyecto_Final.Presentacion
                 }
                 else
                 {
-                    if (d1 == 20) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you pass the challenge with a crital roll");}
-                    else if (d1 == 1) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you fail the challenge with a crital fail");}
+                    if (d1 == 20) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you pass the challenge with a crital roll"); }
+                    else if (d1 == 1) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you fail the challenge with a crital fail"); }
                     else
                     {
                         total = carac + d1 + Int32.Parse(mod.Text);
@@ -72,15 +85,17 @@ namespace proyecto_Final.Presentacion
                 d1 = rand.Next(1, 21);
                 if (d1 == 20) { MessageBox.Show("1º dice(" + d1 + ")" + "\n you pass the challenge with a crital roll"); }
                 else if (d1 == 1) { MessageBox.Show("1º dice(" + d1 + ")" + "\n you fail the challenge with a crital fail"); }
-                else { 
-                total=d1+carac+Int32.Parse(mod.Text);
+                else
+                {
+                    total = d1 + carac + Int32.Parse(mod.Text);
                     if (total >= Int32.Parse(challenge.Text))
-                        MessageBox.Show( "1º dice(" + d1+ ") result["+d1+"+" + mod.Text + "+" + carac + "=" + total + "\nyou pass the challenge ", "Roll result");
+                        MessageBox.Show("1º dice(" + d1 + ") result[" + d1 + "+" + mod.Text + "+" + carac + "=" + total + "\nyou pass the challenge ", "Roll result");
                     else
-                        MessageBox.Show( "1º dice(" + d1 +") result[" +d1+ "+" + mod.Text + "+" + carac + "=" + total + "\nyou fail the challenge ", "Roll result");
+                        MessageBox.Show("1º dice(" + d1 + ") result[" + d1 + "+" + mod.Text + "+" + carac + "=" + total + "\nyou fail the challenge ", "Roll result");
                 }
             }
-            else if (desventaja.IsChecked == true) {
+            else if (desventaja.IsChecked == true)
+            {
                 d1 = rand.Next(1, 21);
                 d2 = rand.Next(1, 21);
                 if (d1 > d2)
@@ -98,7 +113,7 @@ namespace proyecto_Final.Presentacion
                 }
                 else
                 {
-                    if (d1 == 20) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")"+"\n you pass the challenge with a crital roll"); }
+                    if (d1 == 20) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you pass the challenge with a crital roll"); }
                     else if (d1 == 1) { MessageBox.Show("1º dice(" + d1 + ") 2º dice(" + d2 + ")" + "\n you fail the challenge with a crital fail"); }
                     else
                     {
