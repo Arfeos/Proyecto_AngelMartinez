@@ -27,28 +27,6 @@ namespace proyecto_Final.Presentacion
         {
             // Mostrar nuevamente el MediaElement
             me.Visibility = Visibility.Hidden;
-           
-        }
-
-        /// <summary>
-        /// contructor de la clase tirada
-        /// </summary>
-        /// <param name="cont"> contador de la puntuacion de la habilidad</param>
-        public tirada(string cont)
-        {
-            InitializeComponent();
-            rand = new Random();
-            carac = Int32.Parse(cont);
-        }
-        /// <summary>
-        /// Maneja el evento Click del botón "btn_tirada". Realiza una tirada de dados en función de la opción seleccionada (ventaja, neutro o desventaja) y muestra el resultado en un cuadro de mensaje.
-        /// </summary>
-        private async void btn_tirada_Click(object sender, RoutedEventArgs e)
-        {
-            string ruta = "/Resources/1RUS.mp4";
-            me.Source = new Uri(ruta, UriKind.RelativeOrAbsolute);
-            me.Visibility = Visibility.Visible;
-            me.Play();
             if (ventaja.IsChecked == true)
             {
                 d1 = rand.Next(1, 21);
@@ -125,6 +103,28 @@ namespace proyecto_Final.Presentacion
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// contructor de la clase tirada
+        /// </summary>
+        /// <param name="cont"> contador de la puntuacion de la habilidad</param>
+        public tirada(string cont)
+        {
+            InitializeComponent();
+            rand = new Random();
+            carac = Int32.Parse(cont);
+        }
+        /// <summary>
+        /// Maneja el evento Click del botón "btn_tirada". Realiza una tirada de dados en función de la opción seleccionada (ventaja, neutro o desventaja) y muestra el resultado en un cuadro de mensaje.
+        /// </summary>
+        private async void btn_tirada_Click(object sender, RoutedEventArgs e)
+        {
+            string ruta = "https://i.imgur.com/R7nB674.mp4";
+            me.Source = new Uri(ruta, UriKind.RelativeOrAbsolute);
+            me.Visibility = Visibility.Visible;
+            me.Play();
+           
         }
 
 

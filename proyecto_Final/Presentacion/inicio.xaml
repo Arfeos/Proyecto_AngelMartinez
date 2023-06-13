@@ -18,8 +18,7 @@
     </Page.Resources>
 
     <Grid Style="{StaticResource papiro }">
-        <Label Style="{StaticResource chula}" Content="Buena Dias aventurero" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,111,0,0" Height="42" Width="210"/>
-        <Label Style="{StaticResource chula}" Content="si quieres consultar las clases y las razas  antes de elegir la suya " HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Height="72" Width="410" FontSize="14"/>
+        <Label x:Name="saludo" Style="{StaticResource chula}" Content="Buenos Dias aventurero" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,63,0,0" Height="42" Width="360"/>
 
         <Menu Height="23" Background="PapayaWhip" VerticalAlignment="Top">
             <MenuItem x:Name="navegar" Header="navegar" >
@@ -29,8 +28,11 @@
 
             <MenuItem x:Name="Fichas" Header="Fichas" Click="Fichas_Click"/>
             <MenuItem x:Name="cerrar_sesion" Header="Cerrar sesion" Click="cerrar_sesion_Click"/>
-            
+
             <MenuItem x:Name="administrador" Header="administrador" Visibility="Hidden" Click="administrador_Click"/>
         </Menu>
+        <TextBlock x:Name="texto" HorizontalAlignment="Left" Margin="35,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="180" Width="425" FontFamily="{StaticResource Elegante}"   FontSize="20">
+            Aqui podras consultar la informacion de clases, subclases, razas y subrazas pulsando en navegar o podras crear tus propias fichas pulsando en la parte del mismo nobre
+        </TextBlock>
     </Grid>
 </Page>
