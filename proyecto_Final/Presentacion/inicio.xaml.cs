@@ -74,7 +74,7 @@ namespace proyecto_Final.Presentacion
                 Fichas.Visibility = Visibility.Collapsed;
                 cerrar_sesion.Visibility = Visibility.Collapsed;
                 saludo.Content = "Buenos dias forastero";
-                texto.Text = "como forastero podrá consultar datos de clases, subclases, razas y subrazas, pero si desea crear y consultar fichas tendrá que darle a cerrar sesión y registrarse";
+                texto.Text = "como forastero podra consultar datos de clases, subclases, razas y subrazas, pero si desea crear y consultar fichas tendra que darle a cerrar sesion y registrarse";
             }
             else
             {
@@ -82,7 +82,7 @@ namespace proyecto_Final.Presentacion
                 {
                     administrador.Visibility = Visibility.Visible;
                     saludo.Content = "Buenos dias administrador";
-                    texto.Text = "como administrador no solo tendrás los permisos que tienen el usuario registrado si no que tendrá acceso a la parte de administrador donde podrás cambiar los privilegios de usuario, crear nuevos usuarios o darlos de baja";
+                    texto.Text = "como administrador no solo tendras los permisos que tienen el usuario registrado si no que tendra acceso a la parte de administrador donde podras cambiar los privilegios de usuario, crear nuevos usuarios o darlos de baja";
                 }
             }
         }
