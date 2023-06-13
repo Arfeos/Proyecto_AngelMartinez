@@ -18,13 +18,13 @@
     <Grid  Style="{StaticResource papiro}">
 
         <ListBox x:Name="listarazas" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="razas" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="mejoras" Margin="408,37,325,580"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Razas" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Mejoras" Margin="408,37,325,580"/>
         <TextBlock x:Name="mejoras_stats" HorizontalAlignment="Left" Margin="408,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="116" Width="372"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="leguajes" Margin="408,200,325,417"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Leguajes" Margin="408,200,325,417"/>
         <TextBlock x:Name="lenguaje" HorizontalAlignment="Left" Margin="408,243,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="125" Width="372"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="descripcion de tamaño" Margin="408,360,300,257"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="rasgos" Margin="408,495,325,123"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Descripcion de tamaño" Margin="408,360,300,257"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Rasgos" Margin="408,495,325,123"/>
         <TextBlock x:Name="descripcion" HorizontalAlignment="Left" Margin="408,407,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
         <TextBlock x:Name="rasgos" HorizontalAlignment="Left" Margin="408,537,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="83" Width="372"/>
     </Grid>

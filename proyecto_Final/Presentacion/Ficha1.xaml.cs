@@ -58,10 +58,9 @@ namespace proyecto_Final.Presentacion
             carga car = new carga();
             this.Visibility = Visibility.Collapsed;
             car.Show();
-
             await cargarmetodosini();
-            await ficheros.CargarDatosDesdeArchivo("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
             compmod.Content = await api.añadirdatosclaseporniv(db.devolverclase(), nom, Int32.Parse(niv.Text));
+            await ficheros.CargarDatosDesdeArchivo("fich" + nom + ".txt", nom, Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp, Exp, tempg, acpg);
             Fuebon.Content = sacarbono(STR.Text);
             Desbon.Content = sacarbono(DEX.Text);
             Conbon.Content = sacarbono(CON.Text);
@@ -515,7 +514,7 @@ namespace proyecto_Final.Presentacion
         private async void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             await db.modificarficha((string)Nombre.Content.ToString(), STR.Text, DEX.Text, CON.Text, INT.Text, WIS.Text, CHA.Text, niv.Text);
-            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
+            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp, Exp,tempg,acpg);
         }
 
         /// <summary>

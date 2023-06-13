@@ -17,8 +17,8 @@
 	<Grid  Style="{StaticResource papiro}" >
 		<ListBox x:Name="listarazas" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
 		<Label Style="{StaticResource chula}" FontSize="20" Content="Subrazas" HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top"/>
-		<Label Style="{StaticResource chula}" FontSize="20" Content="clase" HorizontalAlignment="Left" Margin="408,90,0,0" VerticalAlignment="Top"/>
-		<Label Style="{StaticResource chula}" FontSize="20" Content="descripcion" HorizontalAlignment="Left" Margin="408,248,0,0" VerticalAlignment="Top"/>
+		<Label Style="{StaticResource chula}" FontSize="20" Content="Raza" HorizontalAlignment="Left" Margin="408,90,0,0" VerticalAlignment="Top"/>
+		<Label Style="{StaticResource chula}" FontSize="20" Content="Descripcion" HorizontalAlignment="Left" Margin="408,248,0,0" VerticalAlignment="Top"/>
 		<TextBlock x:Name="clase" HorizontalAlignment="Left" Margin="408,128,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="115" Width="397"/>
 		<TextBlock x:Name="descripcion" HorizontalAlignment="Left" Margin="408,282,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="163" Width="397"/>
 	</Grid>

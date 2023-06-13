@@ -19,13 +19,13 @@
 
         <ListBox x:Name="listaclase" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,68,460,210" SelectionChanged="listaclase_SelectionChanged"/>
         <Label Style="{StaticResource chula}" FontSize="20" Content="Clase"  HorizontalAlignment="Left" Margin="62,37,0,0" VerticalAlignment="Top" Height="31" Width="118"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="nombre" HorizontalAlignment="Left" Margin="408,52,0,0" VerticalAlignment="Top" Height="27" Width="172"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Nombre" HorizontalAlignment="Left" Margin="408,52,0,0" VerticalAlignment="Top" Height="27" Width="172"/>
         <TextBlock HorizontalAlignment="Left" x:Name="nombre" Margin="408,84,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="232"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="dados de golpe" HorizontalAlignment="Left" Margin="408,107,0,0" VerticalAlignment="Top" Height="34" Width="172"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Dados de golpe" HorizontalAlignment="Left" Margin="408,107,0,0" VerticalAlignment="Top" Height="34" Width="172"/>
         <TextBlock HorizontalAlignment="Left" x:Name="pgolpe" Margin="408,141,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="232"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="ventajas" HorizontalAlignment="Left" Margin="408,163,0,0" VerticalAlignment="Top" Height="36" Width="172"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Ventajas" HorizontalAlignment="Left" Margin="408,163,0,0" VerticalAlignment="Top" Height="36" Width="172"/>
         <TextBlock x:Name="Ventajas"  Margin="408,199,10,250" ScrollViewer.CanContentScroll="True"/>
-        <Label Style="{StaticResource chula}" FontSize="20" Content="objetos iniciales" HorizontalAlignment="Left" Margin="408,405,0,0" VerticalAlignment="Top" Height="33" Width="172"/>
+        <Label Style="{StaticResource chula}" FontSize="20" Content="Objetos iniciales" HorizontalAlignment="Left" Margin="408,405,0,0" VerticalAlignment="Top" Height="33" Width="172"/>
         <TextBlock x:Name="objetos_inciales"  Margin="408,432,10,10" ScrollViewer.CanContentScroll="True"/>
     </Grid>
 </Page>

@@ -45,8 +45,8 @@
             <TextBox x:Name="act8" HorizontalAlignment="Left" Margin="785,772,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" AcceptsReturn="False" MaxLines="1"/>
             <TextBox x:Name="act9" HorizontalAlignment="Left" Margin="785,994,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" AcceptsReturn="False" MaxLines="1"/>
             <Label x:Name="spcas" Content="Label" HorizontalAlignment="Left" Margin="488,95,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="spsa" Content="Label" HorizontalAlignment="Left" Margin="815,95,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="spcAtt" Content="Label" HorizontalAlignment="Left" Margin="645,95,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="spsa" Content="Label" HorizontalAlignment="Left" Margin="662,95,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="spcAtt" Content="Label" HorizontalAlignment="Left" Margin="832,95,0,0" VerticalAlignment="Top"/>
             <Label x:Name="Nombre" Content="Label" FontWeight="Bold" FontSize="23" Margin="90,95,653,1114" RenderTransformOrigin="0.5,0.5"/>
             
 
