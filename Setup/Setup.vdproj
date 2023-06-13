@@ -37,6 +37,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -53,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -139,7 +155,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Api D&D"
+        "ProductName" = "8:CharacterCraft"
         "ProductCode" = "8:{7FFC20C7-73C4-4B1A-87F3-5629CE5E5543}"
         "PackageCode" = "8:{8697375C-A5DB-475E-A123-8F7C85FE37DC}"
         "UpgradeCode" = "8:{FDBD60BD-745D-4254-A858-59C4FA4FAC0F}"
@@ -676,7 +692,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D3AC9C254C6F44FCA48F3E0EA892300C"
             {
-            "SourcePath" = "8:..\\proyecto_Final\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\proyecto_Final\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3D54932F10584355A4E844F956EBAEE4"

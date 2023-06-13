@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyName>Api D&amp;D</AssemblyName>
+    <AssemblyName>CharacterCraft</AssemblyName>
     <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
