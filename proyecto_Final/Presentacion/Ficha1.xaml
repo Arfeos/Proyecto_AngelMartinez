@@ -54,23 +54,24 @@
                 </StackPanel>
                 <StackPanel Height="405" Width="15" Canvas.Left="161" Canvas.Top="500" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White">
                     <CheckBox x:Name="rdAcro" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdAnHa" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdArca" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdAtle" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdEnga" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdAthl" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdDece" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdHist" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdInte" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked" IsChecked="False"/>
+                    <CheckBox x:Name="rdInsi" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdInti" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdInve" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdJuMa" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdMedi" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdNatu" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdPerc" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdPersp" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdPersu" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdPerf" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdPers" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
                     <CheckBox x:Name="rdReli" Width="37" Height="15" Margin="0,7,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdSigi" Width="37" Height="15" Margin="0,5,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdSupe" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
-                    <CheckBox x:Name="rdTrAn" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdSloH" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdStea" Width="37" Height="15" Margin="0,5,0,0" Click="ch_Checked"/>
+                    <CheckBox x:Name="rdSurv" Width="37" Height="15" Margin="0,6,0,0" Click="ch_Checked"/>
+
 
 
                 </StackPanel>
@@ -85,24 +86,24 @@
                 <Label x:Name="SalInt" Content="4" Canvas.Left="186" Canvas.Top="383" Width="26" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
                 <Label x:Name="SalSab" Content="5" Canvas.Left="186" Canvas.Top="405" Width="26" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
                 <Label  x:Name="SalCar" Content="6" Canvas.Left="186" Canvas.Top="427" Width="26" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Acr" Content="2" Canvas.Left="181" Canvas.Top="503" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Arc" Content="2" Canvas.Left="181" Canvas.Top="524" Width="26" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Atl" Content="2" Canvas.Left="181" Canvas.Top="545" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Eng" Content="2" Canvas.Left="181" Canvas.Top="567" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="His" Content="2" Canvas.Left="181" Canvas.Top="588" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Inte" Content="2" Canvas.Left="181" Canvas.Top="609" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Inti" Content="2" Canvas.Left="181" Canvas.Top="630" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Inv" Content="2" Canvas.Left="181" Canvas.Top="652" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="JuMa" Content="2" Canvas.Left="181" Canvas.Top="672" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Med" Content="2" Canvas.Left="181" Canvas.Top="694" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Nat" Content="2" Canvas.Left="181" Canvas.Top="715" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Perc" Content="2" Canvas.Left="181" Canvas.Top="737" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Persp" Content="2" Canvas.Left="181" Canvas.Top="758" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Persu" Content="2" Canvas.Left="181" Canvas.Top="780" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Rel" Content="2" Canvas.Left="181" Canvas.Top="801" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Sig" Content="2" Canvas.Left="181" Canvas.Top="823" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="Sup" Content="2" Canvas.Left="181" Canvas.Top="844" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
-                <Label x:Name="AnHa" Content="2" Canvas.Left="181" Canvas.Top="865" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Height="23" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Acro" Content="1" Canvas.Left="181" Canvas.Top="503" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="AnHa" Content="2" Canvas.Left="181" Canvas.Top="523" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Arca" Content="3" Canvas.Left="181" Canvas.Top="545" Width="26" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Athl" Content="4" Canvas.Left="181" Canvas.Top="567" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Dece" Content="5" Canvas.Left="181" Canvas.Top="588" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Hist" Content="6" Canvas.Left="181" Canvas.Top="609" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Insi" Content="7" Canvas.Left="181" Canvas.Top="630" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Inti" Content="8" Canvas.Left="181" Canvas.Top="651" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Inve" Content="9" Canvas.Left="181" Canvas.Top="673" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Medi" Content="10" Canvas.Left="181" Canvas.Top="695" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Natu" Content="11" Canvas.Left="181" Canvas.Top="715" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Perc" Content="12" Canvas.Left="181" Canvas.Top="737" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Perf" Content="13" Canvas.Left="181" Canvas.Top="759" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Pers" Content="14" Canvas.Left="181" Canvas.Top="780" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Reli" Content="15" Canvas.Left="181" Canvas.Top="801" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="SloH" Content="16" Canvas.Left="181" Canvas.Top="823" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Stea" Content="17" Canvas.Left="181" Canvas.Top="843" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>
+                <Label x:Name="Surv" Content="18" Canvas.Left="181" Canvas.Top="865" Width="26" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" MouseDoubleClick="label_MouseDoubleClick"/>           
             </Canvas>
             <Label x:Name="txtRaza" Content="12" HorizontalAlignment="Left" Margin="445,116,0,0" VerticalAlignment="Top"/>
             <ComboBox x:Name="Ali" HorizontalAlignment="Left" Margin="620,116,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">

@@ -60,7 +60,8 @@ namespace proyecto_Final.Presentacion
             car.Show();
 
             await cargarmetodosini();
-            await ficheros.CargarDatosDesdeArchivo("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
+            await ficheros.CargarDatosDesdeArchivo("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
+            compmod.Content = await api.añadirdatosclaseporniv(db.devolverclase(), nom, Int32.Parse(niv.Text));
             Fuebon.Content = sacarbono(STR.Text);
             Desbon.Content = sacarbono(DEX.Text);
             Conbon.Content = sacarbono(CON.Text);
@@ -69,8 +70,7 @@ namespace proyecto_Final.Presentacion
             Carbon.Content = sacarbono(CHA.Text);
             actualizarsalvaciones();
             actualizarhablidades();
-            await api.añadirdatossubclaseporniv(db.devolversubclase(), nom, Int32.Parse(niv.Text));
-            compmod.Content = await api.añadirdatosclaseporniv(db.devolverclase(), nom, Int32.Parse(niv.Text));
+            await api.añadirdatossubclaseporniv(db.devolversubclase(), nom, Int32.Parse(niv.Text));        
             list.ItemsSource = await db.devolverRasgos(nom);
             car.Close();
             this.Visibility = Visibility.Visible;
@@ -78,7 +78,7 @@ namespace proyecto_Final.Presentacion
             {
                 await api.avisarsalvacion(db);
             }
-            if (rdAcro.IsChecked == false && rdArca.IsChecked == false && rdAtle.IsChecked == false && rdEnga.IsChecked == false && rdHist.IsChecked == false && rdInte.IsChecked == false && rdInti.IsChecked == false && rdInve.IsChecked == false && rdJuMa.IsChecked == false && rdMedi.IsChecked == false && rdNatu.IsChecked == false && rdPerc.IsChecked == false && rdPersp.IsChecked == false && rdPersu.IsChecked == false && rdReli.IsChecked == false && rdSigi.IsChecked == false && rdSupe.IsChecked == false && rdTrAn.IsChecked == false)
+            if (rdAcro.IsChecked == false && rdArca.IsChecked == false && rdAthl.IsChecked == false && rdDece.IsChecked == false && rdHist.IsChecked == false && rdPerf.IsChecked == false && rdInti.IsChecked == false && rdInve.IsChecked == false && rdSloH.IsChecked == false && rdMedi.IsChecked == false && rdNatu.IsChecked == false && rdPerc.IsChecked == false && rdPerc.IsChecked == false && rdPers.IsChecked == false && rdReli.IsChecked == false && rdStea.IsChecked == false && rdSurv.IsChecked == false && rdAnHa.IsChecked == false)
             {
                 await api.avisarcompetencias(db);
             }
@@ -93,56 +93,65 @@ namespace proyecto_Final.Presentacion
         {
             if ((bool)rdAcro.IsChecked)
             {
-                Acr.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
+                Acro.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Acr.Content = Desbon.Content;
+                Acro.Content = Desbon.Content;
+            }
+
+            if ((bool)rdAnHa.IsChecked)
+            {
+                AnHa.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
+            }
+            else
+            {
+                AnHa.Content = Sabbon.Content;
             }
 
             if ((bool)rdArca.IsChecked)
             {
-                Arc.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
+                Arca.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Arc.Content = Intbon.Content;
+                Arca.Content = Intbon.Content;
             }
 
-            if ((bool)rdAtle.IsChecked)
+            if ((bool)rdAthl.IsChecked)
             {
-                Atl.Content = Int32.Parse((string)Fuebon.Content) + Int32.Parse((string)compmod.Content);
+                Athl.Content = Int32.Parse((string)Fuebon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Atl.Content = Fuebon.Content;
+                Athl.Content = Fuebon.Content;
             }
 
-            if ((bool)rdEnga.IsChecked)
+            if ((bool)rdDece.IsChecked)
             {
-                Eng.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
+                Dece.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Eng.Content = Carbon.Content;
+                Dece.Content = Carbon.Content;
             }
 
             if ((bool)rdHist.IsChecked)
             {
-                His.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
+                Hist.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                His.Content = Intbon.Content;
+                Hist.Content = Intbon.Content;
             }
 
-            if ((bool)rdInte.IsChecked)
+            if ((bool)rdInsi.IsChecked)
             {
-                Inte.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
+                Insi.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Inte.Content = Carbon.Content;
+                Insi.Content = Carbon.Content;
             }
 
             if ((bool)rdInti.IsChecked)
@@ -156,38 +165,29 @@ namespace proyecto_Final.Presentacion
 
             if ((bool)rdInve.IsChecked)
             {
-                Inv.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
+                Inve.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Inv.Content = Intbon.Content;
-            }
-
-            if ((bool)rdJuMa.IsChecked)
-            {
-                JuMa.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
-            }
-            else
-            {
-                JuMa.Content = Desbon.Content;
+                Inve.Content = Intbon.Content;
             }
 
             if ((bool)rdMedi.IsChecked)
             {
-                Med.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
+                Medi.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Med.Content = Sabbon.Content;
+                Medi.Content = Sabbon.Content;
             }
 
             if ((bool)rdNatu.IsChecked)
             {
-                Nat.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
+                Natu.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Nat.Content = Intbon.Content;
+                Natu.Content = Intbon.Content;
             }
 
             if ((bool)rdPerc.IsChecked)
@@ -199,57 +199,61 @@ namespace proyecto_Final.Presentacion
                 Perc.Content = Sabbon.Content;
             }
 
-            if ((bool)rdPersp.IsChecked)
+            if ((bool)rdPerf.IsChecked)
             {
-                Persp.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
+                Perf.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Persp.Content = Sabbon.Content;
+                Perf.Content = Carbon.Content;
             }
-            if ((bool)rdPersu.IsChecked)
+
+            if ((bool)rdPers.IsChecked)
             {
-                Persu.Content = Int32.Parse((string)Carbon.Content) + Int32.Parse((string)compmod.Content);
+                Pers.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Persu.Content = Carbon.Content;
+                Pers.Content = Sabbon.Content;
             }
 
             if ((bool)rdReli.IsChecked)
             {
-                Rel.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
+                Reli.Content = Int32.Parse((string)Intbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Rel.Content = Intbon.Content;
+                Reli.Content = Intbon.Content;
             }
 
-            if ((bool)rdSigi.IsChecked)
+            if ((bool)rdSloH.IsChecked)
             {
-                Sig.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
+                SloH.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                Sig.Content = Desbon.Content;
-            }
-            if ((bool)rdSupe.IsChecked)
-            {
-                Sup.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
-            }
-            else
-            {
-                Sup.Content = Sabbon.Content;
+                SloH.Content = Desbon.Content;
             }
 
-            if ((bool)rdTrAn.IsChecked)
+            if ((bool)rdStea.IsChecked)
             {
-                AnHa.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
+                Stea.Content = Int32.Parse((string)Desbon.Content) + Int32.Parse((string)compmod.Content);
             }
             else
             {
-                AnHa.Content = Sabbon.Content;
+                Stea.Content = Desbon.Content;
             }
+
+            if ((bool)rdSurv.IsChecked)
+            {
+                Surv.Content = Int32.Parse((string)Sabbon.Content) + Int32.Parse((string)compmod.Content);
+            }
+            else
+            {
+                Surv.Content = Sabbon.Content;
+            }
+
+            
         }
 
         /// <summary>
@@ -477,23 +481,24 @@ namespace proyecto_Final.Presentacion
                     actualizarsalvaciones();
                     break;
                 case "rdAcro":
+                case "rdAnHa":
                 case "rdArca":
-                case "rdAtle":
-                case "rdEnga":
+                case "rdAthl":
+                case "rdDece":
                 case "rdHist":
-                case "rdInte":
+                case "rdInsi":
                 case "rdInti":
                 case "rdInve":
-                case "rdJuMa":
                 case "rdMedi":
                 case "rdNatu":
                 case "rdPerc":
-                case "rdPersp":
-                case "rdPersu":
+                case "rdPerf":
+                case "rdPers":
                 case "rdReli":
-                case "rdSigi":
-                case "rdSupe":
-                case "rdTrAn":
+                case "rdSloH":
+                case "rdStea":
+                case "rdSurv":
+
                     actualizarhablidades();
                     break;
                 default:
@@ -510,7 +515,7 @@ namespace proyecto_Final.Presentacion
         private async void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             await db.modificarficha((string)Nombre.Content.ToString(), STR.Text, DEX.Text, CON.Text, INT.Text, WIS.Text, CHA.Text, niv.Text);
-            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAtle, rdEnga, rdHist, rdInte, rdInti, rdInve, rdInve, rdJuMa, rdMedi, rdNatu, rdPerc, rdPersp, rdPersu, rdReli, rdSigi, rdSupe, rdTrAn, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
+            await ficheros.GuardarDatos("fich" + Nombre.Content.ToString() + ".txt", Nombre.Content.ToString(), Tras, niv, rtxtInv, rdFue, rdDes, rdCon, rdInt, rdSab, rdCar, rdCar, rdAcro, rdArca, rdAthl, rdDece, rdHist, rdPerf, rdInti, rdInve, rdInve, rdSloH, rdMedi, rdNatu, rdPerc, rdPerc, rdPers, rdReli, rdStea, rdSurv, rdAnHa, rtxtRasPer, rtxtide, rtxtVin, rtxtDef, Ali, rtxtcomp);
         }
 
         /// <summary>
@@ -521,8 +526,20 @@ namespace proyecto_Final.Presentacion
         /// <param name="e">Los datos del evento.</param>
         private void textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            if (!IsNumber(e.Text))
+            {
+                e.Handled = true; // Evita que se procese el texto ingresado
+            }
+        }
+        /// <summary>
+        /// trata de transformar un texto a numero
+        /// </summary>
+        /// <param name="text">el texto a transformar</param>
+        /// <returns>tru si pudo transformarlo, false si no</returns>
+        private bool IsNumber(string text)
+        {
+            // Intenta convertir el texto en un número entero
+            return int.TryParse(text, out _);
         }
 
         /// <summary>
@@ -543,7 +560,10 @@ namespace proyecto_Final.Presentacion
                     compmod.Content = await api.elimardatosclaseporniv(db.devolverclase(), nom, cont);
                     cont--;
                 } while (cont > Int32.Parse(niv.Text));
+                maxpg.Content = (Int32.Parse(Conbon.Content.ToString()) + Int32.Parse(dg.Content.ToString())) * Int32.Parse(niv.Text);
                 list.ItemsSource = await db.devolverRasgos(nom);
+                actualizarhablidades();
+                actualizarsalvaciones();
             }
             if (Int32.Parse(niv.Text) >= cont)
             {
@@ -555,6 +575,8 @@ namespace proyecto_Final.Presentacion
                 } while (cont <= Int32.Parse(niv.Text));
                 list.ItemsSource = await db.devolverRasgos(nom);
                 maxpg.Content = (Int32.Parse(Conbon.Content.ToString()) + Int32.Parse(dg.Content.ToString())) * Int32.Parse(niv.Text);
+                actualizarhablidades();
+                actualizarsalvaciones();
             }
             car.Close();
         }
@@ -601,11 +623,8 @@ namespace proyecto_Final.Presentacion
             if (bono == null) { }
             else
             {
-                if (bono == "STR")
-                {
-                    fich = new Ficha2(Nombre.Content.ToString(), db.devolverclase(), bono, Int32.Parse(Fuebon.Content.ToString()) + Int32.Parse(compmod.Content.ToString()), niv.Text.ToString());
-                }
-                else if (bono == "DEX")
+
+                 if (bono == "DEX")
                 {
                     fich = new Ficha2(Nombre.Content.ToString(), db.devolverclase(), bono, Int32.Parse(Desbon.Content.ToString()) + Int32.Parse(compmod.Content.ToString()), niv.Text.ToString());
                 }

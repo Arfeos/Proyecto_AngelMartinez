@@ -55,10 +55,234 @@ namespace proyecto_Final.Presentacion
             Button botonPresionado = (Button)sender;
             switch (botonPresionado.Name)
             {
-                // ...
 
-                case "btnmenCa":
-                    if (carisma > 8)
+                case "btnmasFu":
+                    if (fuerza < 15 && contador > 0)
+                    {
+                        if (fuerza < 13)
+                        {
+                            fuerza++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                fuerza++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15, no puede subir del mismo");
+                    }
+                    break;
+
+                case "btnmenFu":
+                    if (fuerza > 8)
+                    {
+                        if (fuerza < 13)
+                        {
+                            fuerza--;
+                            contador++;
+                        }
+                        else
+                        {
+                            fuerza--;
+                            contador += 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
+                    }
+                    break;
+
+                case "btnmasDe":
+                    if (destreza < 15 && contador > 0)
+                    {
+                        if (destreza < 13)
+                        {
+                            destreza++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                destreza++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15");
+                    }
+                    break;
+
+                case "btnmenDe":
+                    if (destreza > 8)
+                    {
+                        if (destreza < 13)
+                        {
+                            destreza--;
+                            contador++;
+                        }
+                        else
+                        {
+                            destreza--;
+                            contador += 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
+                    }
+                    break;
+
+                case "btnmasCo":
+                    if (constitucion < 15 && contador > 0)
+                    {
+                        if (constitucion < 13)
+                        {
+                            constitucion++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                constitucion++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15");
+                    }
+                    break;
+
+                case "btnmenCo":
+                    if (constitucion > 8)
+                    {
+                        if (constitucion < 13)
+                        {
+                            constitucion--;
+                            contador++;
+                        }
+                        else
+                        {
+                            constitucion--;
+                            contador += 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
+                    }
+                    break;
+
+                case "btnmasSa":
+                    if (sabiduria < 15 && contador > 0)
+                    {
+                        if (sabiduria < 13)
+                        {
+                            sabiduria++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                sabiduria++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15");
+                    }
+                    break;
+
+                case "btnmenSa":
+                    if (sabiduria > 8)
+                    {
+                        if (sabiduria < 13)
+                        {
+                            sabiduria--;
+                            contador++;
+                        }
+                        else
+                        {
+                            sabiduria--;
+                            contador += 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
+                    }
+                    break;
+
+                case "btnmasIn":
+                    if (inteligencia < 15 && contador > 0)
+                    {
+                        if (inteligencia < 13)
+                        {
+                            inteligencia++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                inteligencia++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15");
+                    }
+                    break;
+
+                case "btnmenIn":
+                    if (inteligencia > 8)
                     {
                         if (inteligencia < 13)
                         {
@@ -68,6 +292,54 @@ namespace proyecto_Final.Presentacion
                         else
                         {
                             inteligencia--;
+                            contador += 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 8, no puede bajar de esto");
+                    }
+                    break;
+
+                case "btnmasCa":
+                    if (carisma < 15 && contador > 0)
+                    {
+                        if (carisma < 13)
+                        {
+                            carisma++;
+                            contador--;
+                        }
+                        else
+                        {
+                            if (contador >= 2)
+                            {
+                                carisma++;
+                                contador -= 2;
+                            }
+                            else
+                                MessageBox.Show("no hay puntos suficientes");
+                        }
+                    }
+                    else if (contador <= 0)
+                    {
+                        MessageBox.Show("no quedan puntos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("el limite de creacion es de 15");
+                    }
+                    break;
+                case "btnmenCa":
+                    if (carisma > 8)
+                    {
+                        if (carisma < 13)
+                        {
+                            carisma--;
+                            contador++;
+                        }
+                        else
+                        {
+                            carisma--;
                             contador += 2;
                         }
                     }
